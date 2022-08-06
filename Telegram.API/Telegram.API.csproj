@@ -4,5 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Telegram.Core\Telegram.Core.csproj" />
+    <ProjectReference Include="..\Telegram.Infra\Telegram.Infra.csproj" />
+  </ItemGroup>
+
 
 </Project>
