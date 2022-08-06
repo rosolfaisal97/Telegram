@@ -10,8 +10,8 @@ namespace Telegram.Core
         public int My { get; set; }
 
         public string Name { get; set; } = "Qasem";
- 
 
+        public int age { get; set; }
 
     }
 }
