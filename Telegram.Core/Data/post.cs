@@ -6,24 +6,28 @@ using System.Text;
 
 namespace Telegram.Core.Data
 {
-    public class post
+    public class Post
     {
 
         [Key]
         public int id { get; set; }
-        [ForeignKey("admin_id ")]
+        public int admin_id { get; set; }
+
+        [ForeignKey("admin_id")]
         public virtual User user { get; set; }
+        public int channel_id { get; set; }
+
 
         [ForeignKey("channel_id")]
-        public virtual channel Channel { get; set; }
+        public virtual Channel Channel { get; set; }
         public string content { get; set; }
         public int post_id { get; set; }
         public DateTime created_at { get; set; }
 
-        public ICollection<media_post> media_posts { get; set; }
-        public ICollection<comments> comments { get; set; }
-        public ICollection<reaction> reaction { get; set; }
-        public ICollection<report_post> report_post { get; set; }
+        public ICollection<MediaPost> media_posts { get; set; }
+        public ICollection<Comments> comments { get; set; }
+        public ICollection<Reaction> reaction { get; set; }
+        public ICollection<ReportPost> report_post { get; set; }
 
     }
 }
