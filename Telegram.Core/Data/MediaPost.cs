@@ -6,14 +6,14 @@ using System.Text;
 
 namespace Telegram.Core.Data
 {
-    public class group_admin
+    public class MediaPost
     {
         [Key]
         public int id { get; set; }
-        [ForeignKey("user_id")]
-        public virtual User user { get; set; }
+        public string file_path { get; set; }
+        public int post_id { get; set; }
 
-        [ForeignKey("group_id")]
-        public virtual groups groups { get; set; }
+        [ForeignKey("post_id")]
+        public virtual Post post { get; set; }
     }
 }

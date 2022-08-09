@@ -6,15 +6,16 @@ using System.Text;
 
 namespace Telegram.Core.Data
 {
-    public class channel_admin
+    public class MediaMessage
     {
         [Key]
         public int id { get; set; }
-        [ForeignKey("user_id")]
-        public virtual User user { get; set; }
+        public string file_path { get; set; }
+        public string caption { get; set; }
+        public int message_id { get; set; }
 
-        [ForeignKey("channel_id")]
-        public virtual channel Channel { get; set; }
 
+        [ForeignKey("message_id")]
+        public virtual ChatMessage chat { get; set; }
     }
 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Telegram.Core\Telegram.Core.csproj" />
     <ProjectReference Include="..\Telegram.Infra\Telegram.Infra.csproj" />
   </ItemGroup>

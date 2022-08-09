@@ -6,13 +6,17 @@ using System.Text;
 
 namespace Telegram.Core.Data
 {
-    public class friends
+    public class Friends
     {
         [Key]
         public int id { get; set; }
+        public int user_from { get; set; }
+
 
         [ForeignKey("user_from")]
         public virtual User UserFrom { get; set; }
+        public int user_to { get; set; }
+
 
         [ForeignKey("user_to")]
         public virtual User UserTo { get; set; }

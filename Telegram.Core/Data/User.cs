@@ -20,29 +20,31 @@ namespace Telegram.Core.Data
         public string image_path { get; set; }
 
         public DateTime created_at { get; set; }
+        public int login_id { get; set; }
 
-        [ForeignKey("login_id ")]
+
+        [ForeignKey("login_id")]
         public virtual Login  Login { get; set; }
 
-        public ICollection<user_block_list> block_lists { get; set; }
+        public ICollection<UserBlockList> block_lists { get; set; }
 
-        public ICollection<report_user> report_users { get; set; }
+        public ICollection<ReportUser> report_users { get; set; }
 
-        public ICollection<friends>  friends { get; set; }
+        public ICollection<Friends>  friends { get; set; }
 
-        public ICollection<chat_message> chat_message { get; set; }
+        public ICollection<ChatMessage> chat_message { get; set; }
 
-        public ICollection<groups> groups { get; set; }
-        public ICollection<group_member> group_member { get; set; }
-        public ICollection<group_admin> group_admin { get; set; }
-        public ICollection<group_message> group_message { get; set; }
-        public ICollection<channel> channel { get; set; }
-        public ICollection<post> posts { get; set; }
-        public ICollection<comments> comments { get; set; }
-        public ICollection<reaction> reaction { get; set; }
-        public ICollection<report_channel> report_channels { get; set; }
-        public ICollection<story> storys { get; set; }
-        public ICollection<report_post> report_post { get; set; }
+        public ICollection<Groups> groups { get; set; }
+        public ICollection<GroupMember> group_member { get; set; }
+        public ICollection<GroupAdmin> group_admin { get; set; }
+        public ICollection<GroupMessage> group_message { get; set; }
+        public ICollection<Channel> channel { get; set; }
+        public ICollection<Post> posts { get; set; }
+        public ICollection<Comments> comments { get; set; }
+        public ICollection<Reaction> reaction { get; set; }
+        public ICollection<ReportChannel> report_channels { get; set; }
+        public ICollection<Story> storys { get; set; }
+        public ICollection<ReportPost> report_post { get; set; }
 
     }
 }

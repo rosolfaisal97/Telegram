@@ -6,19 +6,16 @@ using System.Text;
 
 namespace Telegram.Core.Data
 {
-    public class group_message
+    public class ChannelMember
     {
         [Key]
         public int id { get; set; }
-        [ForeignKey("from_id")]
+        public int user_id { get; set; }
+        [ForeignKey("user_id")]
         public virtual User user { get; set; }
+        public int channel_id { get; set; }
 
-        [ForeignKey("group_id")]
-        public virtual groups groups { get; set; }
-        public string content { get; set; }
-        public DateTime created_at { get; set; }
-
-        public ICollection<media_group> media_group { get; set; }
-
+        [ForeignKey("channel_id")]
+        public virtual Channel Channel  { get; set; }
     }
 }

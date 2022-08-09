@@ -6,19 +6,23 @@ using System.Text;
 
 namespace Telegram.Core.Data
 {
-    public class Story
+    public class ReportPost
     {
 
         [Key]
         public int id { get; set; }
-
-        public string content { get; set; }
-        public string file_path { get; set; }
         public int user_id { get; set; }
-
 
         [ForeignKey("user_id")]
         public virtual User user { get; set; }
-        public DateTime created_at { get; set; }
+        public int post_id { get; set; }
+
+
+        [ForeignKey("post_id")]
+        public virtual Post Post { get; set; }
+        public string type { get; set; }
+        public string description { get; set; }
+
+        public int is_accept { get; set; }
     }
 }

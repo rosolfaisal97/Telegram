@@ -15,7 +15,9 @@ namespace Telegram.Core.Data
         public string password { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
-        [ForeignKey("role_id ")]
+        public int role_id { get; set; }
+
+        [ForeignKey("role_id")]
         public virtual Role role  { get; set; }
 
         public ICollection<User> Users { get; set; }
