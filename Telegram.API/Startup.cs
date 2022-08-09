@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,16 +7,24 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+
+using Microsoft.IdentityModel.Tokens;
+
 using Microsoft.OpenApi.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Telegram.Core.Common;
 using Telegram.Core.Repository;
 using Telegram.Core.Service;
 using Telegram.Infra.Common;
+
+using Telegram.Infra.Repoisitory;
 using Telegram.Infra.Repository;
+
 using Telegram.Infra.Service;
 
 namespace Telegram.API
@@ -35,6 +44,40 @@ namespace Telegram.API
             services.AddControllers();
             //Data
             services.AddScoped<IDbContext, DbContext>();
+            services.AddScoped< Iusers ,UserRepo>();
+            services.AddScoped<IusersService, usersService>();
+            services.AddScoped< IUserBlockList ,UserBlockRepo>();
+            services.AddScoped<IuserBlockListService, userBlockListService>();
+            services.AddScoped< IStory ,StoryRepo>();
+            services.AddScoped<IStoryService, StoryService>();
+            services.AddScoped< IRole ,RoleRepo>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped< ILogin ,LoginRepo>();
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }
+
+          ).AddJwtBearer(y =>
+          {
+              y.RequireHttpsMetadata = false;
+              y.SaveToken = true;
+              y.TokenValidationParameters = new TokenValidationParameters
+              {
+                  ValidateIssuerSigningKey = true,
+                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("[SECRET Used To Sign And Verify Jwt Token,It can be any string]")),
+                  ValidateIssuer = false,
+                  ValidateAudience = false,
+
+              };
+
+
+
+          });
+            services.AddScoped< IChatMessage ,ChatMassageRepo>();
+            services.AddScoped<IChatMassageService, ChatMassageService>();
 
             //Repository
             services.AddScoped<IChannelRepository, ChannelRepository>();
@@ -63,6 +106,7 @@ namespace Telegram.API
                     new OpenApiInfo { Title = "<title>", Version = "v1" });
             }); 
             
+
 
         }
 
