@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Telegram.Core\Telegram.Core.csproj" />
     <ProjectReference Include="..\Telegram.Infra\Telegram.Infra.csproj" />
   </ItemGroup>
