@@ -6,9 +6,9 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ChannelController : ControllerBase
+    public class ChannelController : Controller
     {
         private readonly IChannelService ChannelService;
         public ChannelController(IChannelService ChannelService)

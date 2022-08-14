@@ -6,7 +6,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AdminController : Controller
     {
@@ -62,7 +62,14 @@ namespace Telegram.API.Controllers
 
 
 
-
+        [HttpGet]
+        [ProducesResponseType(typeof(List<GetChannelPosts>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("GetChannelPosts/{chid}")]
+        public List<GetChannelPosts> GetChannelPosts(int chid)
+        {
+            return functionChannelAdminService.GetChannelPosts(chid);
+        }
 
         [HttpGet]
         [ProducesResponseType(typeof(List<CountMemberEachChannel>), StatusCodes.Status200OK)]
@@ -79,7 +86,6 @@ namespace Telegram.API.Controllers
         {
             return functionChannelAdminService.GetCountReportEachPost();
         }
-
 
         [HttpGet]
         [ProducesResponseType(typeof(List<ReportEachPost>), StatusCodes.Status200OK)]
@@ -111,7 +117,7 @@ namespace Telegram.API.Controllers
         [ProducesResponseType(typeof(List<FilterReportPostByType>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("FilterReportType")]
-        public List<FilterReportPostByType> FilterReportType([FromBody] string type)
+        public List<FilterReportPostByType> FilterReportType([FromBody] FilterReportPostByType type)
         {
             return functionChannelAdminService.GetFilterReportPostByType(type);
         }

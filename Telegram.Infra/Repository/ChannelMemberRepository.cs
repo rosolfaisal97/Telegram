@@ -47,7 +47,6 @@ namespace Telegram.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("@CM_id", channel_Member.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
             p.Add("@U_id", channel_Member.user_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@C_id", channel_Member.channel_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 

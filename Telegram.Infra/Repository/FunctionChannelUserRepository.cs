@@ -19,6 +19,14 @@ namespace Telegram.Infra.Repository
             DbContext = _DbContext;
         }
 
+        public List<ChannelsSubscribed> ChannelsSubscribed(int Uid)
+        {
+            var p = new DynamicParameters();
+            p.Add("@Uid", Uid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<ChannelsSubscribed> result = DbContext.Connection.Query<ChannelsSubscribed>("Function_Channel_User_Package.ChannelsSubscribed", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
         public List<AdminsChannelName> GetAdminsChannelName(int Cid)
         {
 
@@ -78,14 +86,16 @@ namespace Telegram.Infra.Repository
             return result.ToList();
         }
 
-        public List<CountAdminsChannel> GetCountAdminsChannel(int Cid)
-        {
 
+
+        public List<CountAdminsChannel> GetCountAdminsChannel(int Pid)
+        {
             var p = new DynamicParameters();
-            p.Add("@Chid", Cid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<CountAdminsChannel> result = DbContext.Connection.Query<CountAdminsChannel>("Function_Channel_User_Package.ChannelMember", p, commandType: CommandType.StoredProcedure);
+            p.Add("@Chid",Pid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<CountAdminsChannel> result = DbContext.Connection.Query<CountAdminsChannel>("CountAdminsChannel", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+        
 
         public List<CountChannelFiles> GetCountChannelFiles(int Cid)
         {

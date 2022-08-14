@@ -18,13 +18,14 @@ namespace Telegram.Core.Repository
 
         List<CountPostEachChannel> GetCountPostEachChannel();
         List<CountFilterReportPostByType> GetCountFilterReportPostByType();
-        List<FilterReportPostByType> GetFilterReportPostByType(string RType);
+        List<FilterReportPostByType> GetFilterReportPostByType(FilterReportPostByType RType);
         List<MostReportPost> GetMostReportPost();
 
         List<GetMediaEachChannel> GetMediaEachChannels(int CHid);
         List<CountMediaEachChannel> GetCountMediaEachChannel(int CHid);
         List<CountReportAcceptEachPost> GetCountReportAcceptEachPost(int Pid);
         List<ReportAcceptEachPost> GetReportAcceptEachPost(int Pid);
+        List<GetChannelPosts> GetChannelPosts(int CHid);
 
 
 

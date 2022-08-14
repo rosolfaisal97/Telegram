@@ -21,6 +21,11 @@ namespace Telegram.Infra.Service
             return FunctionChannelAdminRepository.GetChannelNameUserAdmin(Aid);
         }
 
+        public List<GetChannelPosts> GetChannelPosts(int CHid)
+        {
+            return FunctionChannelAdminRepository.GetChannelPosts(CHid);
+        }
+
         public List<ChannelsInfo> GetChannelsInfo()
         {
             return FunctionChannelAdminRepository.GetChannelsInfo();
@@ -61,7 +66,7 @@ namespace Telegram.Infra.Service
            return FunctionChannelAdminRepository.GetCountUserAdmin();
         }
 
-        public List<FilterReportPostByType> GetFilterReportPostByType(string RType)
+        public List<FilterReportPostByType> GetFilterReportPostByType(FilterReportPostByType RType)
         {
             return FunctionChannelAdminRepository.GetFilterReportPostByType(RType);
         }
