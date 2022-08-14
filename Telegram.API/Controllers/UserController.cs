@@ -6,7 +6,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : Controller
     {
@@ -24,6 +24,14 @@ namespace Telegram.API.Controllers
         public List<AdminsChannelName> AdminsChannelName(int Cid)
         {
             return functionChannelUserService.GetAdminsChannelName(Cid);
+        }
+        [HttpGet]
+        [ProducesResponseType(typeof(List<ChannelsSubscribed>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("ChannelsSubscribed/{Cid}")]
+        public List<ChannelsSubscribed> ChannelsSubscribed(int Cid)
+        {
+            return functionChannelUserService.ChannelsSubscribed(Cid);
         }
 
         [HttpGet]
@@ -62,58 +70,66 @@ namespace Telegram.API.Controllers
             return functionChannelUserService.GetChannelFiles(Cid);
         }
 
+
+
+        //CountAdminsChannel
         [HttpGet]
-        [ProducesResponseType(typeof(List<CountAdminsChannel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountAdminsChannel/{Cid}")]
-        public List<CountAdminsChannel> CountAdminsChannel(int Cid)
+        public int CountAdminsChannel(int Cid)
         {
-            return functionChannelUserService.GetCountAdminsChannel(Cid);
+            return functionChannelUserService.GetAdminsChannelName(Cid).Count;
         }
 
+
+        //CountChannelMember
         [HttpGet]
-        [ProducesResponseType(typeof(List<CountChannelMember>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountChannelMember/{Cid}")]
-        public List<CountChannelMember> CountChannelMember(int Cid)
+        public int CountChannelMember(int Cid)
         {
-            return functionChannelUserService.GetCountChannelMember(Cid);
+            return functionChannelUserService.GetChannelMember(Cid).Count;
         }
 
+        //CountChannelPosts
         [HttpGet]
-        [ProducesResponseType(typeof(List<CountChannelPosts>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountChannelPosts/{Cid}")]
-        public List<CountChannelPosts> CountChannelPosts(int Cid)
+        public int CountChannelPosts(int Cid)
         {
-            return functionChannelUserService.GetCountChannelPosts(Cid);
+            return functionChannelUserService.GetChannelPosts(Cid).Count;
         }
-
+        //CountChannelFiles
         [HttpGet]
-        [ProducesResponseType(typeof(List<CountChannelFiles>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountChannelFiles/{Cid}")]
-        public List<CountChannelFiles> CountChannelFiles(int Cid)
+        public int CountChannelFiles(int Cid)
         {
-            return functionChannelUserService.GetCountChannelFiles(Cid);
+            return functionChannelUserService.GetChannelFiles(Cid).Count;
         }
 
+
+        ///CountCommentPost
         [HttpGet]
-        [ProducesResponseType(typeof(List<CountCommentPost>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountCommentPost/{Pid}")]
-        public List<CountCommentPost> CountCommentPost(int Pid)
+        public int CountCommentPost(int Pid)
         {
-            return functionChannelUserService.GetCountCommentPost(Pid);
+            return functionChannelUserService.GetCommentPost(Pid).Count;
         }
-
+        //CountLikePost
         [HttpGet]
-        [ProducesResponseType(typeof(List<CountLikePost>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountLikePost/{Pid}")]
-        public List<CountLikePost> CountLikePost(int Pid)
+        public int CountLikePost(int Pid)
         {
-            return functionChannelUserService.GetCountLikePost(Pid);
+            return functionChannelUserService.GetLikePost(Pid).Count;
         }
 
 
@@ -172,6 +188,7 @@ namespace Telegram.API.Controllers
             return functionChannelUserService.GetCheckReprort(Pid);
         }
 
+        //add id channel
         [HttpPost]
         [ProducesResponseType(typeof(List<FilterChannelByMember>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -181,6 +198,8 @@ namespace Telegram.API.Controllers
             return functionChannelUserService.GetFilterChannelByMember(filterChannelByMember);
         }
 
+
+        //add id channel
         [HttpPost]
         [ProducesResponseType(typeof(List<FilterChannelPost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

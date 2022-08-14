@@ -12,6 +12,7 @@ namespace Telegram.Core.Service
         List<Top10PostByComment> GetTop10PostByComment();
         List<ChannelsInfo> GetChannelsInfo();
         List<CountUserAdmin> GetCountUserAdmin();
+        List<GetChannelPosts> GetChannelPosts(int CHid);
 
         List<ChannelNameUserAdmin> GetChannelNameUserAdmin(int Aid);
         List<CountMemberEachChannel> GetCountMemberEachChannel();
@@ -20,7 +21,7 @@ namespace Telegram.Core.Service
 
         List<CountPostEachChannel> GetCountPostEachChannel();
         List<CountFilterReportPostByType> GetCountFilterReportPostByType();
-        List<FilterReportPostByType> GetFilterReportPostByType(string RType);
+        List<FilterReportPostByType> GetFilterReportPostByType(FilterReportPostByType RType);
         List<MostReportPost> GetMostReportPost();
 
         List<GetMediaEachChannel> GetMediaEachChannels(int CHid);

@@ -22,7 +22,7 @@ namespace Telegram.Infra.Repository
         public bool CreatePostReport(ReportPost report_Post)
         {
             var p = new DynamicParameters();
-            p.Add("@Fuser", report_Post.user_id, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("@Fuser", report_Post.user_from, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@P_id", report_Post.post_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@typee", report_Post.type, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@descript", report_Post.description, dbType: DbType.String, direction: ParameterDirection.Input);
@@ -50,9 +50,8 @@ namespace Telegram.Infra.Repository
         public bool UpdatePostReport(ReportPost report_Post)
         {
             var p = new DynamicParameters();
-            p.Add("@RP_id", report_Post.user_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
-            p.Add("@Fuser", report_Post.user_id, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("@RP_id", report_Post.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@Fuser", report_Post.user_from, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@P_id", report_Post.post_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@typee", report_Post.type, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@descript", report_Post.description, dbType: DbType.String, direction: ParameterDirection.Input);
