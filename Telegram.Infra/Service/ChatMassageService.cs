@@ -17,7 +17,7 @@ namespace Telegram.Infra.Service
         {
             this.ChatMassageRepo = ChatMassageRepo;
         }
-        public bool DeleteChatMessage(int? Ch__id)
+        public bool DeleteChatMessage(int Ch__id)
         {
             return ChatMassageRepo.DeleteChatMessage(Ch__id);
         }
@@ -32,14 +32,14 @@ namespace Telegram.Infra.Service
             return ChatMassageRepo.InsertChatMessage(chat);
         }
 
-        public List<ReturnMassageInfodto> ReturnMassageInfo(ReturnMassageInfodto massage)
+        public List<ReturnMassageInfodto> ReturnMassageInfo()
         {
-            return ChatMassageRepo.ReturnMassageInfo(massage);
+            return ChatMassageRepo.ReturnMassageInfo();
         }
 
-        public List<SearchMassageInfodto> SearchMassageInfo(SearchMassageInfodto searchmassage)
+        public List<SearchMassageInfodto> SearchMassageInfo(string search_m, int Ch_user_from, int Ch_user_to)
         {
-            return ChatMassageRepo.SearchMassageInfo(searchmassage);
+            return ChatMassageRepo.SearchMassageInfo(search_m, Ch_user_from, Ch_user_to);
         }
 
         public bool UpdateChatMessage(ChatMessage chat)

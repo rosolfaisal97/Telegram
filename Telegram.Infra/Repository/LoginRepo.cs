@@ -31,7 +31,7 @@ namespace Telegram.Infra.Repoisitory
             return result.FirstOrDefault();
         }
 
-        public bool DeleteLogin(int? L_id)
+        public bool DeleteLogin(int L_id)
         {
             var parameter = new DynamicParameters();
 
@@ -77,7 +77,7 @@ namespace Telegram.Infra.Repoisitory
             return logins;
         }
 
-        public RePasswordUserrEPO RePasswordUser(RePasswordUserrEPO rep)
+        public bool RePasswordUser(RePasswordUserrEPO rep)
         {
             var parameter = new DynamicParameters();
             parameter.Add("L_id", rep.L_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
@@ -85,7 +85,9 @@ namespace Telegram.Infra.Repoisitory
 
             IEnumerable<RePasswordUserrEPO> result = DbContext.Connection.Query<RePasswordUserrEPO>("login_Package.RePasswordUser", parameter, commandType: CommandType.StoredProcedure);
 
-            return result.FirstOrDefault();
+            if (result == null)
+                return false;
+            return true;
         }
 
         public bool UpdateLogin(Login logins)

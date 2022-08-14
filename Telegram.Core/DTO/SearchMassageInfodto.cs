@@ -7,9 +7,9 @@ namespace Telegram.Core.DTO
     public class SearchMassageInfodto
     {
 
-        public DateTime Ch_user_from { get; set; }  
-        public DateTime Ch_user_to { get; set; }
-        public string search_m { get; set; }
+        public string massage { get; set; }  
+        public DateTime CreateDate { get; set; }
+        
 
     }
 }

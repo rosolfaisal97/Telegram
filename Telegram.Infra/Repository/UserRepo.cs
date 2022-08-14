@@ -19,7 +19,7 @@ namespace Telegram.Infra.Repoisitory
         {
             this.DbContext = DbContext;
         }
-        public bool DeleteUsers(int? U_id)
+        public bool DeleteUsers(int U_id)
         {
             var parameter = new DynamicParameters();
 
@@ -76,14 +76,15 @@ namespace Telegram.Infra.Repoisitory
             return result.ToList();
         }
 
-        public  List<NumberOfUserByGenderdto> NumberOfUserByGender(NumberOfUserByGenderdto numberusergender)
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("U_gender", numberusergender.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
-           
-            IEnumerable<NumberOfUserByGenderdto> result = DbContext.Connection.Query<NumberOfUserByGenderdto> ("Users_Package.NumberOfUserByGender", parameter, commandType: CommandType.StoredProcedure);
+                ("U_gender",U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            IEnumerable<NumberOfUserByGenderdto> result = DbContext.Connection.Query<NumberOfUserByGenderdto> 
+                ("Users_Package.NumberOfUserByGender", parameter, commandType: CommandType.StoredProcedure);
 
             return result.ToList();
         }
@@ -117,26 +118,27 @@ namespace Telegram.Infra.Repoisitory
             return Ins;
         }
 
-        public List<SearchUserInfo> SarchUserInfo(SearchUserInfo searchUser)
+
+        public List<SearchUserInfo> SarchUserInfo(string sarch)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("sarch", searchUser.sarch, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("sarch", sarch, dbType: DbType.String, direction: ParameterDirection.Input);
 
             IEnumerable<SearchUserInfo> result = DbContext.Connection.Query<SearchUserInfo>("Users_Package.SarchUserInfo", parameter, commandType: CommandType.StoredProcedure);
 
             return result.ToList();
         }
 
-        public List<SearchButweenTwoDatedto> SearchButweenTwoDate(SearchButweenTwoDatedto c)
+        public List<SearchButweenTwoDatedto> SearchButweenTwoDate(DateTime dateto, DateTime datefrom)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("dateto",c.dateto, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+                ("dateto", dateto, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             parameter.Add
-                ("datefrom",c.datefrom, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+                ("datefrom", datefrom, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             IEnumerable<SearchButweenTwoDatedto> result = DbContext.Connection.Query<SearchButweenTwoDatedto>
                            ("Users_Package.SearchButweenTwoDate", parameter, commandType: CommandType.StoredProcedure);
             return result.ToList();
