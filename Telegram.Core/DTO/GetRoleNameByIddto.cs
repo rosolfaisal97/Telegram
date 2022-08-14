@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Telegram.Core.DTO
 {
-    public class NumberOfUserByGenderdto
+    public class GetRoleNameByIddto
     {
-        public int CountOfUserGender { get; set; }
+     public String NameRole { get; set; }
     }
 }

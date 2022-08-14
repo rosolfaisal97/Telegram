@@ -60,7 +60,7 @@ namespace Telegram.Infra.Service
         //    return LoginRepo.AuthLogin(login);
         //}
 
-        public bool DeleteLogin(int? L_id)
+        public bool DeleteLogin(int L_id)
         {
             return LoginRepo.DeleteLogin(L_id);
         }
@@ -75,7 +75,7 @@ namespace Telegram.Infra.Service
             return LoginRepo.InsertLogin(logins);
         }
 
-        public RePasswordUserrEPO RePasswordUser(RePasswordUserrEPO rep)
+        public bool RePasswordUser(RePasswordUserrEPO rep)
         {
             return LoginRepo.RePasswordUser(rep);
         }

@@ -19,7 +19,7 @@ namespace Telegram.Infra.Repoisitory
         {
             this.DbContext = DbContext;
         }
-        public bool DeleteStory(int? S_id)
+        public bool DeleteStory(int S_id)
         {
             var parameter = new DynamicParameters();
             parameter.Add
@@ -60,12 +60,12 @@ namespace Telegram.Infra.Repoisitory
             return story;
         }
 
-        public List<ReturnUserInfodto> ReturnUserInfo(ReturnUserInfodto userinfo)
+        public List<ReturnUserInfodto> ReturnUserInfo(int S_user_id)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("S_user_id", userinfo.S_user_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("S_user_id", S_user_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             IEnumerable<ReturnUserInfodto> result = DbContext.Connection.Query<ReturnUserInfodto>("story_Package.ReturnUserInfo", parameter, commandType: CommandType.StoredProcedure);
 

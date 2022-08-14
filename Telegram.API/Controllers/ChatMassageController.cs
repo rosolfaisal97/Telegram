@@ -18,7 +18,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete("delete/{Ch__id}")]
-        public bool DeleteChatMessage(int? Ch__id)
+        public bool DeleteChatMessage(int Ch__id)
         {
             return ChatMassageService.DeleteChatMessage(Ch__id);
         }
@@ -36,15 +36,16 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost ("ReturnMassageInfo")]
-        public List<ReturnMassageInfodto> ReturnMassageInfo([FromBody] ReturnMassageInfodto massage)
+        public List<ReturnMassageInfodto> ReturnMassageInfo()
         {
-            return ChatMassageService.ReturnMassageInfo(massage);
+            return ChatMassageService.ReturnMassageInfo();
         }
 
-        [HttpPost("SearchMassage")]
-        public List<SearchMassageInfodto> SearchMassageInfo([FromBody] SearchMassageInfodto searchmassage)
+        [HttpPost("SearchMassage/{search_m}/{Ch_user_from}/{Ch_user_to}")]
+        public List<SearchMassageInfodto> SearchMassageInfo(string search_m, int Ch_user_from, int Ch_user_to)
+
         {
-            return ChatMassageService.SearchMassageInfo(searchmassage);
+            return ChatMassageService.SearchMassageInfo(search_m, Ch_user_from, Ch_user_to);
         }
 
         [HttpPut]

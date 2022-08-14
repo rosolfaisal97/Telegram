@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
@@ -20,7 +21,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpDelete("delete/{U_id}")]
-        public bool DeleteUsers(int? U_id)
+        public bool DeleteUsers(int U_id)
         {
             return usersService.DeleteUsers(U_id);
         }
@@ -32,6 +33,8 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public User InsertUsers([FromBody]User uss)
         {
             return usersService.InsertUsers(uss);
@@ -43,10 +46,10 @@ namespace Telegram.API.Controllers
             return usersService.NumberOfUser();
         }
 
-        [HttpPost("NumberUserByGender")]
-        public List<NumberOfUserByGenderdto> NumberOfUserByGender([FromBody] NumberOfUserByGenderdto numberusergender)
+        [HttpPost("NumberUserByGender/{U_gender}")]
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender)
         {
-            return usersService.NumberOfUserByGender(numberusergender);
+            return usersService.NumberOfUserByGender(U_gender);
         }
 
         [HttpPost("Register")]
@@ -55,17 +58,19 @@ namespace Telegram.API.Controllers
             return usersService.RegisterUser(Ins);
         }
 
-        [HttpPost("SarchUserInfo")]
-        public List<SearchUserInfo> SarchUserInfo([FromBody] SearchUserInfo searchUser)
+        [HttpPost("SarchUserInfo/{sarch}")]
+            public List<SearchUserInfo> SarchUserInfo(string sarch)
         {
-            return usersService.SarchUserInfo(searchUser);
+            return usersService.SarchUserInfo(sarch);
         }
 
-        [HttpPost("SearchDate")]
-        public List<SearchButweenTwoDatedto> SearchButweenTwoDate([FromBody] SearchButweenTwoDatedto c)
+        [HttpPost("SearchDate/{dateto}/{datefrom}")]
+        
+        public List<SearchButweenTwoDatedto> SearchButweenTwoDate(DateTime dateto, DateTime datefrom)
         {
-            return usersService.SearchButweenTwoDate(c);
+            return usersService.SearchButweenTwoDate(dateto, datefrom);
         }
+
         [HttpPut("UpdateProfile")]
         public bool UpdateProfileUser([FromBody] UpdateProfileUserDTO Upd)
         {

@@ -11,9 +11,8 @@ namespace Telegram.Core.Service
         public List<Login> GetAllLogin();
         public Login InsertLogin(Login logins);
         public bool UpdateLogin(Login logins);
-        public bool DeleteLogin(int? L_id);
-        //public AuthLoginREPO AuthLogin(AuthLoginREPO login);
+        public bool DeleteLogin(int L_id);
         public string Authentication_jwt(AuthLoginREPO login);
-        public RePasswordUserrEPO RePasswordUser(RePasswordUserrEPO rep);
+        public bool RePasswordUser(RePasswordUserrEPO rep);
     }
 }

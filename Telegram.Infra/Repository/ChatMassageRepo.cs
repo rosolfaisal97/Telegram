@@ -19,7 +19,7 @@ namespace Telegram.Infra.Repoisitory
         {
             this.DbContext = DbContext;
         }
-        public bool DeleteChatMessage(int? Ch__id)
+        public bool DeleteChatMessage(int Ch__id)
         {
             var parameter = new DynamicParameters();
 
@@ -63,7 +63,7 @@ namespace Telegram.Infra.Repoisitory
             return chat;
         }
 
-        public List<ReturnMassageInfodto> ReturnMassageInfo(ReturnMassageInfodto massage)
+        public List<ReturnMassageInfodto> ReturnMassageInfo()
         {
             
             IEnumerable<ReturnMassageInfodto> result = DbContext.Connection.Query<ReturnMassageInfodto>
@@ -71,15 +71,16 @@ namespace Telegram.Infra.Repoisitory
             return result.ToList();
         }
 
-        public List<SearchMassageInfodto> SearchMassageInfo(SearchMassageInfodto searchmassage)
+        public List<SearchMassageInfodto> SearchMassageInfo(string search_m, int Ch_user_from, int Ch_user_to)
         {
             var parameter = new DynamicParameters();
             parameter.Add
-               ("Ch_user_from", searchmassage.Ch_user_from, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+               ("search_m", search_m, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("Ch_user_to", searchmassage.Ch_user_to, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+               ("Ch_user_from", Ch_user_from, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("search_m", searchmassage.search_m, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("Ch_user_to", Ch_user_to, dbType: DbType.Int32, direction: ParameterDirection.Input);
+           
             IEnumerable<SearchMassageInfodto> result = DbContext.Connection.Query<SearchMassageInfodto>
                            ("Chat_Message_Package.SearchMassageInfo", parameter, commandType: CommandType.StoredProcedure);
             return result.ToList();
