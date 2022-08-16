@@ -58,8 +58,7 @@ namespace Telegram.Infra.Repoisitory
                 ("U_image_path", uss.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
                 ("U_login_id", uss.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            parameter.Add
-                ("U_created_at", uss.created_at, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            
             
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.InsertUsers", parameter, commandType: CommandType.StoredProcedure);
@@ -193,8 +192,7 @@ namespace Telegram.Infra.Repoisitory
                 ("U_image_path", uss.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
                 ("U_login_id", uss.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            parameter.Add
-                ("U_created_at", uss.created_at, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            
             
 
             var result = DbContext.Connection.ExecuteAsync
