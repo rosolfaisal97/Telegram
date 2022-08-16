@@ -51,8 +51,7 @@ namespace Telegram.Infra.Repoisitory
                 ("Ch_content", chat.content, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
                 ("Ch_is_read", chat.is_read, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            parameter.Add
-                ("Ch_created_at ", chat.created_at, dbType: DbType.DateTime, direction: ParameterDirection.Input);
+            
           
 
             var result = DbContext.Connection.ExecuteAsync

@@ -45,9 +45,9 @@ namespace Telegram.Infra.Repoisitory
                 var parameter = new DynamicParameters();
 
             parameter.Add
-                ("UB_user_from", userBlock.UserFrom, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("UB_user_from",userBlock.UserFrom, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("UB_user_to", userBlock.UserTo, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("UB_user_to",userBlock.UserTo, dbType: DbType.Int32, direction: ParameterDirection.Input);
         
 
             var result = DbContext.Connection.ExecuteAsync
@@ -73,11 +73,11 @@ namespace Telegram.Infra.Repoisitory
         {
             var parameter = new DynamicParameters();
             parameter.Add
-                ("@UB_id", userBlock.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@UB_id",userBlock.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("UB_user_from", userBlock.UserFrom, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("UB_user_from",userBlock.UserFrom, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("UB_user_to", userBlock.UserTo, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("UB_user_to",userBlock.UserTo, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
 
             var result = DbContext.Connection.ExecuteAsync
