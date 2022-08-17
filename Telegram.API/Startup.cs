@@ -32,7 +32,24 @@ namespace Telegram.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(corsOptions =>
+
+            {
+
+                corsOptions.AddPolicy("policy",
+
+                builder =>
+
+                {
+
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+
+                });
+
+            });
+
             services.AddControllers();
+
             //Data
             services.AddScoped<IDbContext, DbContext>();
 
@@ -45,6 +62,7 @@ namespace Telegram.API
             services.AddScoped<IPostReportRepository, PostReportRepository>();
             services.AddScoped<IFunctionChannelAdminRepository, FunctionChannelAdminRepository>();
             services.AddScoped<IFunctionChannelUserRepository, FunctionChannelUserRepository>();
+            services.AddScoped<IHomePageRepository, HomePageRepository>();
 
             //Service
             services.AddScoped<IChannelService, ChannelService>();
@@ -55,6 +73,7 @@ namespace Telegram.API
             services.AddScoped<IPostReportService, PostReportService>();
             services.AddScoped<IFunctionChannelAdminService, FunctionChannelAdminService>();
             services.AddScoped<IFunctionChannelUserService, FunctionChannelUserService>();
+            services.AddScoped<IHomePageService, HomePageService>();
 
             //Swagger
             services.AddSwaggerGen(c =>
@@ -77,6 +96,8 @@ namespace Telegram.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors("policy");
+            app.UseAuthentication();
             app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
