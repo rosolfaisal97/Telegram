@@ -17,31 +17,39 @@ namespace Telegram.API.Controllers
         {
             this.IStoryService = IStoryService;
         }
-        [HttpDelete("delete/{S_id}")]
-        public bool DeleteStory(int? S_id)
+        [HttpDelete]
+        [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("delete/{S_id}")]
+        public bool DeleteStory(int S_id)
         {
             return IStoryService.DeleteStory(S_id);
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         public List<Story> GetAllStory()
         {
             return IStoryService.GetAllStory();
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Story), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Story InsertStory([FromBody]Story story)
         {
             return IStoryService.InsertStory(story);
         }
 
-        [HttpPost("UserInfo")]
-        public List<ReturnUserInfodto> ReturnUserInfo([FromBody] ReturnUserInfodto userinfo)
+        [HttpPost("UserInfo/{S_user_id}")]
+        public List<ReturnUserInfodto> ReturnUserInfo(int S_user_id)
         {
-            return IStoryService.ReturnUserInfo(userinfo);
+            return IStoryService.ReturnUserInfo(S_user_id);
         }
 
         [HttpPut]
+        [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateStory([FromBody]Story story)
         {
             return IStoryService.UpdateStory(story);

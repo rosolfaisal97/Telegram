@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
@@ -26,11 +27,10 @@ namespace Telegram.API.Controllers
             return functionChannelUserService.GetAdminsChannelName(Cid);
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(List<OwnerChannelName>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("OwnerChannel/{Cid}")]
-        public List<OwnerChannelName> OwnerChannelName(int Cid)
+ 
+        [HttpDelete("delete/{U_id}")]
+        public bool DeleteUsers(int U_id)
+ 
         {
             return functionChannelUserService.GetOwnerChannelName(Cid);
         }
@@ -43,31 +43,12 @@ namespace Telegram.API.Controllers
         {
             return functionChannelUserService.GetChannelMember(Cid);
         }
-
-        [HttpGet]
-        [ProducesResponseType(typeof(List<ChannelPosts>), StatusCodes.Status200OK)]
+ 
+        [HttpPost]
+        [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("ChannelPosts/{Cid}")]
-        public List<ChannelPosts> ChannelPosts(int Cid)
-        {
-            return functionChannelUserService.GetChannelPosts(Cid);
-        }
-
-        [HttpGet]
-        [ProducesResponseType(typeof(List<ChannelFiles>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("ChannelFiles/{Cid}")]
-        public List<ChannelFiles> ChannelFiles(int Cid)
-        {
-            return functionChannelUserService.GetChannelFiles(Cid);
-        }
-
-        [HttpGet]
-        [ProducesResponseType(typeof(List<CountAdminsChannel>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("CountAdminsChannel/{Cid}")]
-        public List<CountAdminsChannel> CountAdminsChannel(int Cid)
-        {
+        public User InsertUsers([FromBody]User uss)
+         {
             return functionChannelUserService.GetCountAdminsChannel(Cid);
         }
 
@@ -80,13 +61,12 @@ namespace Telegram.API.Controllers
             return functionChannelUserService.GetCountChannelMember(Cid);
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(List<CountChannelPosts>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("CountChannelPosts/{Cid}")]
-        public List<CountChannelPosts> CountChannelPosts(int Cid)
+ 
+        [HttpPost("NumberUserByGender/{U_gender}")]
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender)
         {
-            return functionChannelUserService.GetCountChannelPosts(Cid);
+            return usersService.NumberOfUserByGender(U_gender);
+ 
         }
 
         [HttpGet]
@@ -98,31 +78,23 @@ namespace Telegram.API.Controllers
             return functionChannelUserService.GetCountChannelFiles(Cid);
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(List<CountCommentPost>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("CountCommentPost/{Pid}")]
-        public List<CountCommentPost> CountCommentPost(int Pid)
+ 
+        [HttpPost("SarchUserInfo/{sarch}")]
+            public List<SearchUserInfo> SarchUserInfo(string sarch)
         {
-            return functionChannelUserService.GetCountCommentPost(Pid);
+            return usersService.SarchUserInfo(sarch);
         }
 
-        [HttpGet]
-        [ProducesResponseType(typeof(List<CountLikePost>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("CountLikePost/{Pid}")]
-        public List<CountLikePost> CountLikePost(int Pid)
+        [HttpPost("SearchDate/{dateto}/{datefrom}")]
+        
+        public List<SearchButweenTwoDatedto> SearchButweenTwoDate(DateTime dateto, DateTime datefrom)
         {
-            return functionChannelUserService.GetCountLikePost(Pid);
+            return usersService.SearchButweenTwoDate(dateto, datefrom);
         }
 
-
-        [HttpGet]
-        [ProducesResponseType(typeof(List<ChannelProfile>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("ChannelProfile/{Cid}")]
-        public List<ChannelProfile> ChannelProfile(int Cid)
-        {
+        [HttpPut("UpdateProfile")]
+        public bool UpdateProfileUser([FromBody] UpdateProfileUserDTO Upd)
+         {
             return functionChannelUserService.GetChannelProfile(Cid);
         }
 

@@ -18,7 +18,7 @@ namespace Telegram.API.Controllers
             this.userBlockListService = userBlockListService;
         }
         [HttpDelete("delete/UB_id")]
-        public bool DeleteUserBlock(int? UB_id)
+        public bool DeleteUserBlock(int UB_id)
         {
             return userBlockListService.DeleteUserBlock(UB_id);
         }
@@ -35,10 +35,10 @@ namespace Telegram.API.Controllers
             return userBlockListService.InsertUserBlock(userBlock);
         }
 
-        [HttpPost("MY_block")]
-        public List<My_block_ListDTO> My_block_List([FromBody] My_block_ListDTO my_Block)
+        [HttpPost("MY_block/{user_id}")]
+        public List<My_block_ListDTO> My_block_List(int user_id)
         {
-            return userBlockListService.My_block_List(my_Block);
+            return userBlockListService.My_block_List(user_id);
         }
         [HttpPut]
         public bool UpdateUserBlock([FromBody] UserBlockList userBlock)

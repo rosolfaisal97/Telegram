@@ -16,6 +16,11 @@ namespace Telegram.Infra.Service
             this.FunctionChannelUserRepository = FunctionChannelUserRepository;
         }
 
+        public List<ChannelsSubscribed> ChannelsSubscribed(int Cid)
+        {
+            return FunctionChannelUserRepository.ChannelsSubscribed(Cid);
+        }
+
         public List<AdminsChannelName> GetAdminsChannelName(int Cid)
         {
             return FunctionChannelUserRepository.GetAdminsChannelName(Cid);

@@ -6,6 +6,6 @@ namespace Telegram.Core.DTO
 {
     public class NumberOfUserByGenderdto
     {
-        public string U_gender { get; set; }
+        public int CountOfUserGender { get; set; }
     }
 }

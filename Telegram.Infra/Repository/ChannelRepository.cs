@@ -49,7 +49,7 @@ namespace Telegram.Infra.Repository
         public bool UpdateChannel(Channel channel)
         {
             var p = new DynamicParameters();
-            p.Add("@(C_id", channel.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@C_id", channel.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@C_username", channel.username, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@C_owner_id", channel.owner_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@C_bio", channel.bio, dbType: DbType.String, direction: ParameterDirection.Input);

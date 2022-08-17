@@ -22,7 +22,15 @@ namespace Telegram.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("@A_id", Aid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<ChannelNameUserAdmin> result = DbContext.Connection.Query<ChannelNameUserAdmin>("Function_Channel_User_Package.ChannelNameUserAdmin", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<ChannelNameUserAdmin> result = DbContext.Connection.Query<ChannelNameUserAdmin>("Function_Channel_Admin_Package.ChannelNameUserAdmin", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<GetChannelPosts> GetChannelPosts(int CHid)
+        {
+            var p = new DynamicParameters();
+            p.Add("@Chid", CHid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<GetChannelPosts> result = DbContext.Connection.Query<GetChannelPosts>("Function_Channel_Admin_Package.GetChannelPosts", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -42,7 +50,7 @@ namespace Telegram.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("@CH_id", CHid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<CountMediaEachChannel> result = DbContext.Connection.Query<CountMediaEachChannel>("Function_Channel_User_Package.CountMediaEachChannel", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<CountMediaEachChannel> result = DbContext.Connection.Query<CountMediaEachChannel>("Function_Channel_Admin_Package.CountMediaEachChannel", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -62,7 +70,7 @@ namespace Telegram.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("@P_id", Pid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<CountReportAcceptEachPost> result = DbContext.Connection.Query<CountReportAcceptEachPost>("Function_Channel_User_Package.CountReportAcceptEachPost", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<CountReportAcceptEachPost> result = DbContext.Connection.Query<CountReportAcceptEachPost>("Function_Channel_Admin_Package.CountReportAcceptEachPost", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -78,12 +86,12 @@ namespace Telegram.Infra.Repository
             return result.ToList();
         }
 
-        public List<FilterReportPostByType> GetFilterReportPostByType(string RType)
+        public List<FilterReportPostByType> GetFilterReportPostByType(FilterReportPostByType RType)
         {
 
             var p = new DynamicParameters();
-            p.Add("@t_R", RType, dbType: DbType.String, direction: ParameterDirection.Input);
-            IEnumerable<FilterReportPostByType> result = DbContext.Connection.Query<FilterReportPostByType>("Function_Channel_User_Package.FilterReportPostByType", p, commandType: CommandType.StoredProcedure);
+            p.Add("@t_R", RType.type, dbType: DbType.String, direction: ParameterDirection.Input);
+            IEnumerable<FilterReportPostByType> result = DbContext.Connection.Query<FilterReportPostByType>("Function_Channel_Admin_Package.FilterReportPostByType", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -91,7 +99,7 @@ namespace Telegram.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("@CH_id", CHid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<GetMediaEachChannel> result = DbContext.Connection.Query<GetMediaEachChannel>("Function_Channel_User_Package.GetMediaEachChannel", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<GetMediaEachChannel> result = DbContext.Connection.Query<GetMediaEachChannel>("Function_Channel_Admin_Package.GetMediaEachChannel", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -105,7 +113,7 @@ namespace Telegram.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("@P_id", Pid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<ReportAcceptEachPost> result = DbContext.Connection.Query<ReportAcceptEachPost>("Function_Channel_User_Package.ReportAcceptEachPost", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<ReportAcceptEachPost> result = DbContext.Connection.Query<ReportAcceptEachPost>("Function_Channel_Admin_Package.ReportAcceptEachPost", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
@@ -113,7 +121,7 @@ namespace Telegram.Infra.Repository
         {
             var p = new DynamicParameters();
             p.Add("@P_id", Pid, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<ReportEachPost> result = DbContext.Connection.Query<ReportEachPost>("Function_Channel_User_Package.ReportEachPost", p, commandType: CommandType.StoredProcedure);
+            IEnumerable<ReportEachPost> result = DbContext.Connection.Query<ReportEachPost>("Function_Channel_Admin_Package.ReportEachPost", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 

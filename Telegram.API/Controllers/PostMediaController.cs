@@ -7,7 +7,7 @@ using Telegram.Core.Service;
 namespace Telegram.API.Controllers
 {
 
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PostMediaController : Controller
     {

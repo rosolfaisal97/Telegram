@@ -15,7 +15,7 @@ namespace Telegram.Infra.Service
         {
             this.UserBlockRepo = UserBlockRepo;
         }
-        public bool DeleteUserBlock(int? UB_id)
+        public bool DeleteUserBlock(int UB_id)
         {
             return UserBlockRepo.DeleteUserBlock(UB_id);
         }
@@ -30,9 +30,9 @@ namespace Telegram.Infra.Service
             return UserBlockRepo.InsertUserBlock(userBlock);
         }
 
-        public List<My_block_ListDTO> My_block_List(My_block_ListDTO my_Block)
+        public List<My_block_ListDTO> My_block_List(int user_id)
         {
-            return UserBlockRepo.My_block_List(my_Block);
+            return UserBlockRepo.My_block_List(user_id);
         }
 
         public bool UpdateUserBlock(UserBlockList userBlock)

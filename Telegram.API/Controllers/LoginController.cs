@@ -24,7 +24,7 @@ namespace Telegram.API.Controllers
         //    return LoginService.AuthLogin(login);
         //}
 
-        [HttpPost]
+        [HttpPost("auth")]
         public IActionResult authon([FromBody] AuthLoginREPO login)
         {
             var RESULT = LoginService.Authentication_jwt(login);
@@ -41,30 +41,38 @@ namespace Telegram.API.Controllers
 
         }
 
-        [HttpDelete("delete/{L_id}")]
-        public bool DeleteLogin(int? L_id)
+        [HttpDelete]
+        [ProducesResponseType(typeof(List<Login>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("delete/{L_id}")]
+        public bool DeleteLogin(int L_id)
         {
             return LoginService.DeleteLogin(L_id);
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<Login>), StatusCodes.Status200OK)]
         public List<Login> GetAllLogin()
         {
             return LoginService.GetAllLogin();
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(Login), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Login InsertLogin([FromBody] Login logins)
         {
             return LoginService.InsertLogin(logins);
         }
         [HttpPost("password")]
-        public RePasswordUserrEPO RePasswordUser([FromBody] RePasswordUserrEPO rep)
+        public bool RePasswordUser([FromBody]  RePasswordUserrEPO rep)
         {
             return LoginService.RePasswordUser(rep);
         }
 
         [HttpPut]
+        [ProducesResponseType(typeof(List<Login>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateLogin([FromBody] Login logins)
         {
             return LoginService.UpdateLogin(logins);

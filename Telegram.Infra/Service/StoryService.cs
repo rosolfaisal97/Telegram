@@ -16,7 +16,7 @@ namespace Telegram.Infra.Service
         {
             this.StoryRepo = StoryRepo;
         }
-        public bool DeleteStory(int? S_id)
+        public bool DeleteStory(int S_id)
         {
             return StoryRepo.DeleteStory(S_id);
         }
@@ -31,9 +31,9 @@ namespace Telegram.Infra.Service
             return StoryRepo.InsertStory(story);
         }
 
-        public List<ReturnUserInfodto> ReturnUserInfo(ReturnUserInfodto userinfo)
+        public List<ReturnUserInfodto> ReturnUserInfo(int S_user_id)
         {
-            return StoryRepo.ReturnUserInfo(userinfo);
+            return StoryRepo.ReturnUserInfo(S_user_id);
         }
 
         public bool UpdateStory(Story story)

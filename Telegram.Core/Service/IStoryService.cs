@@ -11,7 +11,7 @@ namespace Telegram.Core.Service
         public List<Story> GetAllStory();
         public Story InsertStory(Story story);
         public bool UpdateStory(Story story);
-        public bool DeleteStory(int? S_id);
-        public List<ReturnUserInfodto> ReturnUserInfo(ReturnUserInfodto userinfo);
+        public bool DeleteStory(int S_id);
+        public List<ReturnUserInfodto> ReturnUserInfo(int S_user_id);
     }
 }

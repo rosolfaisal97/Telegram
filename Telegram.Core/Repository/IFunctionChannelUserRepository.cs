@@ -12,7 +12,7 @@ namespace Telegram.Core.Repository
         List<MemberChannel> GetChannelMember(int Cid);
         List<ChannelPosts> GetChannelPosts(int Cid);
         List<ChannelFiles> GetChannelFiles(int Cid);
-
+        List<ChannelsSubscribed> ChannelsSubscribed(int Cid);
         List<CountAdminsChannel> GetCountAdminsChannel(int Cid);
         List<CountChannelMember> GetCountChannelMember(int Cid);
         List<CountChannelPosts> GetCountChannelPosts(int Cid);

@@ -16,7 +16,7 @@ namespace Telegram.Infra.Service
         {
             this.UserRepo = UserRepo;
         }
-        public bool DeleteUsers(int? U_id)
+        public bool DeleteUsers(int U_id)
         {
             return UserRepo.DeleteUsers(U_id);
         }
@@ -36,9 +36,9 @@ namespace Telegram.Infra.Service
             return UserRepo.NumberOfUser();
         }
 
-        public List<NumberOfUserByGenderdto> NumberOfUserByGender(NumberOfUserByGenderdto numberusergender)
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender)
         {
-            return UserRepo.NumberOfUserByGender(numberusergender);
+            return UserRepo.NumberOfUserByGender(U_gender);
         }
 
         public InsertUsersRepo RegisterUser(InsertUsersRepo Ins)
@@ -46,14 +46,14 @@ namespace Telegram.Infra.Service
             return UserRepo.RegisterUser(Ins);
         }
 
-        public List<SearchUserInfo> SarchUserInfo(SearchUserInfo searchUser)
+        public List<SearchUserInfo> SarchUserInfo(string sarch)
         {
-            return UserRepo.SarchUserInfo(searchUser);
+            return UserRepo.SarchUserInfo(sarch);
         }
 
-        public List<SearchButweenTwoDatedto> SearchButweenTwoDate(SearchButweenTwoDatedto c)
+        public List<SearchButweenTwoDatedto> SearchButweenTwoDate(DateTime dateto, DateTime datefrom)
         {
-            return UserRepo.SearchButweenTwoDate(c);
+            return UserRepo.SearchButweenTwoDate(dateto,datefrom);
         }
 
         public bool UpdateProfileUser(UpdateProfileUserDTO Upd)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 using Telegram.Core.Service;
 
@@ -9,13 +10,14 @@ namespace Telegram.Infra.Service
 {
     public class RoleService : IRoleService
     {
-         
+        
+
         private readonly IRole RoleRepo;
         public RoleService(IRole RoleRepo)
         {
             this.RoleRepo = RoleRepo;
         }
-        public bool DeleteRole(int? R_id)
+        public bool DeleteRole(int R_id)
         {
             return RoleRepo.DeleteRole(R_id);   
         }
@@ -25,7 +27,7 @@ namespace Telegram.Infra.Service
             return RoleRepo.GetAllRole();
         }
 
-        public Role GetRoleNameById(int R_id)
+        public List<GetRoleNameByIddto> GetRoleNameById(int R_id)
         {
             return RoleRepo.GetRoleNameById(R_id);
         }
