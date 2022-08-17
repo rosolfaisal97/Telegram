@@ -11,9 +11,9 @@ namespace Telegram.Core.Data
 
         [Key]
         public int id { get; set; }
-        public int user_id { get; set; }
+        public int user_from { get; set; }
 
-        [ForeignKey("user_id")]
+        [ForeignKey("user_from")]
         public virtual User user { get; set; }
         public int post_id { get; set; }
 
