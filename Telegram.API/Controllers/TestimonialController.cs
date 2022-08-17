@@ -39,6 +39,7 @@ namespace Telegram.API.Controllers
         {
             return TestimonialService.GetAcceptTestimonial();
         }
+        // get
         [HttpGet("Single/{T_id}")]
         [ProducesResponseType(typeof(List<GetSingleTestimonial>), StatusCodes.Status200OK)]
         public List<GetSingleTestimonial> GetSingleTestimonial(int T_id)
