@@ -24,7 +24,7 @@ using Telegram.Infra.Common;
 
 using Telegram.Infra.Repoisitory;
 using Telegram.Infra.Repository;
-
+ 
 using Telegram.Infra.Service;
 
 namespace Telegram.API
@@ -69,6 +69,9 @@ namespace Telegram.API
             services.AddScoped<IStoryService, StoryService>();
             services.AddScoped< IRole ,RoleRepo>();
             services.AddScoped<IRoleService, RoleService>();
+             
+            services.AddScoped<ITestimonial, TestimonialRepo>();
+            services.AddScoped<ITestimonialcs, TestimonialService>();
             services.AddScoped< ILogin ,LoginRepo>();
             services.AddScoped<ILoginService, LoginService>();
             services.AddAuthentication(x =>
