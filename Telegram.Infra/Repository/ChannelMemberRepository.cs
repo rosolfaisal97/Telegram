@@ -54,5 +54,8 @@ namespace Telegram.Infra.Repository
             var result = DbContext.Connection.ExecuteAsync("Channel_Member_Package.UpdateChannelMember", p, commandType: CommandType.StoredProcedure);
             return true;
         }
+
+
+
     }
 }
