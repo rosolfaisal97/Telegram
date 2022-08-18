@@ -40,8 +40,32 @@ namespace Telegram.API
 
             });
 
-            services.AddControllers();
+            //Auth
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(y =>
+            {
+                y.RequireHttpsMetadata = false;
+                y.SaveToken = true;
+                y.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.ASCII.GetBytes(Configuration["jwt:key"])),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidAudience = Configuration["jwt:Audience"],
+                    ValidIssuer = Configuration["jwt:Issuer"],
+                   
+                };
+                
+            });
 
+
+            services.AddControllers();
             //Data
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<Iusers, UserRepo>();
@@ -52,36 +76,14 @@ namespace Telegram.API
             services.AddScoped<IStoryService, StoryService>();
             services.AddScoped<IRole, RoleRepo>();
             services.AddScoped<IRoleService, RoleService>();
-
-
             services.AddScoped<ITestimonial, TestimonialRepo>();
             services.AddScoped<ITestimonialcs, TestimonialService>();
             services.AddScoped<ILogin, LoginRepo>();
             services.AddScoped<ILoginService, LoginService>();
 
-            //Auth
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(y =>
-          {
-              y.RequireHttpsMetadata = false;
-              y.SaveToken = true;
-              y.TokenValidationParameters = new TokenValidationParameters
-              {
-                  ValidateIssuerSigningKey = true,
-                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("[SECRET Used To Sign And Verify Jwt Token,It can be any string]")),
-                  ValidateIssuer = false,
-                  ValidateAudience = false,
-
-              };
-          });
-
+            //Repository
             services.AddScoped<IChatMessage, ChatMassageRepo>();
             services.AddScoped<IChatMassageService, ChatMassageService>();
-
-            //Repository
             services.AddScoped<IChannelRepository, ChannelRepository>();
             services.AddScoped<IChannelAdminRepository, ChannelAdminRepository>();
             services.AddScoped<IChannelMemberRepository, ChannelMemberRepository>();
@@ -90,7 +92,6 @@ namespace Telegram.API
             services.AddScoped<IPostReportRepository, PostReportRepository>();
             services.AddScoped<IFunctionChannelAdminRepository, FunctionChannelAdminRepository>();
             services.AddScoped<IFunctionChannelUserRepository, FunctionChannelUserRepository>();
-            //
             services.AddScoped<IFriendsRepository, FriendsRepository>();
             services.AddScoped<ICommentsRepository, CommentsRepository>();
             services.AddScoped<IReactionRepository, ReactionRepository>();
@@ -107,7 +108,6 @@ namespace Telegram.API
             services.AddScoped<IPostReportService, PostReportService>();
             services.AddScoped<IFunctionChannelAdminService, FunctionChannelAdminService>();
             services.AddScoped<IFunctionChannelUserService, FunctionChannelUserService>();
-            //
             services.AddScoped<IFriendsService, FriendsService>();
             services.AddScoped<ICommentsService, CommentsService>();
             services.AddScoped<IReactionService, ReactionService>();
@@ -122,7 +122,6 @@ namespace Telegram.API
             services.AddScoped<IGroupMessageRepositoty, GroupMessageRepositoty>();
             services.AddScoped<IGroupsRepository, GroupsRepository>();
             services.AddScoped<IMediaGroupRepositery, MediaGroupRepositery>();
-
             services.AddScoped<IGrouoAdminService, GrouoAdminService>();
             services.AddScoped<IGroupLinkService, GroupLinkService>();
             services.AddScoped<IGroupMemberService, GroupMemberService>();
@@ -152,13 +151,15 @@ namespace Telegram.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
             app.UseCors("policy");
+
             app.UseAuthentication();
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
                 "<title> v1"));
-
 
             app.UseAuthorization();
 

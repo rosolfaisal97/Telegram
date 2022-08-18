@@ -1,7 +1,9 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Telegram.Core.Data;
@@ -11,60 +13,62 @@ using Telegram.Core.Service;
 
 namespace Telegram.Infra.Service
 {
-    
+
     public class LoginService : ILoginService
     {
-        private readonly ILogin authon;
 
         private readonly ILogin LoginRepo;
+        private readonly IConfiguration _configuration;
 
-        public LoginService(ILogin LoginRepo, ILogin AuthLogin)
+        public LoginService(ILogin LoginRepo, IConfiguration configuration)
         {
             this.LoginRepo = LoginRepo;
-            this.authon = AuthLogin;
+            _configuration = configuration;
         }
 
-        public string Authentication_jwt(AuthLoginREPO login)
+        public AuthLoginDTO GetCurrentUser(ClaimsIdentity claims)
         {
-            var result = authon.AuthLogin(login);
-
-            if (result == null)
-            {
+            if (claims == null)
                 return null;
-            }
 
-
-            var tokenhandler = new JwtSecurityTokenHandler();
-            var tokenkey = Encoding.ASCII.GetBytes("[SECRET Used To Sign And Verify Jwt Token,It can be any string]");
-            var tokenDescirptor = new SecurityTokenDescriptor
+            var userClaims = claims.Claims;
+            return new AuthLoginDTO
             {
-                Subject = new System.Security.Claims.ClaimsIdentity(
-                new Claim[]
-                {
-                    new Claim(ClaimTypes.Role,result.role_id.ToString()),
-                    new Claim(ClaimTypes.Name,result.username),
-                    new Claim(ClaimTypes.Email,result.Email.ToString()),
-                    new Claim(ClaimTypes.NameIdentifier,result.user_id.ToString())
-
-                    //new Claim(ClaimTypes.UserData,result.user_id.ToInt32())
-
-
-                }
-                ),
-                Expires = DateTime.UtcNow.AddHours(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenkey), SecurityAlgorithms.HmacSha256Signature)
-
-
+                Username = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value,
+                RoleName = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value,
+                Email = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value,
             };
 
-            var generatetoken = tokenhandler.CreateToken(tokenDescirptor);
-            return tokenhandler.WriteToken(generatetoken);
         }
 
-        //public AuthLoginREPO AuthLogin(AuthLoginREPO login)
-        //{
-        //    return LoginRepo.AuthLogin(login);
-        //}
+
+
+        public string AuthenticationJWT(AuthLoginDTO login)
+        {
+            var result = LoginRepo.AuthLogin(login);
+            if (result == null) return null;
+
+            var tokenKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:key"]));
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Issuer = _configuration["jwt:Audience"],
+                Audience = _configuration["jwt:Issuer"],
+
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name, result.Username),
+                    new Claim(ClaimTypes.Role, result.RoleName),
+                    new Claim(ClaimTypes.Email, result.Email)
+                }),
+                Expires = DateTime.Now.AddHours(1),
+                SigningCredentials = new SigningCredentials(tokenKey,
+                                                            SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
 
         public bool DeleteLogin(int L_id)
         {
@@ -90,5 +94,7 @@ namespace Telegram.Infra.Service
         {
             return LoginRepo.UpdateLogin(logins);
         }
+
+
     }
 }
