@@ -114,6 +114,22 @@ namespace Telegram.API
             services.AddScoped<IMediaMsgService, MediaMsgService>();
             services.AddScoped<IHomePageService, HomePageService>();
 
+            //osama
+            services.AddScoped<IDbContext, DbContext>();
+            services.AddScoped<IGrouoAdminRepository, GrouoAdminRepository>();
+            services.AddScoped<IGroupLinkRepository, GroupLinkRepository>();
+            services.AddScoped<IGroupMemberRepository, GroupMemberRepository>();
+            services.AddScoped<IGroupMessageRepositoty, GroupMessageRepositoty>();
+            services.AddScoped<IGroupsRepository, GroupsRepository>();
+            services.AddScoped<IMediaGroupRepositery, MediaGroupRepositery>();
+
+            services.AddScoped<IGrouoAdminService, GrouoAdminService>();
+            services.AddScoped<IGroupLinkService, GroupLinkService>();
+            services.AddScoped<IGroupMemberService, GroupMemberService>();
+            services.AddScoped<IGroupMessageService, GroupMessageService>();
+            services.AddScoped<IGroupsService, GroupsService>();
+            services.AddScoped<IMediaGroupRepositery, MediaGroupRepositery>();
+
             //Swagger
             services.AddSwaggerGen(c =>
             {
