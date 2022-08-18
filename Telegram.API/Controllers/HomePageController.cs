@@ -95,7 +95,8 @@ namespace Telegram.API.Controllers
 
         }
         [HttpPost]
-        [Route("UploadImageAboutUs")]
+       // [Route("UploadImageAboutUs")]
+        [Route("UploadImageHome")]
         public Home UploadHome()
         {
             try
