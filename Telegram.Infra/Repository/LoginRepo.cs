@@ -20,13 +20,17 @@ namespace Telegram.Infra.Repoisitory
             this.DbContext = DbContext;
         }
 
-        public AuthLoginREPO AuthLogin(AuthLoginREPO login)
+        public AuthLoginDTO AuthLogin(AuthLoginDTO login)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("L_username", login.L_username, dbType: DbType.String, direction: ParameterDirection.Input);
-            parameter.Add("L_password", login.L_password, dbType: DbType.String, direction: ParameterDirection.Input);
+            parameter.Add("L_username", login.Username, dbType: DbType.String, direction: ParameterDirection.Input);
+            parameter.Add("L_password", login.Password, dbType: DbType.String, direction: ParameterDirection.Input);
 
-            IEnumerable<AuthLoginREPO> result = DbContext.Connection.Query<AuthLoginREPO>("login_Package.AuthLogin", parameter, commandType: CommandType.StoredProcedure);
+            IEnumerable<AuthLoginDTO> result = DbContext
+                .Connection
+                .Query<AuthLoginDTO>("login_Package.AuthLogin",
+                                      parameter,
+                                      commandType: CommandType.StoredProcedure);
 
             return result.FirstOrDefault();
         }

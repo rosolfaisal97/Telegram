@@ -12,7 +12,7 @@ namespace Telegram.Core.Repository
         public Login InsertLogin(Login logins);
         public bool UpdateLogin(Login logins);
         public bool DeleteLogin(int L_id);
-        public AuthLoginREPO AuthLogin(AuthLoginREPO login);
+        public AuthLoginDTO AuthLogin(AuthLoginDTO login);
         public  bool RePasswordUser(RePasswordUserrEPO rep);
 
     }
