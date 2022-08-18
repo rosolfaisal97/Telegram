@@ -13,7 +13,7 @@ using Telegram.Core.Service;
 using Telegram.Infra.Common;
 using Telegram.Infra.Repoisitory;
 using Telegram.Infra.Repository;
- 
+
 using Telegram.Infra.Service;
 
 namespace Telegram.API
@@ -30,14 +30,14 @@ namespace Telegram.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-             //CORS API
+            //CORS API
             services.AddCors(corsOptions =>
             {
                 corsOptions.AddPolicy("policy", builder =>
                 {
                     builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
-  
+
             });
 
             services.AddControllers();
@@ -52,12 +52,12 @@ namespace Telegram.API
             services.AddScoped<IStoryService, StoryService>();
             services.AddScoped<IRole, RoleRepo>();
             services.AddScoped<IRoleService, RoleService>();
- 
-             
+
+
             services.AddScoped<ITestimonial, TestimonialRepo>();
             services.AddScoped<ITestimonialcs, TestimonialService>();
-            services.AddScoped< ILogin ,LoginRepo>();
-             services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ILogin, LoginRepo>();
+            services.AddScoped<ILoginService, LoginService>();
 
             //Auth
             services.AddAuthentication(x =>
@@ -90,13 +90,13 @@ namespace Telegram.API
             services.AddScoped<IPostReportRepository, PostReportRepository>();
             services.AddScoped<IFunctionChannelAdminRepository, FunctionChannelAdminRepository>();
             services.AddScoped<IFunctionChannelUserRepository, FunctionChannelUserRepository>();
-             //
+            //
             services.AddScoped<IFriendsRepository, FriendsRepository>();
             services.AddScoped<ICommentsRepository, CommentsRepository>();
             services.AddScoped<IReactionRepository, ReactionRepository>();
             services.AddScoped<IMediaMsgRepository, MediaMsgRepository>();
-             services.AddScoped<IHomePageRepository, HomePageRepository>();
- 
+            services.AddScoped<IHomePageRepository, HomePageRepository>();
+
 
             //Service
             services.AddScoped<IChannelService, ChannelService>();
@@ -107,13 +107,13 @@ namespace Telegram.API
             services.AddScoped<IPostReportService, PostReportService>();
             services.AddScoped<IFunctionChannelAdminService, FunctionChannelAdminService>();
             services.AddScoped<IFunctionChannelUserService, FunctionChannelUserService>();
-             //
+            //
             services.AddScoped<IFriendsService, FriendsService>();
             services.AddScoped<ICommentsService, CommentsService>();
             services.AddScoped<IReactionService, ReactionService>();
-            services.AddScoped<IMediaMsgService, IMediaMsgService>();
-             services.AddScoped<IHomePageService, HomePageService>();
- 
+            services.AddScoped<IMediaMsgService, MediaMsgService>();
+            services.AddScoped<IHomePageService, HomePageService>();
+
             //Swagger
             services.AddSwaggerGen(c =>
             {
@@ -136,14 +136,14 @@ namespace Telegram.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-      app.UseCors("policy");
+            app.UseCors("policy");
             app.UseAuthentication();
-             app.UseSwagger();
+            app.UseSwagger();
 
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                "<title> v1"));  
+                "<title> v1"));
 
- 
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
