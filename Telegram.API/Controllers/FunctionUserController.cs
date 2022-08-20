@@ -8,11 +8,11 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class FunctionUserController : Controller
     {
 
         private readonly IFunctionChannelUserService functionChannelUserService;
-        public UserController(IFunctionChannelUserService functionChannelUserService)
+        public FunctionUserController(IFunctionChannelUserService functionChannelUserService)
         {
             this.functionChannelUserService = functionChannelUserService;
         }
