@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly IusersService usersService;

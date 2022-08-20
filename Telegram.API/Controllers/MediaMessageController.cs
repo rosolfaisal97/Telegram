@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Telegram.Core.Data;
 using Telegram.Core.Service;
@@ -8,6 +9,7 @@ namespace Telegram.API.Controllers
 
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class MediaMessageController : Controller
     {
         private readonly IMediaMsgService _mediaMsgService;
