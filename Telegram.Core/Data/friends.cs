@@ -10,18 +10,19 @@ namespace Telegram.Core.Data
     {
         [Key]
         public int id { get; set; }
-        public int user_from { get; set; }
+        
+        [ForeignKey("From")]
+        public int UserFrom { get; set; }
+        [ForeignKey("To")]
+        public int UserTo { get; set; }
+        
+        public int Status { get; set; }
+        public DateTime? CreatedAt { get; set; }
+
+        public virtual User From { get; set; }
+        public virtual User To { get; set; }
 
 
-        [ForeignKey("user_from")]
-        public virtual User UserFrom { get; set; }
-        public int user_to { get; set; }
 
-
-        [ForeignKey("user_to")]
-        public virtual User UserTo { get; set; }
-
-        public int status { get; set; }
-        public DateTime created_at { get; set; }
     }
 }
