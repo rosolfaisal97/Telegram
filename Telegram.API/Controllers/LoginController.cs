@@ -11,6 +11,9 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+
+
+    [Authorize] 
     public class LoginController : ControllerBase
     {
 
@@ -47,7 +50,16 @@ namespace Telegram.API.Controllers
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             var user = LoginService.GetCurrentUser(identity);
-            user.Username = "YOU ARE ADMIN OR USER>>"+user.Username;
+            user.Username = "YOU ARE ADMIN OR USER>>" + user.Username;
+            return user;
+        }
+        
+        [HttpGet]
+        public AuthLoginDTO AllPublic()
+        {
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            var user = LoginService.GetCurrentUser(identity);
+            user.Username = "Public For ALl>>";
             return user;
         }
 
@@ -69,9 +81,6 @@ namespace Telegram.API.Controllers
                 return Unauthorized(); //401
             }
             return Ok(result); //200
-
-            
-
         }
 
         [HttpDelete]
