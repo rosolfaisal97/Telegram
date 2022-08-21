@@ -10,6 +10,6 @@ namespace Telegram.Core.Repository
         bool CreateGroupMessage(GroupMessage groupMessage);
         List<GroupMessage> GetAllGroupMessage();
         bool UpdateGroupMessage(GroupMessage groupMessage);
-        bool DeleteGroupMessage(int id);
+        bool DeleteGroupMessage(GroupMessage groupMessage);
     }
 }

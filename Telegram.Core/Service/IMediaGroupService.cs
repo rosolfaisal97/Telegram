@@ -10,6 +10,6 @@ namespace Telegram.Core.Service
         bool CreateMediaGroup(MediaGroup mediaGroup);
         List<MediaGroup> GetAllMediaGroup();
         bool UpdateMediaGroup(MediaGroup mediaGroup);
-        bool DeleteMediaGroup(int id);
+        bool DeleteMediaGroup(MediaGroup mediaGroup);
     }
 }

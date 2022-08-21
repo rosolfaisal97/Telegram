@@ -10,7 +10,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class GroupLinkController : ControllerBase
@@ -22,6 +22,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<GroupLink>), StatusCodes.Status200OK)]
         public List<GroupLink> GetAllLinkGroup()
         {
@@ -32,6 +33,7 @@ namespace Telegram.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(GroupLink), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Authorize(Roles = "User")]
         public bool CreateLinkGroup([FromBody] GroupLink groupLink)
         {
             return groupLinkService.CreateLinkGroup(groupLink);
@@ -39,15 +41,17 @@ namespace Telegram.API.Controllers
 
 
 
-        [HttpDelete("delete/{id}")]
-        public bool DeleteLinkGroup(int id)
+        [HttpDelete("delete")]
+        [Authorize(Roles = "User")]
+        public bool DeleteLinkGroup([FromBody] GroupLink groupLink)
         {
-            return groupLinkService.DeleteLinkGroup(id);
+            return groupLinkService.DeleteLinkGroup(groupLink);
         }
 
 
 
         [HttpPut]
+        [Authorize(Roles = "User")]
         public bool UpdateLinkGroup([FromBody] GroupLink groupLink)
         {
             return groupLinkService.UpdateLinkGroup(groupLink);

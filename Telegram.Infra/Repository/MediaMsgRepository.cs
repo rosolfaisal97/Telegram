@@ -18,10 +18,10 @@ namespace Telegram.Infra.Repository
             _dbContext = dbContext;
         }
 
-        public bool DeleteMedia(int msgId)
+        public bool DeleteMedia(MediaMessage mediaMessage)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@p_id", msgId, dbType: DbType.Int32);
+            parameters.Add("@p_id",mediaMessage.id, dbType: DbType.Int32);
             _dbContext.Connection
                 .ExecuteAsync("Package_media_message.MEDIA_MESSAGE_DELETE",
                               parameters,
@@ -33,8 +33,8 @@ namespace Telegram.Infra.Repository
         {
             var parameters = new DynamicParameters();
             parameters.Add("@p_message_id", msgId, dbType: DbType.Int32);
-          
-            var result=_dbContext.Connection
+
+            var result = _dbContext.Connection
                 .QueryAsync<MediaMessage>("Package_media_message.Get_All_message_media",
                               parameters,
                               commandType: CommandType.StoredProcedure);
@@ -42,12 +42,12 @@ namespace Telegram.Infra.Repository
             return result.Result.ToList();
         }
 
-        public bool InsertMedia(string filePath, string caption, int msgId)
+        public bool InsertMedia(MediaMessage mediaMessage)
         {
             var parameters = new DynamicParameters();
-            parameters.Add(name: "@p_file_path", filePath, dbType: DbType.Int32);
-            parameters.Add(name: "@p_caption", caption, dbType: DbType.Int32);
-            parameters.Add(name: "@p_message_id", msgId, dbType: DbType.Int32);
+            parameters.Add(name: "@p_file_path",mediaMessage.file_path, dbType: DbType.Int32);
+            parameters.Add(name: "@p_caption",mediaMessage.caption, dbType: DbType.Int32);
+            parameters.Add(name: "@p_message_id",mediaMessage.message_id, dbType: DbType.Int32);
             _dbContext.Connection
                 .ExecuteAsync("Package_media_message.media_message_insert",
                               parameters,

@@ -70,9 +70,9 @@ namespace Telegram.Infra.Service
             return tokenHandler.WriteToken(token);
         }
 
-        public bool DeleteLogin(int L_id)
+        public bool DeleteLogin(Login login)
         {
-            return LoginRepo.DeleteLogin(L_id);
+            return LoginRepo.DeleteLogin(login);
         }
 
         public List<Login> GetAllLogin()
@@ -80,9 +80,9 @@ namespace Telegram.Infra.Service
             return LoginRepo.GetAllLogin();
         }
 
-        public Login InsertLogin(Login logins)
+        public Login InsertLogin(Login login)
         {
-            return LoginRepo.InsertLogin(logins);
+            return LoginRepo.InsertLogin(login);
         }
 
         public bool RePasswordUser(RePasswordUserrEPO rep)
@@ -90,9 +90,9 @@ namespace Telegram.Infra.Service
             return LoginRepo.RePasswordUser(rep);
         }
 
-        public bool UpdateLogin(Login logins)
+        public bool UpdateLogin(Login login)
         {
-            return LoginRepo.UpdateLogin(logins);
+            return LoginRepo.UpdateLogin(login);
         }
 
 

@@ -8,7 +8,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("(api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class RoleController : ControllerBase
@@ -20,15 +20,17 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete/{R_id}")]
-        public bool DeleteRole(int R_id)
+        [Route("delete")]
+        public bool DeleteRole([FromBody] Role roles)
         {
-            return RoleService.DeleteRole(R_id);
+            return RoleService.DeleteRole(roles);
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         public List<Role> GetAllRole()
         {
@@ -36,13 +38,14 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet("RoleId/{R_id}")]
-
+        [Authorize(Roles = "Admin")]
         public List<GetRoleNameByIddto> GetRoleNameById(int R_id)
         {
             return RoleService.GetRoleNameById(R_id);
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(Role), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Role InsertRole([FromBody] Role roles)
@@ -51,6 +54,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateRole([FromBody] Role roles)

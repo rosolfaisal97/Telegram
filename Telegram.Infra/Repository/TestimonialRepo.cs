@@ -21,12 +21,12 @@ namespace Telegram.Infra.Repository
             this.DbContext = DbContext;
         }
 
-        public bool DeleteTestimonial(int T_id)
+        public bool DeleteTestimonial(Testimonial Test)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@T_id", T_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@T_id", Test.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync
                 ("Testimonial_Package.DeleteTestimonial", parameter, commandType: CommandType.StoredProcedure);
 
@@ -34,12 +34,12 @@ namespace Telegram.Infra.Repository
                 return false;
             return true;
         }
-        public List<GetSingleTestimonial> GetSingleTestimonial(int T_id)
+        public List<GetSingleTestimonial> GetSingleTestimonial(Testimonial Test)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@T_id", T_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@T_id", Test.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             IEnumerable<GetSingleTestimonial> result = DbContext.Connection.Query<GetSingleTestimonial>
                  ("Testimonial_Package.GetSingleTestimonial", parameter, commandType: CommandType.StoredProcedure);
             return result.ToList();

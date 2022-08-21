@@ -10,7 +10,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class GroupMessageController : Controller
@@ -22,6 +22,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GroupMessage>), StatusCodes.Status200OK)]
         public List<GroupMessage> GetAllGroupMessage()
         {
@@ -30,6 +31,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(GroupMessage), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreategroupMessage([FromBody] GroupMessage groupMessage)
@@ -39,14 +41,16 @@ namespace Telegram.API.Controllers
 
 
 
-        [HttpDelete("delete/{id}")]
-        public bool DeletegroupMessage(int id)
+        [HttpDelete("delete")]
+        [Authorize(Roles = "User,Admin")]
+        public bool DeletegroupMessage([FromBody] GroupMessage groupMessage)
         {
-            return groupMessageService.DeleteGroupMessage(id);
+            return groupMessageService.DeleteGroupMessage(groupMessage);
 
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public bool UpdategroupMessage([FromBody] GroupMessage groupMessage)
         {
             return groupMessageService.UpdateGroupMessage(groupMessage);

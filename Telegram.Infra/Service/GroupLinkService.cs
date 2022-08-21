@@ -20,9 +20,9 @@ namespace Telegram.Infra.Service
             return groupLinkRepository.CreateLinkGroup(groupLink);
         }
 
-        public bool DeleteLinkGroup(int id)
+        public bool DeleteLinkGroup(GroupLink groupLink)
         {
-            return groupLinkRepository.DeleteLinkGroup(id);
+            return groupLinkRepository.DeleteLinkGroup(groupLink);
         }
 
         public List<GroupLink> GetAllLinkGroup()

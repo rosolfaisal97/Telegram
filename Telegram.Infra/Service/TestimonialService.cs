@@ -20,9 +20,9 @@ namespace Telegram.Infra.Service
             this.TestimonialRepo = TestimonialRepo;
         }
 
-        public bool DeleteTestimonial(int T_id)
+        public bool DeleteTestimonial(Testimonial Test)
         {
-            return TestimonialRepo.DeleteTestimonial(T_id);
+            return TestimonialRepo.DeleteTestimonial(Test);
         }
 
         public List<GetAllTestimonial> GetAllTestimonial()
@@ -33,9 +33,9 @@ namespace Telegram.Infra.Service
         {
             return TestimonialRepo.GetAcceptTestimonial();
         }
-        public List<GetSingleTestimonial> GetSingleTestimonial(int T_id)
+        public List<GetSingleTestimonial> GetSingleTestimonial(Testimonial Test)
         {
-            return TestimonialRepo.GetSingleTestimonial(T_id);
+            return TestimonialRepo.GetSingleTestimonial(Test);
         }
 
             public Testimonial InsertTestimonial(Testimonial Test)

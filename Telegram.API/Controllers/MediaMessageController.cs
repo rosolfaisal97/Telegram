@@ -19,17 +19,19 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        public bool InsertMedia(string filePath, string caption, int msgId)
+        [Authorize(Roles = "User")]
+        public bool InsertMedia([FromBody] MediaMessage mediaMessage)
         {
-            return _mediaMsgService.InsertMedia(filePath, caption, msgId);
+            return _mediaMsgService.InsertMedia(mediaMessage);
         }
         [HttpPost]
-        [Route("{mesageId}")]
-        public bool DeleteMedia(int msgId)
+        [Authorize(Roles = "User,Admin")]
+        public bool DeleteMedia([FromBody] MediaMessage mediaMessage)
         {
-            return _mediaMsgService.DeleteMedia(msgId);
+            return _mediaMsgService.DeleteMedia(mediaMessage);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("{messageId}")]
         public List<MediaMessage> GetAllMsgMedia(int msgId)
         {

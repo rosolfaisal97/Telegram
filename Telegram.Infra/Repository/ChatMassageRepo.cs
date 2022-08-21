@@ -19,12 +19,12 @@ namespace Telegram.Infra.Repoisitory
         {
             this.DbContext = DbContext;
         }
-        public bool DeleteChatMessage(int Ch__id)
+        public bool DeleteChatMessage(ChatMessage chat)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@Ch__id", Ch__id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@Ch__id", chat.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync
                 ("Chat_Message_Package.DeleteChatMessage", parameter, commandType: CommandType.StoredProcedure);
 
@@ -70,15 +70,15 @@ namespace Telegram.Infra.Repoisitory
             return result.ToList();
         }
 
-        public List<SearchMassageInfodto> SearchMassageInfo(string search_m, int Ch_user_from, int Ch_user_to)
+        public List<SearchMassageInfodto> SearchMassageInfo(ChatMessage chat)
         {
             var parameter = new DynamicParameters();
             parameter.Add
-               ("search_m", search_m, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("search_m",chat.content, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-               ("Ch_user_from", Ch_user_from, dbType: DbType.Int32, direction: ParameterDirection.Input);
+               ("Ch_user_from",chat.user_from, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("Ch_user_to", Ch_user_to, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("Ch_user_to",chat.user_to, dbType: DbType.Int32, direction: ParameterDirection.Input);
            
             IEnumerable<SearchMassageInfodto> result = DbContext.Connection.Query<SearchMassageInfodto>
                            ("Chat_Message_Package.SearchMassageInfo", parameter, commandType: CommandType.StoredProcedure);

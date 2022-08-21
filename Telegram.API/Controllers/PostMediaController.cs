@@ -8,7 +8,7 @@ using Telegram.Core.Service;
 namespace Telegram.API.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class PostMediaController : Controller
@@ -21,6 +21,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<MediaPost>), StatusCodes.Status200OK)]
         public List<MediaPost> GetAllPostMedia()
         {
@@ -28,6 +29,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(MediaPost), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreatePostMedia([FromBody] MediaPost PostMedia)
@@ -36,6 +38,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(List<MediaPost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdatePostMedia([FromBody] MediaPost PostMedia)
@@ -44,12 +47,13 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<MediaPost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete/{id}")]
-        public bool DeleteChannel(int id)
+        [Route("delete")]
+        public bool DeleteChannel([FromBody] MediaPost media_Post)
         {
-            return PostMediaService.DeletePostMedia(id);
+            return PostMediaService.DeletePostMedia(media_Post);
         }
     }
 }

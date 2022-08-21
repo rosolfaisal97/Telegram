@@ -10,7 +10,7 @@ namespace Telegram.Core.Repository
         bool CreateChannel(Channel channel);
         List<Channel> GetAllChannel();
         bool UpdateChannel(Channel channel );
-        bool DeleteChannel(int id);
+        bool DeleteChannel(Channel channel);
 
     }
 }

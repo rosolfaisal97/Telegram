@@ -7,7 +7,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class PostController : Controller
@@ -21,6 +21,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Post>), StatusCodes.Status200OK)]
         public List<Post> GetAllPost()
         {
@@ -28,6 +29,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(Post), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreatePost([FromBody] Post Post)
@@ -36,6 +38,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Post>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdatePost([FromBody] Post Post)
@@ -44,12 +47,13 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Post>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete/{id}")]
-        public bool DeletePost(int id)
+        [Route("delete")]
+        public bool DeletePost([FromBody] Post post)
         {
-            return PostService.DeletePost(id);
+            return PostService.DeletePost(post);
         }
     }
 }

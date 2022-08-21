@@ -19,9 +19,9 @@ namespace Telegram.Infra.Service
             return groupMessageRepositoty.CreateGroupMessage(groupMessage);
         }
 
-        public bool DeleteGroupMessage(int id)
+        public bool DeleteGroupMessage(GroupMessage groupMessage)
         {
-            return groupMessageRepositoty.DeleteGroupMessage(id);
+            return groupMessageRepositoty.DeleteGroupMessage(groupMessage);
         }
 
         public List<GroupMessage> GetAllGroupMessage()

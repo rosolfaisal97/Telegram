@@ -17,9 +17,9 @@ namespace Telegram.Infra.Service
         {
             this.RoleRepo = RoleRepo;
         }
-        public bool DeleteRole(int R_id)
+        public bool DeleteRole(Role roles)
         {
-            return RoleRepo.DeleteRole(R_id);   
+            return RoleRepo.DeleteRole(roles);   
         }
 
         public List<Role> GetAllRole()

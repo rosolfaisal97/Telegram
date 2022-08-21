@@ -21,12 +21,12 @@ namespace Telegram.Infra.Repoisitory
             this.DbContext = _DbContext;
         }
         
-        public bool DeleteRole(int R_id)
+        public bool DeleteRole(Role roles)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@R_id", R_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@R_id", roles.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync
                 ("Role_Package.DeleteRole", parameter, commandType: CommandType.StoredProcedure);
 

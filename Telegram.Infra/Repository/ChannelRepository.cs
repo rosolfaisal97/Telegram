@@ -32,10 +32,10 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeleteChannel(int id)
+        public bool DeleteChannel(Channel channel)
         {
             var p = new DynamicParameters();
-            p.Add("@C_id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@C_id",channel.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync("Channel_Package.DeleteChannel", p, commandType: CommandType.StoredProcedure);
             return true;
         }

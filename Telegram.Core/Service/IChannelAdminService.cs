@@ -10,6 +10,6 @@ namespace Telegram.Core.Service
         bool CreateChannelAdmin(ChannelAdmin channel_Admin);
         List<ChannelAdmin> GetAllChannelAdmin();
         bool UpdateChannelAdmin(ChannelAdmin channel_Admin);
-        bool DeleteChannelAdmin(int id);
+        bool DeleteChannelAdmin(ChannelAdmin channel_Admin);
     }
 }

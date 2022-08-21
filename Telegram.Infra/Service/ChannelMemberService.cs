@@ -21,9 +21,9 @@ namespace Telegram.Infra.Service
             return channelMemberRepository.CreateChannelMember(channel_Member);
         }
 
-        public bool DeleteChannelMember(int id)
+        public bool DeleteChannelMember(ChannelMember channel_Member)
         {
-           return channelMemberRepository.DeleteChannelMember(id);
+           return channelMemberRepository.DeleteChannelMember(channel_Member);
         }
 
         public List<ChannelMember> GetAllChannelMember()
