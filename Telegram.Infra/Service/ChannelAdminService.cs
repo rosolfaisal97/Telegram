@@ -21,9 +21,9 @@ namespace Telegram.Infra.Service
             return channelAdminRepository.CreateChannelAdmin(channel_Admin);
         }
 
-        public bool DeleteChannelAdmin(int id)
+        public bool DeleteChannelAdmin(ChannelAdmin channel_Admin)
         {
-           return channelAdminRepository.DeleteChannelAdmin(id);
+           return channelAdminRepository.DeleteChannelAdmin(channel_Admin);
         }
 
         public List<ChannelAdmin> GetAllChannelAdmin()

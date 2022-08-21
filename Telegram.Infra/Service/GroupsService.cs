@@ -41,9 +41,9 @@ namespace Telegram.Infra.Service
             return groupsRepository.CreateGroups(groups);
         }
 
-        public bool DeleteGroups(int id)
+        public bool DeleteGroups(Groups groups)
         {
-            return groupsRepository.DeleteGroups(id);
+            return groupsRepository.DeleteGroups(groups);
         }
 
         public List<Groups> GetAllGroups()

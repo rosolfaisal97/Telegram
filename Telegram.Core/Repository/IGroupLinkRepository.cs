@@ -11,6 +11,6 @@ namespace Telegram.Core.Repository
         bool CreateLinkGroup(GroupLink groupLink);
         List<GroupLink> GetAllLinkGroup();
         bool UpdateLinkGroup(GroupLink groupLink);
-        bool DeleteLinkGroup(int id);
+        bool DeleteLinkGroup(GroupLink groupLink);
     }
 }

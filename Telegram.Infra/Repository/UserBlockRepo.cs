@@ -19,12 +19,12 @@ namespace Telegram.Infra.Repoisitory
         {
             this.DbContext = DbContext;
         }
-        public bool DeleteUserBlock(int UB_id)
+        public bool DeleteUserBlock(UserBlockList userBlock)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@UB_id", UB_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@UB_id",userBlock.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync
                 ("user_block_Package.DeleteUserBlock", parameter, commandType: CommandType.StoredProcedure);
 
@@ -58,12 +58,12 @@ namespace Telegram.Infra.Repoisitory
             return userBlock;
         }
 
-        public List<My_block_ListDTO> My_block_List(int user_id)
+        public List<My_block_ListDTO> My_block_List(UserBlockList userBlock)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@user_id", user_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@user_id",userBlock.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             IEnumerable<My_block_ListDTO> result = DbContext.Connection.Query<My_block_ListDTO>
                                        ("user_block_Package.My_block_List", parameter, commandType: CommandType.StoredProcedure);
             return result.ToList();

@@ -20,9 +20,9 @@ namespace Telegram.Infra.Service
             return grouoAdminRepository.CreateAdminGroup(groupAdmin);
         }
 
-        public bool DeleteAdminGroup(int id)
+        public bool DeleteAdminGroup(GroupAdmin groupAdmin)
         {
-            return grouoAdminRepository.DeleteAdminGroup(id);
+            return grouoAdminRepository.DeleteAdminGroup(groupAdmin);
         }
 
         public List<GroupAdmin> GetAllAdminGroup()

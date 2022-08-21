@@ -20,15 +20,18 @@ namespace Telegram.API.Controllers
             this.IStoryService = IStoryService;
         }
         [HttpDelete]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete/{S_id}")]
-        public bool DeleteStory(int S_id)
+        [Route("delete")]
+
+        public bool DeleteStory(Story story)
         {
-            return IStoryService.DeleteStory(S_id);
+            return IStoryService.DeleteStory(story);
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         public List<Story> GetAllStory()
         {
@@ -36,6 +39,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(Story), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Story InsertStory([FromBody]Story story)
@@ -43,13 +47,15 @@ namespace Telegram.API.Controllers
             return IStoryService.InsertStory(story);
         }
 
-        [HttpPost("UserInfo/{S_user_id}")]
-        public List<ReturnUserInfodto> ReturnUserInfo(int S_user_id)
+        [HttpPost("UserInfo")]
+        [Authorize(Roles = "Admin")]
+        public List<ReturnUserInfodto> ReturnUserInfo(Story story)
         {
-            return IStoryService.ReturnUserInfo(S_user_id);
+            return IStoryService.ReturnUserInfo(story);
         }
 
         [HttpPut]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateStory([FromBody]Story story)

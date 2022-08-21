@@ -18,10 +18,10 @@ namespace Telegram.Infra.Repository
             DbContext = _DbContext;
         }
 
-        public bool DeleteContactUs(int id)
+        public bool DeleteContactUs(ContactUs contactUs)
         {
             var p = new DynamicParameters();
-            p.Add("@C_id ", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@C_id ", contactUs.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync("ContactUs_Package.DeleteContactUs", p, commandType: CommandType.StoredProcedure);
             return true;
         }
