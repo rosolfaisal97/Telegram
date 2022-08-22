@@ -97,8 +97,7 @@ namespace Telegram.API
             services.AddScoped<IReactionRepository, ReactionRepository>();
             services.AddScoped<IMediaMsgRepository, MediaMsgRepository>();
             services.AddScoped<IHomePageRepository, HomePageRepository>();
-
-
+            services.AddScoped<IStoryReportRepository, StoryReportRepository>();
             //Service
             services.AddScoped<IChannelService, ChannelService>();
             services.AddScoped<IChannelAdminService, ChannelAdminService>();
@@ -113,6 +112,7 @@ namespace Telegram.API
             services.AddScoped<IReactionService, ReactionService>();
             services.AddScoped<IMediaMsgService, MediaMsgService>();
             services.AddScoped<IHomePageService, HomePageService>();
+            services.AddScoped<IStoryReportService, storyReportService>();
 
             //osama
             services.AddScoped<IDbContext, DbContext>();

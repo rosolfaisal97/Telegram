@@ -6,6 +6,7 @@ using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
 
 namespace Telegram.API.Controllers
 {
@@ -75,12 +76,45 @@ namespace Telegram.API.Controllers
         [HttpPut("UpdateProfile")]
         public bool UpdateProfileUser([FromBody] UpdateProfileUserDTO UpdateUser)
         {
+
             return usersService.UpdateProfileUser(UpdateUser);
         }
         [HttpPut]
         public bool UpdateUsers([FromBody] User user)
         {
             return usersService.UpdateUsers(user);
+        }
+
+        [HttpPost]
+        [Route("UploadImageUser")]
+        public UpdateProfileUserDTO UploadImageUser()
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                byte[] fileContent;
+                using (var stream = new MemoryStream())
+                {
+                    file.CopyTo(stream);
+                    fileContent = stream.ToArray();
+                }
+                var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                var attachmentFileName = $"{fileName}{Path.GetExtension(file.Name)}";
+                var fullPath = Path.Combine("F:\\Telegram\\Telegram\\src\\assets\\img", attachmentFileName);
+
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+                UpdateProfileUserDTO Item = new UpdateProfileUserDTO();
+                Item.U_image_path = fileName;
+                return Item;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
         }
     }
 }
