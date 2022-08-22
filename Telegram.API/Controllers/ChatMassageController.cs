@@ -19,38 +19,44 @@ namespace Telegram.API.Controllers
             this.ChatMassageService = ChatMassageService;
         }
 
-        [HttpDelete("delete/{Ch__id}")]
-        public bool DeleteChatMessage(int Ch__id)
+        [HttpDelete("delete")]
+        [Authorize(Roles = "User,Admin")]
+        public bool DeleteChatMessage([FromBody] ChatMessage chat)
         {
-            return ChatMassageService.DeleteChatMessage(Ch__id);
+            return ChatMassageService.DeleteChatMessage(chat);
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         public List<ChatMessage> GetAllChatMessage()
         {
             return ChatMassageService.GetAllChatMessage();
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         public ChatMessage InsertChatMessage([FromBody] ChatMessage chat)
         {
             return ChatMassageService.InsertChatMessage(chat);
         }
 
         [HttpPost ("ReturnMassageInfo")]
+        [Authorize(Roles = "User,Admin")]
         public List<ReturnMassageInfodto> ReturnMassageInfo()
         {
             return ChatMassageService.ReturnMassageInfo();
         }
 
-        [HttpPost("SearchMassage/{search_m}/{Ch_user_from}/{Ch_user_to}")]
-        public List<SearchMassageInfodto> SearchMassageInfo(string search_m, int Ch_user_from, int Ch_user_to)
+        [HttpPost("SearchMassage")]
+        [Authorize(Roles = "Admin")]
+        public List<SearchMassageInfodto> SearchMassageInfo([FromBody] ChatMessage chat)
 
         {
-            return ChatMassageService.SearchMassageInfo(search_m, Ch_user_from, Ch_user_to);
+            return ChatMassageService.SearchMassageInfo(chat);
         }
 
         [HttpPut]
+        [Authorize(Roles = "User")]
         public bool UpdateChatMessage([FromBody] ChatMessage chat)
         {
             return ChatMassageService.UpdateChatMessage(chat);

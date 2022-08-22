@@ -10,6 +10,6 @@ namespace Telegram.Core.Service
         bool CreateAdminGroup(GroupAdmin groupAdmin);
         List<GroupAdmin> GetAllAdminGroup();
         bool UpdateAdminGroup(GroupAdmin groupAdmin);
-        bool DeleteAdminGroup(int id);
+        bool DeleteAdminGroup(GroupAdmin groupAdmin);
     }
 }

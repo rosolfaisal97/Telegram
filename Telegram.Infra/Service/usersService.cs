@@ -16,9 +16,9 @@ namespace Telegram.Infra.Service
         {
             this.UserRepo = UserRepo;
         }
-        public bool DeleteUsers(int U_id)
+        public bool DeleteUsers(User user)
         {
-            return UserRepo.DeleteUsers(U_id);
+            return UserRepo.DeleteUsers(user);
         }
 
         public List<User> GetAllUsers()
@@ -26,9 +26,9 @@ namespace Telegram.Infra.Service
             return UserRepo.GetAllUsers();
         }
 
-        public User InsertUsers(User uss)
+        public User InsertUsers(User user)
         {
-            return UserRepo.InsertUsers(uss);
+            return UserRepo.InsertUsers(user);
         }
 
         public List<NumberOfUserdto> NumberOfUser()
@@ -36,14 +36,16 @@ namespace Telegram.Infra.Service
             return UserRepo.NumberOfUser();
         }
 
-        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender)
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender(User user)
         {
-            return UserRepo.NumberOfUserByGender(U_gender);
+            return UserRepo.NumberOfUserByGender(user);
         }
 
-        public InsertUsersRepo RegisterUser(InsertUsersRepo Ins)
-        {            
-            return UserRepo.RegisterUser(Ins);
+ 
+        public InsertUsersRepo RegisterUser(InsertUsersRepo InsertUser)
+        {
+            return UserRepo.RegisterUser(InsertUser);
+ 
         }
 
         public List<SearchUserInfo> SarchUserInfo(string sarch)
@@ -56,14 +58,14 @@ namespace Telegram.Infra.Service
             return UserRepo.SearchButweenTwoDate(dateto,datefrom);
         }
 
-        public bool UpdateProfileUser(UpdateProfileUserDTO Upd)
+        public bool UpdateProfileUser(UpdateProfileUserDTO UpdateUser)
         {
-            return UserRepo.UpdateProfileUser(Upd);
+            return UserRepo.UpdateProfileUser(UpdateUser);
         }
 
-        public bool UpdateUsers(User uss)
+        public bool UpdateUsers(User user)
         {
-            return UserRepo.UpdateUsers(uss);
+            return UserRepo.UpdateUsers(user);
         }
     }
 }

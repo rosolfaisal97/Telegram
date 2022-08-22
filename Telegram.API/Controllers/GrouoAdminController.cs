@@ -10,7 +10,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class GrouoAdminController : Controller
@@ -22,6 +22,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<GroupAdmin>), StatusCodes.Status200OK)]
         public List<GroupAdmin> GetAllAdminGroup()
         {
@@ -30,6 +31,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(GroupAdmin), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool createadmingroup([FromBody] GroupAdmin groupAdmin)
@@ -39,15 +41,17 @@ namespace Telegram.API.Controllers
 
 
 
-        [HttpDelete("delete/{id}")]
-        public bool DeleteAdminGroup(int id)
+        [HttpDelete("delete")]
+        [Authorize(Roles = "User,Admin")]
+        public bool DeleteAdminGroup([FromBody] GroupAdmin groupAdmin)
         {
-            return grouoAdminService.DeleteAdminGroup(id);
+            return grouoAdminService.DeleteAdminGroup(groupAdmin);
         }
 
 
 
         [HttpPut]
+        [Authorize(Roles = "User")]
         public bool UpdateAdminGroup([FromBody] GroupAdmin groupAdmin)
         {
             return grouoAdminService.UpdateAdminGroup(groupAdmin);

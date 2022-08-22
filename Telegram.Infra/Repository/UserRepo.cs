@@ -19,12 +19,12 @@ namespace Telegram.Infra.Repoisitory
         {
             this.DbContext = DbContext;
         }
-        public bool DeleteUsers(int U_id)
+        public bool DeleteUsers(User user)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@U_id", U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@U_id",user.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.DeleteUsers", parameter, commandType: CommandType.StoredProcedure);
 
@@ -40,32 +40,34 @@ namespace Telegram.Infra.Repoisitory
             return result.ToList();
         }
 
-        public User InsertUsers(User uss)
+        public User InsertUsers(User user)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("U_first_name", uss.first_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_first_name", user.first_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_middle_name", uss.middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_middle_name", user.middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_last_name", uss.last_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_last_name", user.last_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_bio", uss.bio, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_bio", user.bio, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_gender", uss.gender, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_gender", user.gender, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_image_path", uss.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_image_path", user.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_login_id", uss.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
-
+ 
+                ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            
+            
+ 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.InsertUsers", parameter, commandType: CommandType.StoredProcedure);
 
             if (result == null)
                 return null;
-            return uss;
+            return user;
         }
 
         public List<NumberOfUserdto> NumberOfUser()
@@ -75,12 +77,14 @@ namespace Telegram.Infra.Repoisitory
             return result.ToList();
         }
 
-        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender)
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender(User user)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("U_gender", U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
+ 
+                ("U_gender", user.gender, dbType: DbType.String, direction: ParameterDirection.Input);
+ 
 
             IEnumerable<NumberOfUserByGenderdto> result = DbContext.Connection.Query<NumberOfUserByGenderdto>
                 ("Users_Package.NumberOfUserByGender", parameter, commandType: CommandType.StoredProcedure);
@@ -88,33 +92,37 @@ namespace Telegram.Infra.Repoisitory
             return result.ToList();
         }
 
-        public InsertUsersRepo RegisterUser(InsertUsersRepo Ins)
+        public InsertUsersRepo RegisterUser(InsertUsersRepo InsertUser)
         {
 
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("U_first_name", Ins.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_first_name", InsertUser.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_middle_name", Ins.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_middle_name", InsertUser.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_last_name", Ins.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
-
+ 
+                ("U_last_name", InsertUser.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
+            
+ 
             parameter.Add
-                ("U_gender", Ins.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_gender", InsertUser.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("L_username", Ins.L_username, dbType: DbType.String, direction: ParameterDirection.Input);
+ 
+                ("L_username", InsertUser.L_username, dbType: DbType.String, direction: ParameterDirection.Input);
+ 
             parameter.Add
-               ("L_password", Ins.L_password, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("L_password", InsertUser.L_password, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-               ("L_email", Ins.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("L_email", InsertUser.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.RegisterUser", parameter, commandType: CommandType.StoredProcedure);
 
             if (result == null)
                 return null;
-            return Ins;
+            return InsertUser;
         }
 
 
@@ -143,28 +151,28 @@ namespace Telegram.Infra.Repoisitory
             return result.ToList();
         }
 
-        public bool UpdateProfileUser(UpdateProfileUserDTO Upd)
+        public bool UpdateProfileUser(UpdateProfileUserDTO UpdateUser)
         {
 
 
             var parameter = new DynamicParameters();
             parameter.Add
-                ("@U_id", Upd.U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@U_id", UpdateUser.U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_first_name", Upd.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_first_name", UpdateUser.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_middle_name", Upd.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_middle_name", UpdateUser.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_last_name", Upd.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_last_name", UpdateUser.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_gender", Upd.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_gender", UpdateUser.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_image_path", Upd.U_image_path, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_image_path", UpdateUser.U_image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-               ("L_email", Upd.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("L_email", UpdateUser.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
 
             parameter.Add
-               ("L_phone", Upd.L_phone, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("L_phone", UpdateUser.L_phone, dbType: DbType.String, direction: ParameterDirection.Input);
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.UpdateProfileUser", parameter, commandType: CommandType.StoredProcedure);
@@ -173,27 +181,29 @@ namespace Telegram.Infra.Repoisitory
             return true;
         }
 
-        public bool UpdateUsers(User uss)
+        public bool UpdateUsers(User user)
         {
             var parameter = new DynamicParameters();
             parameter.Add
-                ("@U_id", uss.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@U_id", user.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_first_name", uss.first_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_first_name", user.first_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_middle_name", uss.middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_middle_name", user.middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_last_name", uss.last_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_last_name", user.last_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_bio", uss.bio, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_bio", user.bio, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_gender", uss.gender, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_gender", user.gender, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_image_path", uss.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("U_image_path", user.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_login_id", uss.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
-
+ 
+                ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            
+            
+ 
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.UpdateUsers", parameter, commandType: CommandType.StoredProcedure);

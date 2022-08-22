@@ -21,10 +21,10 @@ namespace Telegram.API.Controllers
         }
 
 
-        [HttpDelete("delete/{U_id}")]
-        public bool DeleteUsers(int U_id)
+        [HttpDelete("delete")]
+        public bool DeleteUsers(User user)
         {
-            return usersService.DeleteUsers(U_id);
+            return usersService.DeleteUsers(user);
         }
 
         [HttpGet]
@@ -36,9 +36,9 @@ namespace Telegram.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public User InsertUsers([FromBody] User uss)
+        public User InsertUsers([FromBody] User user)
         {
-            return usersService.InsertUsers(uss);
+            return usersService.InsertUsers(user);
         }
 
         [HttpPost("NumberOfUser")]
@@ -47,17 +47,17 @@ namespace Telegram.API.Controllers
             return usersService.NumberOfUser();
         }
 
-        [HttpPost("NumberUserByGender/{U_gender}")]
-        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender)
+        [HttpPost("NumberUserByGender")]
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender([FromBody] User user)
         {
-            return usersService.NumberOfUserByGender(U_gender);
+            return usersService.NumberOfUserByGender(user);
         }
 
         [AllowAnonymous]
         [HttpPost("Register")]
-        public InsertUsersRepo RegisterUser([FromBody] InsertUsersRepo Ins)
+        public InsertUsersRepo RegisterUser([FromBody] InsertUsersRepo InsertUser)
         {
-            return usersService.RegisterUser(Ins);
+            return usersService.RegisterUser(InsertUser);
         }
 
         [HttpPost]
@@ -74,14 +74,14 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut("UpdateProfile")]
-        public bool UpdateProfileUser([FromBody] UpdateProfileUserDTO Upd)
+        public bool UpdateProfileUser([FromBody] UpdateProfileUserDTO UpdateUser)
         {
-            return usersService.UpdateProfileUser(Upd);
+            return usersService.UpdateProfileUser(UpdateUser);
         }
         [HttpPut]
-        public bool UpdateUsers([FromBody] User uss)
+        public bool UpdateUsers([FromBody] User user)
         {
-            return usersService.UpdateUsers(uss);
+            return usersService.UpdateUsers(user);
         }
     }
 }

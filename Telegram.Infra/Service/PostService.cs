@@ -21,9 +21,9 @@ namespace Telegram.Infra.Service
             return PostRepository.CreatePost(post);
         }
 
-        public bool DeletePost(int id)
+        public bool DeletePost(Post post)
         {
-           return PostRepository.DeletePost(id);
+           return PostRepository.DeletePost(post);
         }
 
         public List<Post> GetAllPost()

@@ -9,7 +9,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class HomePageController : Controller
@@ -23,6 +23,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<AboutUs>), StatusCodes.Status200OK)]
         [Route("AboutUs")]
         public List<AboutUs> GetAboutUsInfo()
@@ -31,6 +32,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<ContactUs>), StatusCodes.Status200OK)]
         [Route("ContactUs")]
         public List<ContactUs> GetAllContactUs()
@@ -38,6 +40,7 @@ namespace Telegram.API.Controllers
             return homePageService.GetAllContactUs();
         }
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Home>), StatusCodes.Status200OK)]
         [Route("Home")]
         public List<Home> GetHomeInfo()
@@ -46,17 +49,19 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<ContactUs>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("deleteContactUs/{id}")]
-        public bool DeleteChannelMember(int id)
+        [Route("deleteContactUs")]
+        public bool DeleteChannelMember(ContactUs contactUs)
         {
-            return homePageService.DeleteContactUs(id);
+            return homePageService.DeleteContactUs(contactUs);
         }
 
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<ContactUs>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("InsertContactUs")]
@@ -66,6 +71,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("UploadImageAboutUs")]
         public AboutUs UploadImageAboutUs()
         {
@@ -97,7 +103,7 @@ namespace Telegram.API.Controllers
 
         }
         [HttpPost]
-       // [Route("UploadImageAboutUs")]
+        [Authorize(Roles = "Admin")]
         [Route("UploadImageHome")]
         public Home UploadHome()
         {
@@ -129,6 +135,7 @@ namespace Telegram.API.Controllers
 
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<AboutUs>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("UpdateAboutUs")]
@@ -138,6 +145,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Home>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("UpdateHome")]

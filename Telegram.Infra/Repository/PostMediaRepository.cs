@@ -29,10 +29,10 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeletePostMedia(int id)
+        public bool DeletePostMedia(MediaPost media_Post)
         {
             var p = new DynamicParameters();
-            p.Add("@MP_id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@MP_id",media_Post.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync("Media_Post_Package.DeleteMediaPost", p, commandType: CommandType.StoredProcedure);
             return true;
         }

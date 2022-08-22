@@ -28,10 +28,10 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeleteMediaGroup(int id)
+        public bool DeleteMediaGroup(MediaGroup mediaGroup)
         {
             var p = new DynamicParameters();
-            p.Add("@cid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@cid", mediaGroup.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync("Group_Package.DeleteMediaGroup", p, commandType: CommandType.StoredProcedure);
             return true; ;
         }

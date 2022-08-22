@@ -10,6 +10,6 @@ namespace Telegram.Core.Service
         bool CreatePost(Post post);
         List<Post> GetAllPost();
         bool UpdatePost(Post post);
-        bool DeletePost(int id);
+        bool DeletePost(Post post);
     }
 }

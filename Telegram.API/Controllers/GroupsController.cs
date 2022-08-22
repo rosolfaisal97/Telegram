@@ -11,7 +11,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class GroupsController : Controller
@@ -23,6 +23,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Groups>), StatusCodes.Status200OK)]
         public List<Groups> GetAllAdminGroup()
         {
@@ -31,6 +32,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(Groups), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool createadmingroup([FromBody] Groups groups)
@@ -40,16 +42,18 @@ namespace Telegram.API.Controllers
 
 
 
-        [HttpDelete("delete/{id}")]
-        public bool DeleteAdminGroup(int id)
+        [HttpDelete("delete")]
+        [Authorize(Roles = "Admin")]
+        public bool DeleteAdminGroup([FromBody] Groups groups)
         {
-            return groupsService.DeleteGroups(id);
+            return groupsService.DeleteGroups(groups);
         }
 
 
        
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public bool UpdateAdminGroup([FromBody] Groups groups)
         {
             return groupsService.UpdateGroups(groups);
@@ -57,6 +61,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GroupsInfoDto>), StatusCodes.Status200OK)]
         [Route("GroupInfo")]
         public List<GroupsInfoDto> GetGroupsInfo()
@@ -67,6 +72,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<CountUserAdminForgroupDto>), StatusCodes.Status200OK)]
         [Route("CountUserAdminForgroupDto")]
         public List<CountUserAdminForgroupDto> CountUserAdminForgroup()
@@ -75,6 +81,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<CountMemberEachgroupDto>), StatusCodes.Status200OK)]
         [Route("CountMemberEachgroup")]
         public List<CountMemberEachgroupDto> CountMemberEachgroup()
@@ -84,6 +91,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<GetNameAdminGroupDto>), StatusCodes.Status200OK)]
         [Route("CountMemberEachgrop/{getNameAdminGroupDto}")]
         public List<GroupAdmin> GetNameAdminGroup(GetNameAdminGroupDto getNameAdminGroupDto)
@@ -93,6 +101,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [Route("MediaEachgroup/{getMediaEachgroupDto}")]
         [ProducesResponseType(typeof(List<GetMediaEachgroupDto>), StatusCodes.Status200OK)]
         public List<MediaGroup> GetMediaEachgroup(GetMediaEachgroupDto getMediaEachgroupDto)
@@ -101,6 +110,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [Route("CountMemberEachgroup/{countMediaEachgroupDto}")]
         public List<MediaGroup> CountMediaEachgroup(CountMediaEachgroupDto countMediaEachgroupDto)
         {
@@ -108,6 +118,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [Route("AdminsGroupName/{adminsGroupNameDto}")]
         public List<GroupAdmin> AdminsGroupName(AdminsGroupNameDto adminsGroupNameDto)
         {
@@ -116,6 +127,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [Route("OwnergrouplName/{ownergrouplNameDto}")]
         public List<Groups> OwnergrouplName(OwnergrouplNameDto ownergrouplNameDto)
         {
@@ -123,6 +135,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [Route("groupMember/{groupMemberDto}")]
         public List<GroupMember> groupMember(GroupMemberDto groupMemberDto)
         {

@@ -11,8 +11,8 @@ namespace Telegram.Core.Service
         public List<ChatMessage> GetAllChatMessage();
         public ChatMessage InsertChatMessage(ChatMessage chat);
         public bool UpdateChatMessage(ChatMessage chat);
-        public bool DeleteChatMessage(int Ch__id);
-        public List<SearchMassageInfodto> SearchMassageInfo(string search_m, int Ch_user_from, int Ch_user_to);
+        public bool DeleteChatMessage(ChatMessage chat);
+        public List<SearchMassageInfodto> SearchMassageInfo(ChatMessage chat);
         public List<ReturnMassageInfodto> ReturnMassageInfo();
 
     }

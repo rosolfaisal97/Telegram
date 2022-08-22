@@ -21,38 +21,43 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Testimonial>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete/{T_id}")]
-        public bool DeleteTestimonial(int T_id)
+        [Route("delete")]
+        public bool DeleteTestimonial([FromBody] Testimonial Test)
         {
-            return TestimonialService.DeleteTestimonial(T_id);
+            return TestimonialService.DeleteTestimonial(Test);
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GetAllTestimonial>), StatusCodes.Status200OK)]
         public List<GetAllTestimonial> GetAllTestimonial()
         {
             return TestimonialService.GetAllTestimonial();
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GetAcceptTestimonialDto>), StatusCodes.Status200OK)]
         public List<GetAcceptTestimonialDto> GetAcceptTestimonial()
         {
             return TestimonialService.GetAcceptTestimonial();
         }
-        // get
-        [HttpGet("Single/{T_id}")]
+        
+        [HttpPost("Single")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GetSingleTestimonial>), StatusCodes.Status200OK)]
-        public List<GetSingleTestimonial> GetSingleTestimonial(int T_id)
+        public List<GetSingleTestimonial> GetSingleTestimonial([FromBody] Testimonial Test)
         {
-            return TestimonialService.GetSingleTestimonial(T_id);
+            return TestimonialService.GetSingleTestimonial(Test);
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(Testimonial), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Testimonial InsertTestimonial(Testimonial Test)
+        public Testimonial InsertTestimonial([FromBody] Testimonial Test)
         {
             return TestimonialService.InsertTestimonial(Test);
         }
@@ -61,7 +66,7 @@ namespace Telegram.API.Controllers
         [HttpPut]
         [ProducesResponseType(typeof(List<Testimonial>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public bool UpdateTestimonial(Testimonial Test)
+        public bool UpdateTestimonial([FromBody] Testimonial Test)
         {
             return TestimonialService.UpdateTestimonial(Test);
         }

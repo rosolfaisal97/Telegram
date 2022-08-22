@@ -27,10 +27,10 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeleteGroupMember(int id)
+        public bool DeleteGroupMember(GroupMember groupMember)
         {
             var p = new DynamicParameters();
-            p.Add("@cid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@cid",groupMember.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync("GroupMEMBER_Package.DeleteGroupMEMBER", p, commandType: CommandType.StoredProcedure);
             return true; ;
         }

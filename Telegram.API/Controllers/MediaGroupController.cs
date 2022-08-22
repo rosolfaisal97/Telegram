@@ -10,7 +10,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class MediaGroupController : Controller
@@ -24,6 +24,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<MediaGroup>), StatusCodes.Status200OK)]
         public List<MediaGroup> GetAllMediaGroup()
         {
@@ -32,6 +33,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(MediaGroup), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool createMediaGroup([FromBody] MediaGroup mediaGroup)
@@ -41,15 +43,17 @@ namespace Telegram.API.Controllers
 
 
 
-        [HttpDelete("delete/{id}")]
-        public bool DeleteMediaGroup(int id)
+        [HttpDelete("delete")]
+        [Authorize(Roles = "User,Admin")]
+        public bool DeleteMediaGroup([FromBody] MediaGroup mediaGroup)
         {
-            return mediaGroupService.DeleteMediaGroup(id);
+            return mediaGroupService.DeleteMediaGroup(mediaGroup);
         }
 
 
 
         [HttpPut]
+        [Authorize(Roles = "User")]
         public bool UpdateMediaGroup([FromBody] MediaGroup mediaGroup)
         {
             return mediaGroupService.UpdateMediaGroup(mediaGroup);

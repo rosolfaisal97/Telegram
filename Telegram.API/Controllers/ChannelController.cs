@@ -7,7 +7,7 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize]
     public class ChannelController : Controller
@@ -20,6 +20,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Channel>), StatusCodes.Status200OK)]
         public List<Channel> GetAllChannel()
         {
@@ -27,6 +28,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(Channel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreateChannel([FromBody] Channel Channel)
@@ -35,6 +37,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(List<Channel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateChannel([FromBody] Channel Channel)
@@ -43,12 +46,13 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(List<Channel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete/{id}")]
-        public bool DeleteChannel(int id)
+        [Route("delete")]
+        public bool DeleteChannel([FromBody] Channel channel)
         {
-            return ChannelService.DeleteChannel(id);
+            return ChannelService.DeleteChannel(channel);
         }
 
     }
