@@ -68,8 +68,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Route("{userFrom}")]
-        public List<User> GetUserFriends(int userFrom)
+         public List<User> GetUserFriends([FromBody]int userFrom)
         {
             return _friendsService.GetUserFriends(userFrom);
         }

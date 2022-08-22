@@ -14,5 +14,7 @@ namespace Telegram.Core.DTO
         public string L_password { get; set; }
         public string L_email { get; set; }
 
+ 
+
     }
 }

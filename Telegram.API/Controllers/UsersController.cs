@@ -11,7 +11,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public class UsersController : Controller
     {
         private readonly IusersService usersService;
@@ -28,7 +28,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        public List<User> GetAllUsers()
+         public List<User> GetAllUsers()
         {
             return usersService.GetAllUsers();
         }
@@ -53,16 +53,17 @@ namespace Telegram.API.Controllers
             return usersService.NumberOfUserByGender(user);
         }
 
+        [AllowAnonymous]
         [HttpPost("Register")]
         public InsertUsersRepo RegisterUser([FromBody] InsertUsersRepo InsertUser)
         {
             return usersService.RegisterUser(InsertUser);
         }
 
-        [HttpPost("SarchUserInfo/{sarch}")]
-        public List<SearchUserInfo> SarchUserInfo(string sarch)
+        [HttpPost]
+        public List<SearchUserInfo> SarchUserInfo([FromBody]string search)
         {
-            return usersService.SarchUserInfo(sarch);
+            return usersService.SarchUserInfo(search);
         }
 
         [HttpPost("SearchDate/{dateto}/{datefrom}")]

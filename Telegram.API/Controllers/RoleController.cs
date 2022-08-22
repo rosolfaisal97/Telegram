@@ -19,7 +19,9 @@ namespace Telegram.API.Controllers
             this.RoleService = RoleService;
         }
 
-        [HttpDelete]
+ 
+ 
+      [HttpPost]
         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -37,11 +39,12 @@ namespace Telegram.API.Controllers
             return RoleService.GetAllRole();
         }
 
+ 
         [HttpGet("RoleId/{R_id}")]
         [Authorize(Roles = "Admin")]
         public List<GetRoleNameByIddto> GetRoleNameById(int R_id)
-        {
-            return RoleService.GetRoleNameById(R_id);
+         {
+            return RoleService.GetRoleNameById(id);
         }
 
         [HttpPost]

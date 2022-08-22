@@ -43,7 +43,7 @@ namespace Telegram.Infra.Repoisitory
         public User InsertUsers(User user)
         {
             var parameter = new DynamicParameters();
-  
+
             parameter.Add
                 ("U_first_name", user.first_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
@@ -57,9 +57,11 @@ namespace Telegram.Infra.Repoisitory
             parameter.Add
                 ("U_image_path", user.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
+ 
                 ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             
             
+ 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.InsertUsers", parameter, commandType: CommandType.StoredProcedure);
 
@@ -80,9 +82,11 @@ namespace Telegram.Infra.Repoisitory
             var parameter = new DynamicParameters();
 
             parameter.Add
+ 
                 ("U_gender", user.gender, dbType: DbType.String, direction: ParameterDirection.Input);
+ 
 
-            IEnumerable<NumberOfUserByGenderdto> result = DbContext.Connection.Query<NumberOfUserByGenderdto> 
+            IEnumerable<NumberOfUserByGenderdto> result = DbContext.Connection.Query<NumberOfUserByGenderdto>
                 ("Users_Package.NumberOfUserByGender", parameter, commandType: CommandType.StoredProcedure);
 
             return result.ToList();
@@ -98,12 +102,16 @@ namespace Telegram.Infra.Repoisitory
             parameter.Add
                 ("U_middle_name", InsertUser.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
+ 
                 ("U_last_name", InsertUser.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
             
+ 
             parameter.Add
                 ("U_gender", InsertUser.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
+ 
                 ("L_username", InsertUser.L_username, dbType: DbType.String, direction: ParameterDirection.Input);
+ 
             parameter.Add
                ("L_password", InsertUser.L_password, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
@@ -146,8 +154,8 @@ namespace Telegram.Infra.Repoisitory
         public bool UpdateProfileUser(UpdateProfileUserDTO UpdateUser)
         {
 
-          
-             var parameter = new DynamicParameters();
+
+            var parameter = new DynamicParameters();
             parameter.Add
                 ("@U_id", UpdateUser.U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
@@ -191,9 +199,11 @@ namespace Telegram.Infra.Repoisitory
             parameter.Add
                 ("U_image_path", user.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
+ 
                 ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             
             
+ 
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.UpdateUsers", parameter, commandType: CommandType.StoredProcedure);
