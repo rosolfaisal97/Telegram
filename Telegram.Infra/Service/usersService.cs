@@ -42,7 +42,7 @@ namespace Telegram.Infra.Service
         }
 
         public InsertUsersRepo RegisterUser(InsertUsersRepo Ins)
-        {
+        {            
             return UserRepo.RegisterUser(Ins);
         }
 

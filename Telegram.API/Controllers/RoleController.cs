@@ -19,13 +19,13 @@ namespace Telegram.API.Controllers
             this.RoleService = RoleService;
         }
 
-        [HttpDelete]
+        [HttpPost]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete/{R_id}")]
-        public bool DeleteRole(int R_id)
+        [Route("delete")]
+        public bool DeleteRole(int id)
         {
-            return RoleService.DeleteRole(R_id);
+            return RoleService.DeleteRole(id);
         }
 
         [HttpGet]
@@ -35,11 +35,11 @@ namespace Telegram.API.Controllers
             return RoleService.GetAllRole();
         }
 
-        [HttpGet("RoleId/{R_id}")]
+        [HttpGet("RoleId")]
 
-        public List<GetRoleNameByIddto> GetRoleNameById(int R_id)
+        public List<GetRoleNameByIddto> GetRoleNameById(int id)
         {
-            return RoleService.GetRoleNameById(R_id);
+            return RoleService.GetRoleNameById(id);
         }
 
         [HttpPost]
