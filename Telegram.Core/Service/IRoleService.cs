@@ -9,11 +9,11 @@ namespace Telegram.Core.Service
     public interface IRoleService
     {
         public List<Role> GetAllRole();
-        public Role InsertRole(Role roles);
+        public bool InsertRole(Role roles);
         public bool UpdateRole(Role roles);
         public bool DeleteRole(Role roles);
 
-        public List<GetRoleNameByIddto> GetRoleNameById(int R_id);
+        public List<Role> GetRoleNameById(Role role);
 
     }
 }

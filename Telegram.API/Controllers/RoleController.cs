@@ -8,56 +8,53 @@ using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
-    [Route("(api/[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class RoleController : ControllerBase
-    { 
+    {
         private readonly IRoleService RoleService;
         public RoleController(IRoleService RoleService)
         {
             this.RoleService = RoleService;
         }
-
- 
- 
-      [HttpPost]
-        [Authorize(Roles = "Admin")]
+        
+        [HttpPost]
+        //  [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("delete")]
         public bool DeleteRole([FromBody] Role roles)
         {
             return RoleService.DeleteRole(roles);
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         public List<Role> GetAllRole()
         {
             return RoleService.GetAllRole();
         }
 
- 
-        [HttpGet("RoleId/{R_id}")]
-        [Authorize(Roles = "Admin")]
-        public List<GetRoleNameByIddto> GetRoleNameById(int R_id)
-         {
-            return RoleService.GetRoleNameById(id);
+
+        [HttpPost]
+        // [Authorize(Roles = "Admin")]
+        public List<Role> GetRoleNameById([FromBody] Role role)
+        {
+            return RoleService.GetRoleNameById(role);
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
-        [ProducesResponseType(typeof(Role), StatusCodes.Status200OK)]
+        // [Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Role InsertRole([FromBody] Role roles)
+        public bool InsertRole([FromBody] Role roles)
         {
             return RoleService.InsertRole(roles);
         }
 
-        [HttpPut]
-        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        //  [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateRole([FromBody] Role roles)
