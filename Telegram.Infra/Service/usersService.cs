@@ -65,5 +65,9 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.UpdateUsers(user);
         }
-    }
+        public GetUserByIdDto GetUserById(int U_id)
+        {
+            return UserRepo.GetUserById(U_id);
+        }
+        }
 }

@@ -12,7 +12,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UsersController : Controller
     {
         private readonly IusersService usersService;
@@ -115,6 +115,12 @@ namespace Telegram.API.Controllers
                 return null;
             }
 
+        }
+
+        [HttpGet("GetUserById/{U_id}")]
+        public GetUserByIdDto GetUserById(int U_id)
+        {
+            return usersService.GetUserById(U_id);
         }
     }
 }

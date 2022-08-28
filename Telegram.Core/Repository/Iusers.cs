@@ -17,6 +17,7 @@ namespace Telegram.Core.Repository
 
         public List<NumberOfUserdto> NumberOfUser();
         public List<NumberOfUserByGenderdto> NumberOfUserByGender(User user);
+        public GetUserByIdDto GetUserById( int U_id);
         public List<SearchUserInfo> SarchUserInfo( string sarch);
         public List<SearchButweenTwoDatedto> SearchButweenTwoDate( DateTime dateto ,DateTime datefrom );
     }

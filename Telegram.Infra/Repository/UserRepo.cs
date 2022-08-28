@@ -149,22 +149,22 @@ namespace Telegram.Infra.Repoisitory
           
              var parameter = new DynamicParameters();
             parameter.Add
-                ("@U_id", UpdateUser.U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@U_id",UpdateUser.U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_first_name", UpdateUser.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_first_name",UpdateUser.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_middle_name", UpdateUser.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_middle_name",UpdateUser.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_last_name", UpdateUser.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_last_name",UpdateUser.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_gender", UpdateUser.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_gender",UpdateUser.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_image_path", UpdateUser.U_image_path, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_image_path",UpdateUser.U_image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-               ("L_email", UpdateUser.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("@L_email",UpdateUser.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
 
             parameter.Add
-               ("L_phone", UpdateUser.L_phone, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("@L_phone",UpdateUser.L_phone, dbType: DbType.String, direction: ParameterDirection.Input);
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.UpdateProfileUser", parameter, commandType: CommandType.StoredProcedure);
@@ -202,5 +202,17 @@ namespace Telegram.Infra.Repoisitory
             return true;
 
         }
+        public GetUserByIdDto GetUserById(int U_id)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add
+                ("@U_id", U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<GetUserByIdDto> result = DbContext.Connection.Query<GetUserByIdDto>
+                 ("Users_Package.GetUserById", parameter, commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+
+        }
+
+       
     }
 }
