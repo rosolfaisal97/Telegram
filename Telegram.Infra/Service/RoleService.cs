@@ -27,12 +27,12 @@ namespace Telegram.Infra.Service
             return RoleRepo.GetAllRole();
         }
 
-        public List<GetRoleNameByIddto> GetRoleNameById(int R_id)
+        public List<Role> GetRoleNameById(Role role)
         {
-            return RoleRepo.GetRoleNameById(R_id);
+            return RoleRepo.GetRoleNameById(role);
         }
 
-        public Role InsertRole(Role roles)
+        public bool InsertRole(Role roles)
         {
             return RoleRepo.InsertRole(roles);
         }

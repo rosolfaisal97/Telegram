@@ -41,9 +41,11 @@ namespace Telegram.Infra.Service
             return UserRepo.NumberOfUserByGender(user);
         }
 
+ 
         public InsertUsersRepo RegisterUser(InsertUsersRepo InsertUser)
         {
             return UserRepo.RegisterUser(InsertUser);
+ 
         }
 
         public List<SearchUserInfo> SarchUserInfo(string sarch)
