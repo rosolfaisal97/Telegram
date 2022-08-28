@@ -18,7 +18,9 @@ namespace Telegram.Core.Data
         [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z"
           , ErrorMessage = "Please Enter Valid Email Address")]
         public string email { get; set; }
+        public int ISBLOKED { get; set; }
         public int role_id { get; set; }
+       
 
         [ForeignKey("role_id")]
         public virtual Role role  { get; set; }

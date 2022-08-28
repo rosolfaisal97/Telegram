@@ -85,12 +85,16 @@ namespace Telegram.Infra.Service
             return LoginRepo.InsertLogin(login);
         }
 
-        public bool RePasswordUser(RePasswordUserrEPO rep)
+        public bool RePasswordUser(RePasswordDTO rePasswordDTO)
         {
-            return LoginRepo.RePasswordUser(rep);
+            return LoginRepo.RePasswordUser(rePasswordDTO);
+        }
+        public bool ChackPassword(RePasswordDTO rePasswordDTO)
+        {
+            return LoginRepo.ChackPassword(rePasswordDTO);
         }
 
-        public bool UpdateLogin(Login login)
+            public bool UpdateLogin(Login login)
         {
             return LoginRepo.UpdateLogin(login);
         }
