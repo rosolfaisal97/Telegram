@@ -19,5 +19,10 @@ namespace Telegram.Core.Repository
         public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender);
         public List<SearchUserInfo> SarchUserInfo( string sarch);
         public List<SearchButweenTwoDatedto> SearchButweenTwoDate( DateTime dateto ,DateTime datefrom );
+        public List<AdminBlockDto> AdminBlock(int id);
+
+        public List<AdminBlockDto> GetAllUsersBlocked();
+
+        public List<User> CheckStatusBlock(int id);
     }
 }
