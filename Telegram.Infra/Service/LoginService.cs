@@ -56,9 +56,10 @@ namespace Telegram.Infra.Service
 
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, result.Username),
+                    new Claim("userName", result.Username),
+                    new Claim("loginId", result.LoginId.ToString()),
                     new Claim(ClaimTypes.Role, result.RoleName),
-                    new Claim(ClaimTypes.Email, result.Email)
+                    new Claim(ClaimTypes.Email, result.Email),
                 }),
                 Expires = DateTime.Now.AddHours(1),
                 SigningCredentials = new SigningCredentials(tokenKey,

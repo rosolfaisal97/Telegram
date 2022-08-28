@@ -22,6 +22,8 @@ namespace Telegram.Core.Data
         public DateTime created_at { get; set; }
         public int login_id { get; set; }
 
+        public int is_blocked { get; set; }
+
 
         [ForeignKey("login_id")]
         public virtual Login  Login { get; set; }

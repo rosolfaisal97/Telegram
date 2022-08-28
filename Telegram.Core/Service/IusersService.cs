@@ -21,6 +21,12 @@ namespace Telegram.Core.Service
 
         public List<SearchUserInfo> SarchUserInfo(string sarch);
         public List<SearchButweenTwoDatedto> SearchButweenTwoDate(DateTime dateto, DateTime datefrom);
-        public GetUserByIdDto GetUserById(int U_id);
+         public List<AdminBlockDto> AdminBlock(int id);
+        public List<AdminBlockDto> GetAllUsersBlocked();
+
+
+        public List<User> CheckStatusBlock(int id);
+         public GetUserByIdDto GetUserById(int U_id);
+ 
     }
 }

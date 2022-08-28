@@ -199,12 +199,10 @@ namespace Telegram.Infra.Repoisitory
             parameter.Add
                 ("U_image_path", user.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
+                 ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add
+                ("U_is_blocked", user.is_blocked, dbType: DbType.Int32, direction: ParameterDirection.Input);
  
-                ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            
-            
- 
-
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.UpdateUsers", parameter, commandType: CommandType.StoredProcedure);
             if (result == null)
@@ -212,7 +210,43 @@ namespace Telegram.Infra.Repoisitory
             return true;
 
         }
-        public GetUserByIdDto GetUserById(int U_id)
+ 
+
+
+
+
+
+        public List<AdminBlockDto> AdminBlock(int id)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("CUserID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            IEnumerable<AdminBlockDto> result = DbContext.Connection.Query<AdminBlockDto>("Users_Package.CreateAdminBlock", parameter, commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+        }
+
+        public List<AdminBlockDto> GetAllUsersBlocked()
+        {
+            IEnumerable<AdminBlockDto> result = DbContext.Connection.Query<AdminBlockDto>
+                ("Users_Package.GetAllUsersBlockAdmin", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<User> CheckStatusBlock(int id)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("@CUserId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            IEnumerable<User> result = DbContext.Connection.Query<User>("Users_Package.CheckStatusBlock", parameter, commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+        }
+         public GetUserByIdDto GetUserById(int U_id)
         {
             var parameter = new DynamicParameters();
             parameter.Add
@@ -224,5 +258,6 @@ namespace Telegram.Infra.Repoisitory
         }
 
        
+ 
     }
 }
