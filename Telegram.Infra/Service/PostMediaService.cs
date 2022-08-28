@@ -21,9 +21,9 @@ namespace Telegram.Infra.Service
            return PostMediaRepository.CreatePostMedia(media_Post);
         }
 
-        public bool DeletePostMedia(int id)
+        public bool DeletePostMedia(MediaPost media_Post)
         {
-           return PostMediaRepository.DeletePostMedia(id);
+           return PostMediaRepository.DeletePostMedia(media_Post);
         }
 
         public List<MediaPost> GetAllPostMedia()

@@ -7,8 +7,8 @@ namespace Telegram.Core.Service
 {
     public interface IMediaMsgService
     {
-        bool InsertMedia(string filePath, string caption, int msgId);
-        bool DeleteMedia(int msgId);
+        bool InsertMedia(MediaMessage mediaMessage);
+        bool DeleteMedia(MediaMessage mediaMessage);
         List<MediaMessage> GetAllMsgMedia(int msgId);
     }
 }

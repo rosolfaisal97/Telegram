@@ -6,6 +6,7 @@ using System.Security.Claims;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
+using Telegram.Infra.Repoisitory;
 
 namespace Telegram.API.Controllers
 {
@@ -13,7 +14,7 @@ namespace Telegram.API.Controllers
     [ApiController]
 
 
-    [Authorize] 
+    //[Authorize] 
     public class LoginController : ControllerBase
     {
 
@@ -87,9 +88,9 @@ namespace Telegram.API.Controllers
         [ProducesResponseType(typeof(List<Login>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("delete")]
-        public bool DeleteLogin([FromBody]int L_id)
+        public bool DeleteLogin([FromBody] Login login)
         {
-            return LoginService.DeleteLogin(L_id);
+            return LoginService.DeleteLogin(login);
         }
 
         [HttpGet]
@@ -102,22 +103,28 @@ namespace Telegram.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(Login), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Login InsertLogin([FromBody] Login logins)
+        public Login InsertLogin([FromBody] Login login)
         {
-            return LoginService.InsertLogin(logins);
+            return LoginService.InsertLogin(login);
         }
-        [HttpPost("password")]
-        public bool RePasswordUser([FromBody] RePasswordUserrEPO rep)
+        [HttpPost]
+        public bool RePasswordUser([FromBody] RePasswordDTO rePasswordDTO)
         {
-            return LoginService.RePasswordUser(rep);
+            return LoginService.RePasswordUser(rePasswordDTO);
+        }
+
+        [HttpPost("Chackpassword")]
+        public bool ChackPassword([FromBody] RePasswordDTO rePasswordDTO)
+        {
+            return LoginService.ChackPassword(rePasswordDTO);
         }
 
         [HttpPut]
         [ProducesResponseType(typeof(List<Login>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public bool UpdateLogin([FromBody] Login logins)
+        public bool UpdateLogin([FromBody] Login login)
         {
-            return LoginService.UpdateLogin(logins);
+            return LoginService.UpdateLogin(login);
         }
 
     }

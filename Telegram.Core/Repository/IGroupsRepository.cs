@@ -11,7 +11,7 @@ namespace Telegram.Core.Repository
         bool CreateGroups(Groups groups);
         List<Groups> GetAllGroups();
         bool UpdateGroups(Groups groups);
-        bool DeleteGroups(int id);
+        bool DeleteGroups(Groups groups);
 
 
 

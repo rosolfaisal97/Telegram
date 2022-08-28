@@ -20,9 +20,9 @@ namespace Telegram.Infra.Service
             return groupMemberRepository.CreateGroupMember(groupMember);
         }
 
-        public bool DeleteGroupMember(int id)
+        public bool DeleteGroupMember(GroupMember groupMember)
         {
-            return groupMemberRepository.DeleteGroupMember(id);
+            return groupMemberRepository.DeleteGroupMember(groupMember);
         }
 
         public List<GroupMember> GetAllGroupMember()

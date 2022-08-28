@@ -9,20 +9,24 @@ namespace Telegram.Core.Service
     public interface IusersService
     {
         public List<User> GetAllUsers();
-        public User InsertUsers(User uss);
-        public bool UpdateUsers(User uss);
-        public bool DeleteUsers(int U_id);
-        public InsertUsersRepo RegisterUser(InsertUsersRepo Ins);
-        public bool UpdateProfileUser(UpdateProfileUserDTO Upd);
+        public User InsertUsers(User user);
+        public bool UpdateUsers(User user);
+        public bool DeleteUsers(User user);
+
+        public InsertUsersRepo RegisterUser(InsertUsersRepo InsertUser);
+        public bool UpdateProfileUser(UpdateProfileUserDTO UpdateUser);
 
         public List<NumberOfUserdto> NumberOfUser();
-        public List<NumberOfUserByGenderdto> NumberOfUserByGender(string U_gender);
+        public List<NumberOfUserByGenderdto> NumberOfUserByGender(User user);
+
         public List<SearchUserInfo> SarchUserInfo(string sarch);
         public List<SearchButweenTwoDatedto> SearchButweenTwoDate(DateTime dateto, DateTime datefrom);
-        public List<AdminBlockDto> AdminBlock(int id);
+         public List<AdminBlockDto> AdminBlock(int id);
         public List<AdminBlockDto> GetAllUsersBlocked();
 
 
         public List<User> CheckStatusBlock(int id);
+         public GetUserByIdDto GetUserById(int U_id);
+ 
     }
 }

@@ -20,13 +20,13 @@ namespace Telegram.Infra.Repoisitory
         {
             this.DbContext = _DbContext;
         }
-        
-        public bool DeleteRole(int R_id)
+
+        public bool DeleteRole(Role roles)
         {
             var parameter = new DynamicParameters();
 
             parameter.Add
-                ("@R_id", R_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@R_id", roles.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync
                 ("Role_Package.DeleteRole", parameter, commandType: CommandType.StoredProcedure);
 
@@ -36,7 +36,7 @@ namespace Telegram.Infra.Repoisitory
 
         }
 
-       
+
 
         public List<Role> GetAllRole()
         {
@@ -44,20 +44,19 @@ namespace Telegram.Infra.Repoisitory
                  ("Role_Package.GetAllRole", commandType: CommandType.StoredProcedure);
             return result.ToList();
 
-           
+
         }
 
-        public List<GetRoleNameByIddto> GetRoleNameById(int R_id)
+        public List<Role> GetRoleNameById(Role role)
         {
             var parameter = new DynamicParameters();
-            parameter.Add("R_id", R_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<GetRoleNameByIddto> result = DbContext.Connection.Query<GetRoleNameByIddto>
+            parameter.Add("R_id", role.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<Role> result = DbContext.Connection.Query<Role>
                 ("Role_Package.GetRoleNameById", parameter, commandType: CommandType.StoredProcedure);
-            //return new api_course();
             return result.ToList();
         }
 
-        public Role InsertRole(Role roles)
+        public bool InsertRole(Role roles)
         {
 
 
@@ -66,14 +65,10 @@ namespace Telegram.Infra.Repoisitory
             parameter.Add
                 ("@R_name", roles.name, dbType: DbType.String, direction: ParameterDirection.Input);
 
+            DbContext.Connection.ExecuteAsync
+                           ("Role_Package.InsertRole", parameter, commandType: CommandType.StoredProcedure);
 
-
-            var result = DbContext.Connection.ExecuteAsync
-                ("Role_Package.InsertRole", parameter, commandType: CommandType.StoredProcedure);
-
-            if (result == null)
-                return null;
-            return roles;
+            return true;
         }
 
         public bool UpdateRole(Role roles)
@@ -93,7 +88,7 @@ namespace Telegram.Infra.Repoisitory
             return true;
 
 
-            
+
         }
     }
 

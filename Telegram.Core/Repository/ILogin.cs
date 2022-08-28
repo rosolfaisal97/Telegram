@@ -9,11 +9,12 @@ namespace Telegram.Core.Repository
     public interface ILogin
     {
         public List<Login> GetAllLogin();
-        public Login InsertLogin(Login logins);
-        public bool UpdateLogin(Login logins);
-        public bool DeleteLogin(int L_id);
+        public Login InsertLogin(Login login);
+        public bool UpdateLogin(Login login);
+        public bool DeleteLogin(Login login);
         public AuthLoginDTO AuthLogin(AuthLoginDTO login);
-        public  bool RePasswordUser(RePasswordUserrEPO rep);
+        public  bool RePasswordUser(RePasswordDTO rePasswordDTO);
+        public bool ChackPassword(RePasswordDTO rePasswordDTO);
 
     }
 

@@ -15,9 +15,9 @@ namespace Telegram.Infra.Service
             _mediaMsgRepository = mediaMsgRepository;
         }
 
-        public bool DeleteMedia(int msgId)
+        public bool DeleteMedia(MediaMessage mediaMessage)
         {
-            return _mediaMsgRepository.DeleteMedia(msgId);
+            return _mediaMsgRepository.DeleteMedia(mediaMessage);
         }
 
         public List<MediaMessage> GetAllMsgMedia(int msgId)
@@ -25,9 +25,9 @@ namespace Telegram.Infra.Service
             return _mediaMsgRepository.GetAllMsgMedia(msgId);
         }
 
-        public bool InsertMedia(string filePath, string caption, int msgId)
+        public bool InsertMedia(MediaMessage mediaMessage)
         {
-            return _mediaMsgRepository.InsertMedia(filePath, caption, msgId);
+            return _mediaMsgRepository.InsertMedia(mediaMessage);
         }
     }
 }

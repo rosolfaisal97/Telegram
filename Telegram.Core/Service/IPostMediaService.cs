@@ -10,6 +10,6 @@ namespace Telegram.Core.Service
         bool CreatePostMedia(MediaPost media_Post);
         List<MediaPost> GetAllPostMedia();
         bool UpdatePostMedia(MediaPost media_Post);
-        bool DeletePostMedia(int id);
+        bool DeletePostMedia(MediaPost media_Post);
     }
 }

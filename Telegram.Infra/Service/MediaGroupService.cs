@@ -20,9 +20,9 @@ namespace Telegram.Infra.Service
             return mediaGroupRepositery.CreateMediaGroup(mediaGroup);
         }
 
-        public bool DeleteMediaGroup(int id)
+        public bool DeleteMediaGroup(MediaGroup mediaGroup)
         {
-            return mediaGroupRepositery.DeleteMediaGroup(id);
+            return mediaGroupRepositery.DeleteMediaGroup(mediaGroup);
         }
 
         public List<MediaGroup> GetAllMediaGroup()

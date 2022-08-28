@@ -31,10 +31,10 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeletePost(int id)
+        public bool DeletePost(Post post)
         {
             var p = new DynamicParameters();
-            p.Add("@P_id", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@P_id",post.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync("Post_Package.DeletePost", p, commandType: CommandType.StoredProcedure);
             return true;
         }
