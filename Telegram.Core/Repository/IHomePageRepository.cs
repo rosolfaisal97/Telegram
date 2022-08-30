@@ -17,7 +17,7 @@ namespace Telegram.Core.Repository
 
         //ContactUs
         bool InsertContactUs(ContactUs contactUs);
-        bool DeleteContactUs(ContactUs contactUs);
+        bool DeleteContactUs(int id);
         List<ContactUs> GetAllContactUs();
 
 

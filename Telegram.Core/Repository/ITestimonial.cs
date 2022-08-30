@@ -8,7 +8,7 @@ namespace Telegram.Core.Repository
 {
     public interface ITestimonial
     {
-        public List<GetAllTestimonial> GetAllTestimonial();
+        public List<Testimonial> GetAllTestimonial();
         public Testimonial InsertTestimonial(Testimonial Test);
         public bool UpdateTestimonial(Testimonial Test);
         public bool DeleteTestimonial(Testimonial Test);

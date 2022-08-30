@@ -25,7 +25,7 @@ namespace Telegram.Infra.Service
             return TestimonialRepo.DeleteTestimonial(Test);
         }
 
-        public List<GetAllTestimonial> GetAllTestimonial()
+        public List<Testimonial> GetAllTestimonial()
         {
             return TestimonialRepo.GetAllTestimonial();
         }

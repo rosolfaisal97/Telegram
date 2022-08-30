@@ -31,7 +31,8 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
+ 
         [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         public List<Story> GetAllStory()
         {
