@@ -48,8 +48,9 @@ namespace Telegram.Infra.Repoisitory
                 ("S_file_path", story.file_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
                 ("S_user_id", story.user_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-           
-            
+
+          
+
 
             var result = DbContext.Connection.ExecuteAsync
                 ("story_Package.InsertStory", parameter, commandType: CommandType.StoredProcedure);
@@ -84,7 +85,8 @@ namespace Telegram.Infra.Repoisitory
                 ("S_user_id", story.user_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
                 ("S_created_at", story.created_at, dbType: DbType.DateTime, direction: ParameterDirection.Input);
-
+            parameter.Add
+            ("@s_isBloked", story.isBlocked, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
             var result = DbContext.Connection.ExecuteAsync
                 ("story_Package.UpdateStory", parameter, commandType: CommandType.StoredProcedure);

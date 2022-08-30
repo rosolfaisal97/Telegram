@@ -15,7 +15,7 @@ namespace Telegram.Core.Data
         public string content { get; set; }
         public string file_path { get; set; }
         public int user_id { get; set; }
-
+        public int isBlocked { get; set; }
 
         [ForeignKey("user_id")]
         public virtual User user { get; set; }
