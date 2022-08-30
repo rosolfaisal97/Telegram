@@ -157,22 +157,22 @@ namespace Telegram.Infra.Repoisitory
 
             var parameter = new DynamicParameters();
             parameter.Add
-                ("@U_id", UpdateUser.U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@U_id",UpdateUser.U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_first_name", UpdateUser.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_first_name",UpdateUser.U_first_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_middle_name", UpdateUser.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_middle_name",UpdateUser.U_middle_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_last_name", UpdateUser.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_last_name",UpdateUser.U_last_name, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_gender", UpdateUser.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_gender",UpdateUser.U_gender, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-                ("U_image_path", UpdateUser.U_image_path, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@U_image_path",UpdateUser.U_image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-               ("L_email", UpdateUser.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("@L_email",UpdateUser.L_email, dbType: DbType.String, direction: ParameterDirection.Input);
 
             parameter.Add
-               ("L_phone", UpdateUser.L_phone, dbType: DbType.String, direction: ParameterDirection.Input);
+               ("@L_phone",UpdateUser.L_phone, dbType: DbType.String, direction: ParameterDirection.Input);
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.UpdateProfileUser", parameter, commandType: CommandType.StoredProcedure);
@@ -199,12 +199,10 @@ namespace Telegram.Infra.Repoisitory
             parameter.Add
                 ("U_image_path", user.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
+                 ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            parameter.Add
+                ("U_is_blocked", user.is_blocked, dbType: DbType.Int32, direction: ParameterDirection.Input);
  
-                ("U_login_id", user.login_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            
-            
- 
-
             var result = DbContext.Connection.ExecuteAsync
                 ("Users_Package.UpdateUsers", parameter, commandType: CommandType.StoredProcedure);
             if (result == null)
@@ -212,5 +210,54 @@ namespace Telegram.Infra.Repoisitory
             return true;
 
         }
+ 
+
+
+
+
+
+        public List<AdminBlockDto> AdminBlock(int id)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("CUserID", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            IEnumerable<AdminBlockDto> result = DbContext.Connection.Query<AdminBlockDto>("Users_Package.CreateAdminBlock", parameter, commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+        }
+
+        public List<AdminBlockDto> GetAllUsersBlocked()
+        {
+            IEnumerable<AdminBlockDto> result = DbContext.Connection.Query<AdminBlockDto>
+                ("Users_Package.GetAllUsersBlockAdmin", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<User> CheckStatusBlock(int id)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("@CUserId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+
+            IEnumerable<User> result = DbContext.Connection.Query<User>("Users_Package.CheckStatusBlock", parameter, commandType: CommandType.StoredProcedure);
+
+            return result.ToList();
+        }
+         public GetUserByIdDto GetUserById(int U_id)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add
+                ("@U_id", U_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<GetUserByIdDto> result = DbContext.Connection.Query<GetUserByIdDto>
+                 ("Users_Package.GetUserById", parameter, commandType: CommandType.StoredProcedure);
+            return result.FirstOrDefault();
+
+        }
+
+       
+ 
     }
 }

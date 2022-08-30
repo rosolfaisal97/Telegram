@@ -16,7 +16,20 @@ namespace Telegram.Infra.Service
         {
             this.UserRepo = UserRepo;
         }
+ 
+
+        public List<AdminBlockDto> AdminBlock(int id)
+        {
+            return UserRepo.AdminBlock(id);
+        }
+
+        public List<User> CheckStatusBlock(int id)
+        {
+            return UserRepo.CheckStatusBlock(id);
+        }
+ 
         public bool DeleteUsers(User user)
+ 
         {
             return UserRepo.DeleteUsers(user);
         }
@@ -26,8 +39,13 @@ namespace Telegram.Infra.Service
             return UserRepo.GetAllUsers();
         }
 
-        public User InsertUsers(User user)
+         public List<AdminBlockDto> GetAllUsersBlocked()
         {
+            return UserRepo.GetAllUsersBlocked();
+        }
+ 
+        public User InsertUsers(User user)
+         {
             return UserRepo.InsertUsers(user);
         }
 
@@ -67,5 +85,9 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.UpdateUsers(user);
         }
-    }
+        public GetUserByIdDto GetUserById(int U_id)
+        {
+            return UserRepo.GetUserById(U_id);
+        }
+        }
 }

@@ -56,9 +56,10 @@ namespace Telegram.Infra.Service
 
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, result.Username),
+                    new Claim("userName", result.Username),
+                    new Claim("loginId", result.LoginId.ToString()),
                     new Claim(ClaimTypes.Role, result.RoleName),
-                    new Claim(ClaimTypes.Email, result.Email)
+                    new Claim(ClaimTypes.Email, result.Email),
                 }),
                 Expires = DateTime.Now.AddHours(1),
                 SigningCredentials = new SigningCredentials(tokenKey,
@@ -85,12 +86,16 @@ namespace Telegram.Infra.Service
             return LoginRepo.InsertLogin(login);
         }
 
-        public bool RePasswordUser(RePasswordUserrEPO rep)
+        public bool RePasswordUser(RePasswordDTO rePasswordDTO)
         {
-            return LoginRepo.RePasswordUser(rep);
+            return LoginRepo.RePasswordUser(rePasswordDTO);
+        }
+        public bool ChackPassword(RePasswordDTO rePasswordDTO)
+        {
+            return LoginRepo.ChackPassword(rePasswordDTO);
         }
 
-        public bool UpdateLogin(Login login)
+            public bool UpdateLogin(Login login)
         {
             return LoginRepo.UpdateLogin(login);
         }

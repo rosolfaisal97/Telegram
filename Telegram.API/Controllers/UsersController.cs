@@ -12,8 +12,9 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-   // [Authorize]
-    public class UsersController : Controller
+ 
+     //[Authorize]
+     public class UsersController : Controller
     {
         private readonly IusersService usersService;
         public UsersController(IusersService usersService)
@@ -42,14 +43,17 @@ namespace Telegram.API.Controllers
             return usersService.InsertUsers(user);
         }
 
-        
+ 
+
+
+
         [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("NumberOfUser")]
-        public int NumberOfUser()
-        {
+        public List<NumberOfUserdto> NumberOfUser()
+         {
             return usersService.GetAllUsers().Count;
         }
 
@@ -123,5 +127,39 @@ namespace Telegram.API.Controllers
             }
 
         }
+
+        [HttpGet("GetUserById/{U_id}")]
+        public GetUserByIdDto GetUserById(int U_id)
+        {
+            return usersService.GetUserById(U_id);
+        }
+
+
+
+        [HttpPost ("AdminBlock/{id}")]
+        public  List<AdminBlockDto> AdminBlock(int id)
+        {
+            return usersService.AdminBlock(id);
+        }
+
+        [HttpGet("AdminBlockList")]
+        public List<AdminBlockDto> GetAllUsersBlocked()
+        {
+            return usersService.GetAllUsersBlocked();
+        }
+
+
+
+        [HttpPost("CheckStatusBlock")]
+        public List<User> CheckStatusBlock([FromBody] int id)
+        {
+            return usersService.CheckStatusBlock(id);
+        }
+
+
+
+
+
+
     }
 }
