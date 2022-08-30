@@ -15,9 +15,9 @@ namespace Telegram.Infra.Service
         {
             this.homePageRepository = homePageRepository;
         }
-        public bool DeleteContactUs(ContactUs contactUs)
+        public bool DeleteContactUs(int id)
         {
-            return homePageRepository.DeleteContactUs(contactUs);
+            return homePageRepository.DeleteContactUs(id);
         }
 
         public List<AboutUs> GetAboutUsInfo()

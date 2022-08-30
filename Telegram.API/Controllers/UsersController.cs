@@ -42,11 +42,17 @@ namespace Telegram.API.Controllers
             return usersService.InsertUsers(user);
         }
 
-        [HttpPost("NumberOfUser")]
-        public List<NumberOfUserdto> NumberOfUser()
+        
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("NumberOfUser")]
+        public int NumberOfUser()
         {
-            return usersService.NumberOfUser();
+            return usersService.GetAllUsers().Count;
         }
+
 
         [HttpPost("NumberUserByGender")]
         public List<NumberOfUserByGenderdto> NumberOfUserByGender([FromBody] User user)

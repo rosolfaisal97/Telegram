@@ -46,9 +46,9 @@ namespace Telegram.Infra.Repository
 
         }
 
-        public List<GetAllTestimonial> GetAllTestimonial()
+        public List<Testimonial> GetAllTestimonial()
         {
-            IEnumerable<GetAllTestimonial> result = DbContext.Connection.Query<GetAllTestimonial>
+            IEnumerable<Testimonial> result = DbContext.Connection.Query<Testimonial>
                ("Testimonial_Package.GetAllTestimonial", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
@@ -96,8 +96,7 @@ namespace Telegram.Infra.Repository
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Testimonial_Package.UpdateTestimonial", parameter, commandType: CommandType.StoredProcedure);
-            if (result == null)
-                return false;
+           
             return true;
         }
     }
