@@ -42,10 +42,6 @@ namespace Telegram.API.Controllers
         {
             return usersService.InsertUsers(user);
         }
-
-
-
-
         [HttpGet]
         //[Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -54,11 +50,10 @@ namespace Telegram.API.Controllers
         public List<NumberOfUserdto> NumberOfUser()
         {
             return usersService.NumberOfUser();
-
         }
 
 
-        [HttpPost("NumberUserByGender")]
+            [HttpPost("NumberUserByGender")]
         public List<NumberOfUserByGenderdto> NumberOfUserByGender([FromBody] User user)
         {
             return usersService.NumberOfUserByGender(user);
