@@ -11,7 +11,8 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+     //[Authorize]
+ 
     public class userBlockListController : ControllerBase
     {
          
@@ -22,30 +23,20 @@ namespace Telegram.API.Controllers
         }
 
 
-        [HttpDelete("delete")]
-        [Authorize(Roles = "User")]
+        [HttpPost]
         public bool DeleteUserBlock([FromBody] UserBlockList userBlock)
         {
             return userBlockListService.DeleteUserBlock(userBlock);
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public List<UserBlockList> GetAllUserBlock()
-        {
-            return userBlockListService.GetAllUserBlock();
-        }
-
         [HttpPost]
-        [Authorize(Roles = "User,Admin")]
         public UserBlockList InsertUserBlock([FromBody] UserBlockList userBlock)
         {
             return userBlockListService.InsertUserBlock(userBlock);
         }
 
-        [HttpPost("MY_block")]
-        [Authorize(Roles = "User,Admin")]
-        public List<My_block_ListDTO> My_block_List([FromBody] UserBlockList userBlock)
+        [HttpPost]
+        public List<My_block_ListDTO> GetUserBlockedList([FromBody] UserBlockList userBlock)
         {
             return userBlockListService.My_block_List(userBlock);
         }

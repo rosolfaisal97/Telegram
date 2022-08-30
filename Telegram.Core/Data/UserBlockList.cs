@@ -10,6 +10,8 @@ namespace Telegram.Core.Data
     { 
         [Key]
         public int id { get; set; }
+
+        
         public int user_from { get; set; }
 
 

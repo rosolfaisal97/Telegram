@@ -9,9 +9,9 @@ using Telegram.Core.Service;
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
-    
-    
-    public class StoryController : ControllerBase
+    [ApiController]
+   //[Authorize]
+     public class StoryController : ControllerBase
     {
        
         private readonly IStoryService IStoryService;
@@ -31,8 +31,10 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-      
-        [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
+ 
+        // [Authorize(Roles = "Admin")]
+ 
+         [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         public List<Story> GetAllStory()
         {
             return IStoryService.GetAllStory();
@@ -55,7 +57,9 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
-        
+ 
+        //[Authorize(Roles = "User")]
+ 
         [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateStory([FromBody]Story story)

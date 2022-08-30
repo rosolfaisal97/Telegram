@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class AdminController : Controller
     {
         private readonly IFunctionChannelAdminService functionChannelAdminService ;
@@ -19,18 +19,18 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Top10PostByLike>), StatusCodes.Status200OK)]
-        [Route("Top10Like")]
+       // [Route("Top10Like")]
         public List<Top10PostByLike> Top10Like()
         {
             return functionChannelAdminService.GetTop10PostByLike();
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Top10PostByComment>), StatusCodes.Status200OK)]
-        [Route("Top10Comment")]
+        //[Route("Top10Comment")]
         public List<Top10PostByComment> Top10Comment()
         {
             return functionChannelAdminService.GetTop10PostByComment();
@@ -39,9 +39,9 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<ChannelsInfo>), StatusCodes.Status200OK)]
-        [Route("ChannelsInfo")]
+       // [Route("ChannelsInfo")]
 
         public List<ChannelsInfo> ChannelsInfo()
         {
@@ -49,50 +49,50 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<CountUserAdmin>), StatusCodes.Status200OK)]
-        [Route("CountAdmin")]
+       // [Route("CountAdmin")]
         public List<CountUserAdmin> CountAdmin()
         {
             return functionChannelAdminService.GetCountUserAdmin();
         }
 
 
+       //// [HttpGet]
+       ////// [Authorize(Roles = "Admin")]
+       //// [ProducesResponseType(typeof(List<ChannelNameUserAdmin>), StatusCodes.Status200OK)]
+       //// [ProducesResponseType(StatusCodes.Status400BadRequest)]
+       //// [Route("/{cid}")]
+       //// public List<ChannelNameUserAdmin> UserAdmin(int cid)
+       //// {
+       ////     return functionChannelAdminService.GetChannelNameUserAdmin(cid);
+       //// }
+
+
+
+       //// [HttpGet]
+       //// //[Authorize(Roles = "User")]
+       //// [ProducesResponseType(typeof(List<GetChannelPosts>), StatusCodes.Status200OK)]
+       //// [ProducesResponseType(StatusCodes.Status400BadRequest)]
+       //// [Route("/{chid}")]
+       //// public List<GetChannelPosts> GetChannelPosts(int chid)
+       //// {
+       ////     return functionChannelAdminService.GetChannelPosts(chid);
+       //// }
+
         [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [ProducesResponseType(typeof(List<ChannelNameUserAdmin>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("UserAdmin/{chid}")]
-        public List<ChannelNameUserAdmin> UserAdmin(int chid)
-        {
-            return functionChannelAdminService.GetChannelNameUserAdmin(chid);
-        }
-
-
-
-        [HttpGet]
-        [Authorize(Roles = "User")]
-        [ProducesResponseType(typeof(List<GetChannelPosts>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Route("GetChannelPosts/{chid}")]
-        public List<GetChannelPosts> GetChannelPosts(int chid)
-        {
-            return functionChannelAdminService.GetChannelPosts(chid);
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "User")]
+       // [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(List<CountMemberEachChannel>), StatusCodes.Status200OK)]
-        [Route("CountMemberEachChannel")]
+        //[Route("CountMemberEachChannel")]
         public List<CountMemberEachChannel> CountMemberEachChannel()
         {
             return functionChannelAdminService.GetCountMemberEachChannel();
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<CountReportEachPost>), StatusCodes.Status200OK)]
-        [Route("CountReportEachPost")]
+        //[Route("CountReportEachPost")]
         public List<CountReportEachPost> CountReportEachPost()
         {
             return functionChannelAdminService.GetCountReportEachPost();

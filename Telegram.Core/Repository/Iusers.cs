@@ -20,5 +20,10 @@ namespace Telegram.Core.Repository
         public GetUserByIdDto GetUserById( int U_id);
         public List<SearchUserInfo> SarchUserInfo( string sarch);
         public List<SearchButweenTwoDatedto> SearchButweenTwoDate( DateTime dateto ,DateTime datefrom );
+        public List<AdminBlockDto> AdminBlock(int id);
+
+        public List<AdminBlockDto> GetAllUsersBlocked();
+
+        public List<User> CheckStatusBlock(int id);
     }
 }
