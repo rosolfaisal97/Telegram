@@ -43,7 +43,7 @@ namespace Telegram.API.Controllers
             return usersService.InsertUsers(user);
         }
 
- 
+
 
 
 
@@ -53,12 +53,12 @@ namespace Telegram.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("NumberOfUser")]
         public List<NumberOfUserdto> NumberOfUser()
-         {
-            return usersService.GetAllUsers().Count;
+        {
+            return usersService.NumberOfUser();
         }
 
 
-        [HttpPost("NumberUserByGender")]
+            [HttpPost("NumberUserByGender")]
         public List<NumberOfUserByGenderdto> NumberOfUserByGender([FromBody] User user)
         {
             return usersService.NumberOfUserByGender(user);
