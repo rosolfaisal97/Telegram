@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
+using Telegram.Infra.Repoisitory;
 
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+     //[Authorize]
  
     public class userBlockListController : ControllerBase
     {
@@ -43,6 +45,18 @@ namespace Telegram.API.Controllers
         public bool UpdateUserBlock([FromBody] UserBlockList userBlock)
         {
             return userBlockListService.UpdateUserBlock(userBlock);
+        }
+
+        [HttpGet("infoBlock")]
+        public List<GetAllBlockUserAndSendEmailDTO> GetAllBlockUserAndSendEmail()
+        {
+            return userBlockListService.GetAllBlockUserAndSendEmail();
+
+        }
+        [HttpGet("blocksendemail/{id}")]
+        public bool EmailSend(int id)
+        {
+            return userBlockListService.EmailSend(id);
         }
     }
 }
