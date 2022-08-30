@@ -39,5 +39,16 @@ namespace Telegram.Infra.Service
         {
             return UserBlockRepo.UpdateUserBlock(userBlock);
         }
-    }
+
+        public List<GetAllBlockUserAndSendEmailDTO> GetAllBlockUserAndSendEmail()
+        {
+            return UserBlockRepo.GetAllBlockUserAndSendEmail();
+
+        }
+
+        public bool EmailSend(int id)
+        {
+            return UserBlockRepo.EmailSend(id);
+        }
+        }
 }

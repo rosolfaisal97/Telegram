@@ -13,5 +13,7 @@ namespace Telegram.Core.Service
         public bool UpdateUserBlock(UserBlockList userBlock);
         public bool DeleteUserBlock(UserBlockList userBlock);
         public List<My_block_ListDTO> My_block_List(UserBlockList userBlock);
+        public List<GetAllBlockUserAndSendEmailDTO> GetAllBlockUserAndSendEmail();
+        public bool EmailSend(int id);
     }
 }
