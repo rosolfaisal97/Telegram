@@ -42,11 +42,6 @@ namespace Telegram.API.Controllers
         {
             return usersService.InsertUsers(user);
         }
-
-
-
-
-
         [HttpGet]
         //[Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
