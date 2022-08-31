@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -257,7 +258,42 @@ namespace Telegram.Infra.Repoisitory
 
         }
 
-       
- 
+        public bool EmailSenduserblock(int id)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("uid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            //select * from course_api where id=idofcourse;
+
+            IEnumerable<EmailSenduserblockDTO> result = DbContext.Connection.Query<EmailSenduserblockDTO>("Users_Package.EmailSenduserblock", parameter, commandType: CommandType.StoredProcedure);
+            MimeMessage message = new MimeMessage();
+            BodyBuilder builder = new BodyBuilder();
+            MailboxAddress from = new MailboxAddress("User", "newqroma@gmail.com");
+            MailboxAddress to = new MailboxAddress("user", result.FirstOrDefault().email);
+            if(result.FirstOrDefault().block == 1)
+            {
+                builder.HtmlBody = "Hi " + result.FirstOrDefault().NameUserto + " " + result.FirstOrDefault().LastNameto +
+                " You are blocked from Telegram . ";
+            }else if(result.FirstOrDefault().block == 0)
+            {
+                builder.HtmlBody = "Hi " + result.FirstOrDefault().NameUserto + " " + result.FirstOrDefault().LastNameto +
+                " You have been unblocked from Telegram . ";
+
+            }
+            message.Body = builder.ToMessageBody();
+            message.From.Add(from);
+            message.To.Add(to);
+            message.Subject = "Blocked group";
+            using (var item = new MailKit.Net.Smtp.SmtpClient())
+            {
+                item.Connect("smtp.gmail.com", 587, false);
+                item.Authenticate("newqroma@gmail.com", "cfodqutfkmzlouut");
+                item.Send(message);
+                item.Disconnect(true);
+
+            }
+            //return result;
+            return true;
+        }
+
     }
 }
