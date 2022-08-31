@@ -25,5 +25,7 @@ namespace Telegram.Core.Repository
         public List<AdminBlockDto> GetAllUsersBlocked();
 
         public List<User> CheckStatusBlock(int id);
+
+        public bool EmailSenduserblock(int id);
     }
 }

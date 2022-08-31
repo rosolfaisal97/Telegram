@@ -89,5 +89,9 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.GetUserById(U_id);
         }
+        public bool EmailSenduserblock(int id)
+        {
+            return UserRepo.EmailSenduserblock(id);
+        }
         }
 }

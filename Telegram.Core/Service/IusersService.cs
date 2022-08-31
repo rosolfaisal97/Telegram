@@ -27,6 +27,7 @@ namespace Telegram.Core.Service
 
         public List<User> CheckStatusBlock(int id);
          public GetUserByIdDto GetUserById(int U_id);
- 
+        public bool EmailSenduserblock(int id);
+
     }
 }

@@ -7,6 +7,7 @@ using Telegram.Core.DTO;
 using Telegram.Core.Service;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
+using Telegram.Infra.Repoisitory;
 
 namespace Telegram.API.Controllers
 {
@@ -151,6 +152,11 @@ namespace Telegram.API.Controllers
             return usersService.CheckStatusBlock(id);
         }
 
+        [HttpGet("blockuser/{id}")]
+        public bool EmailSenduserblock(int id)
+        {
+            return usersService.EmailSenduserblock(id);
+        }
 
 
 
