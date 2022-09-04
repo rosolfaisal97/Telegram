@@ -84,20 +84,27 @@ namespace Telegram.Infra.Repository
         {
             var parameter = new DynamicParameters();
             parameter.Add
-                ("T_id", Test.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@T_id", Test.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             parameter.Add
-                ("Fuser", Test.user_from, dbType: DbType.Int32, direction: ParameterDirection.Input);
+                ("@Fuser", Test.user_from, dbType: DbType.Int32, direction: ParameterDirection.Input);
             
             parameter.Add
-                ("descript", Test.description, dbType: DbType.String, direction: ParameterDirection.Input);
+                ("@descript", Test.description, dbType: DbType.String, direction: ParameterDirection.Input);
             parameter.Add
-               ("accepting", Test.is_accept, dbType: DbType.Int32, direction: ParameterDirection.Input);
+               ("@accepting", Test.is_accept, dbType: DbType.Int32, direction: ParameterDirection.Input);
 
 
             var result = DbContext.Connection.ExecuteAsync
                 ("Testimonial_Package.UpdateTestimonial", parameter, commandType: CommandType.StoredProcedure);
            
             return true;
+        }
+
+        public List<TestamonialUserDto> GetAllTestimonialUser()
+        {
+            IEnumerable<TestamonialUserDto> result = DbContext.Connection.Query<TestamonialUserDto>
+              ("Testimonial_Package.GetAllTestimonial", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

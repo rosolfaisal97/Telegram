@@ -14,6 +14,8 @@ namespace Telegram.Core.Data
         public string description { get; set; }
         public int is_accept { get; set; }
 
+
+        
         [ForeignKey("user_from")]
         public virtual  User Users { get; set; }
 

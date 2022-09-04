@@ -14,7 +14,7 @@ namespace Telegram.Core.Service
         public bool DeleteTestimonial(Testimonial Test);
         public List<GetAcceptTestimonialDto> GetAcceptTestimonial();
         public List<GetSingleTestimonial> GetSingleTestimonial(Testimonial Test);
-
+        public List<TestamonialUserDto> GetAllTestimonialUser();
 
     }
 }

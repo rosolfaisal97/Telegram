@@ -47,5 +47,10 @@ namespace Telegram.Infra.Service
         {
             return TestimonialRepo.UpdateTestimonial(Test);
         }
+
+        public List<TestamonialUserDto> GetAllTestimonialUser()
+        {
+            return TestimonialRepo.GetAllTestimonialUser();
+        }
     }
 }

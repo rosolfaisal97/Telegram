@@ -29,7 +29,15 @@ namespace Telegram.API.Controllers
         {
             return TestimonialService.DeleteTestimonial(Test);
         }
+       
 
+         [HttpGet]
+        //  [Authorize(Roles = "Admin")]
+        [ProducesResponseType(typeof(List<TestamonialUserDto>), StatusCodes.Status200OK)]
+        public List<TestamonialUserDto> GetAllTestimonialUser()
+        {
+            return TestimonialService.GetAllTestimonialUser();
+        }
         [HttpGet]
       //  [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Testimonial>), StatusCodes.Status200OK)]
@@ -68,6 +76,7 @@ namespace Telegram.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateTestimonial([FromBody] Testimonial Test)
         {
+           
             return TestimonialService.UpdateTestimonial(Test);
         }
     }
