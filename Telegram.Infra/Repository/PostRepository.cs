@@ -44,6 +44,9 @@ namespace Telegram.Infra.Repository
             IEnumerable<Post> result = DbContext.Connection.Query<Post>("Post_Package.GetAllPost", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+       
+           
+        
 
         public bool UpdatePost(Post post)
         {
@@ -58,6 +61,14 @@ namespace Telegram.Infra.Repository
 
             var result = DbContext.Connection.ExecuteAsync("Post_Package.UpdatePost", p, commandType: CommandType.StoredProcedure);
             return true;
+        }
+
+        List<Post> IPostRepository.GetAllPostByChanel(int ch_id)
+        {
+            var p = new DynamicParameters();
+            p.Add("@ch_id", ch_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<Post> result = DbContext.Connection.Query<Post>("Post_Package.GetAllPostByChanel", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

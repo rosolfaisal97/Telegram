@@ -57,6 +57,7 @@ namespace Telegram.Infra.Service
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("userName", result.Username),
+                    new Claim("userid", result.userid.ToString()),
                     new Claim("loginId", result.LoginId.ToString()),
                     new Claim(ClaimTypes.Role, result.RoleName),
                     new Claim(ClaimTypes.Email, result.Email),
