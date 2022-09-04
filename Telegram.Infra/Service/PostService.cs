@@ -31,6 +31,11 @@ namespace Telegram.Infra.Service
             return PostRepository.GetAllPost();
         }
 
+        public List<Post> GetAllPostByChanel(int ch_id)
+        {
+            return PostRepository.GetAllPostByChanel(ch_id);
+        }
+
         public bool UpdatePost(Post post)
         {
            return PostRepository.UpdatePost(post);

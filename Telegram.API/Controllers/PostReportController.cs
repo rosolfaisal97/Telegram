@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    
     public class PostReportController : ControllerBase
     {
 
