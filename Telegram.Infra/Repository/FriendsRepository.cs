@@ -19,11 +19,11 @@ namespace Telegram.Infra.Repository
             DbContext = _DbContext;
         }
 
-        public bool AcceptFriendRequest(int userFrom, int userTo)
+        public bool AcceptFriendRequest(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserToId, DbType.Int32);
 
             DbContext.Connection.
               ExecuteAsync("Friends_Package.AcceptFriendRequest",
@@ -32,11 +32,11 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeleteFriendRequest(int userFrom, int userTo)
+        public bool DeleteFriendRequest(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserToId, DbType.Int32);
 
             DbContext.Connection.
                  ExecuteAsync("Friends_Package.DeleteFriendRequest",
@@ -45,11 +45,11 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeleteFriendship(int userFrom, int userTo)
+        public bool DeleteFriendship(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserToId, DbType.Int32);
 
             DbContext.Connection.
               ExecuteAsync("Friends_Package.DeleteFriendship",
@@ -58,11 +58,11 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool HasFriendship(int userFrom, int userTo)
+        public bool HasFriendship(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserToId, DbType.Int32);
 
             var result = DbContext.Connection.
                 QueryAsync<int>("Friends_Package.HasFriendship",
@@ -71,11 +71,11 @@ namespace Telegram.Infra.Repository
             return result.Result.FirstOrDefault() > 0;
         }
 
-        public bool HeSent(int userFrom, int userTo)
+        public bool HeSent(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserFromId, DbType.Int32);
 
             var result = DbContext.Connection.
                      QueryAsync<int>("Friends_Package.HeSent",
@@ -85,11 +85,11 @@ namespace Telegram.Infra.Repository
 
         }
 
-        public bool InsertFriendRequest(int userFrom, int userTo)
+        public bool InsertFriendRequest(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserToId, DbType.Int32);
 
              DbContext.Connection.
                 ExecuteAsync("Friends_Package.InsertFriendRequest",
@@ -97,11 +97,11 @@ namespace Telegram.Infra.Repository
                              commandType: CommandType.StoredProcedure);
             return true;
         }
-        public FriendshipStatusDTO GetFriendship(int userFrom, int userTo)
+        public FriendshipStatusDTO GetFriendship(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserToId, DbType.Int32);
             var result = DbContext.Connection.
                 QueryAsync<FriendshipStatusDTO>("Friends_Package.GetFriendship",
                                                 parameters,
@@ -109,10 +109,10 @@ namespace Telegram.Infra.Repository
             return result.Result.FirstOrDefault();
         }
 
-        public List<User> GetUserFriends(int userFrom)
+        public List<User> GetUserFriends(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
             var result = DbContext.Connection.
                 QueryAsync<User>("Friends_Package.GetUserFriends",
                                                 parameters,
@@ -121,10 +121,10 @@ namespace Telegram.Infra.Repository
 
         }
 
-        public List<User> GetFriendshipRequests(int userFrom)
+        public List<User> GetFriendshipRequests(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
             var result = DbContext.Connection.
                 QueryAsync<User>("Friends_Package.GetFriendshipRequests",
                                                 parameters,
@@ -132,11 +132,11 @@ namespace Telegram.Infra.Repository
             return result.Result.ToList();
         }
 
-        public bool ReSentFriendRequest(int userFrom, int userTo)
+        public bool ReSentFriendRequest(UserFormDTO user)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@userFrom", userFrom, DbType.Int32);
-            parameters.Add("@userTo", userTo, DbType.Int32);
+            parameters.Add("@userFrom", user.UserFromId, DbType.Int32);
+            parameters.Add("@userTo", user.UserToId, DbType.Int32);
 
             DbContext.Connection.
               ExecuteAsync("Friends_Package.ReSentFriendRequest",

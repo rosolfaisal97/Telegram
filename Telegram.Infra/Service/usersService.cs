@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
@@ -45,7 +46,6 @@ namespace Telegram.Infra.Service
         public InsertUsersRepo RegisterUser(InsertUsersRepo InsertUser)
         {
             return UserRepo.RegisterUser(InsertUser);
- 
         }
 
         public List<SearchUserInfo> SarchUserInfo(string sarch)
