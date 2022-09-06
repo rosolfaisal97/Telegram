@@ -1,12 +1,15 @@
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Telegram.API.Hubs;
 using Telegram.Core.Common;
 using Telegram.Core.Repository;
 using Telegram.Core.Service;
@@ -59,9 +62,23 @@ namespace Telegram.API
                     ValidateLifetime = true,
                     ValidAudience = Configuration["jwt:Audience"],
                     ValidIssuer = Configuration["jwt:Issuer"],
-                   
+
                 };
-                
+                y.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var accessToken = context.Request.Query["access_token"];
+                        var path = context.HttpContext.Request.Path;
+                        if (!string.IsNullOrEmpty(accessToken)
+                        && path.StartsWithSegments("/chat"))
+                        {
+                            context.Token = accessToken;
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
+
             });
 
 
@@ -100,8 +117,11 @@ namespace Telegram.API
             services.AddScoped<IMediaMsgRepository, MediaMsgRepository>();
             services.AddScoped<IHomePageRepository, HomePageRepository>();
             services.AddScoped<IStoryReportRepository, StoryReportRepository>();
+            services.AddScoped<IUserRepoertRepository, UserRepoertRepository>();
+
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<ISERVICESRepository,SERVICESRepository>();
+
             //Service
             services.AddScoped<IChannelService, ChannelService>();
             services.AddScoped<IChannelAdminService, ChannelAdminService>();
@@ -117,6 +137,7 @@ namespace Telegram.API
             services.AddScoped<IMediaMsgService, MediaMsgService>();
             services.AddScoped<IHomePageService, HomePageService>();
             services.AddScoped<IStoryReportService, storyReportService>();
+            services.AddScoped<IUserRepoertService, UserRepoertService>();
 
             //osama
             services.AddScoped<IDbContext, DbContext>();
@@ -140,7 +161,10 @@ namespace Telegram.API
                     new OpenApiInfo { Title = "<title>", Version = "v1" });
             });
 
-
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
 
         }
 
@@ -170,6 +194,7 @@ namespace Telegram.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }
