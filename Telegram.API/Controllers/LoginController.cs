@@ -6,6 +6,7 @@ using System.Security.Claims;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
+using Telegram.Infra.Repoisitory;
 
 namespace Telegram.API.Controllers
 {
@@ -13,7 +14,7 @@ namespace Telegram.API.Controllers
     [ApiController]
 
 
-    [Authorize] 
+    //[Authorize] 
     public class LoginController : ControllerBase
     {
 
@@ -106,10 +107,16 @@ namespace Telegram.API.Controllers
         {
             return LoginService.InsertLogin(login);
         }
-        [HttpPost("password")]
-        public bool RePasswordUser([FromBody] RePasswordUserrEPO rep)
+        [HttpPost]
+        public bool RePasswordUser([FromBody] RePasswordDTO rePasswordDTO)
         {
-            return LoginService.RePasswordUser(rep);
+            return LoginService.RePasswordUser(rePasswordDTO);
+        }
+
+        [HttpPost("Chackpassword")]
+        public bool ChackPassword([FromBody] RePasswordDTO rePasswordDTO)
+        {
+            return LoginService.ChackPassword(rePasswordDTO);
         }
 
         [HttpPut]

@@ -7,6 +7,7 @@ namespace Telegram.Core.DTO
     public class AuthLoginDTO
     {
         public int LoginId { get; set; }
+        public int userid {get; set; }
         public string RoleName { get; set; }
         public int RoleId { get; set; }
         public string Username { get; set; }
