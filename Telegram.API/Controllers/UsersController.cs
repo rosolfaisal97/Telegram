@@ -54,7 +54,7 @@ namespace Telegram.API.Controllers
         }
 
 
-            [HttpPost("NumberUserByGender")]
+        [HttpPost("NumberUserByGender")]
         public List<NumberOfUserByGenderdto> NumberOfUserByGender([FromBody] User user)
         {
             return usersService.NumberOfUserByGender(user);
