@@ -6,6 +6,8 @@ namespace Telegram.Core.DTO
 {
     public class OwnerChannelName
     {
+        public int ChannelId { get; set; }
+        public int UserId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string imagePath { get; set; }

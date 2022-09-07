@@ -20,7 +20,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
+       // [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<AdminsChannelName>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("AdminsChannel/{Cid}")]
@@ -39,7 +39,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
+       // [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<OwnerChannelName>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("OwnerChannel/{Cid}")]
@@ -49,7 +49,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
+       // [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<MemberChannel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelMember/{Cid}")]
