@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +57,7 @@ namespace Telegram.API.Controllers
         {
             return usersService.NumberOfUser();
         }
+
 
        // [HttpPost]
             [HttpPost("NumberUserByGender")]

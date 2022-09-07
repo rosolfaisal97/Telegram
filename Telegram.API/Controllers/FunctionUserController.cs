@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class FunctionUserController : Controller
     {
 
@@ -59,7 +59,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
+      //  [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<ChannelPosts>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelPosts/{Cid}")]
