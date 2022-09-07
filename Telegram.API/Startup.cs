@@ -84,6 +84,7 @@ namespace Telegram.API
 
             services.AddControllers();
             //Data
+ 
             services.AddScoped<IDbContext, DbContext>();
             services.AddScoped<Iusers, UserRepo>();
             services.AddScoped<IusersService, usersService>();
@@ -120,7 +121,8 @@ namespace Telegram.API
             services.AddScoped<IUserRepoertRepository, UserRepoertRepository>();
 
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
-            services.AddScoped<ISERVICESRepository,SERVICESRepository>();
+            services.AddScoped<ISERVICESRepository, SERVICESRepository>();
+            services.AddScoped<IConnectionRepository, ConnectionRepository>();
 
             //Service
             services.AddScoped<IChannelService, ChannelService>();
@@ -138,6 +140,7 @@ namespace Telegram.API
             services.AddScoped<IHomePageService, HomePageService>();
             services.AddScoped<IStoryReportService, storyReportService>();
             services.AddScoped<IUserRepoertService, UserRepoertService>();
+            services.AddScoped<IConnectionService, ConnectionService>();
 
             //osama
             services.AddScoped<IDbContext, DbContext>();
