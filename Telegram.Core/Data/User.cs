@@ -48,5 +48,8 @@ namespace Telegram.Core.Data
         public ICollection<Story> storys { get; set; }
         public ICollection<ReportPost> report_post { get; set; }
 
+        public Connection Connection { get; set; }
+
+
     }
 }
