@@ -20,10 +20,10 @@ namespace Telegram.Infra.Repository
             _dbContext = dbContext;
         }
 
-        public bool DeleteComment(int id)
+        public bool DeleteComment(CommentFormDTO comment)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@cid", id, DbType.Int32);
+            parameters.Add("@cid", comment.CommentId, DbType.Int32);
 
             _dbContext.Connection
                 .ExecuteAsync("Comments_Package.DeleteComment",
@@ -33,10 +33,10 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public CommentDetailsDTO GetComment(int id)
+        public CommentDetailsDTO GetComment(int commentId)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@cid", id, DbType.Int32);
+            parameters.Add("@cid", commentId, DbType.Int32);
 
            var result = _dbContext.Connection
                 .QueryAsync<CommentDetailsDTO>("Comments_Package.GetComment",
@@ -61,12 +61,12 @@ namespace Telegram.Infra.Repository
             return result.Result.ToList();
         }
 
-        public bool InsertComment(int userId, int postId, string content)
+        public bool InsertComment(CommentFormDTO comment)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@cuserId", userId, DbType.Int32);
-            parameters.Add("@cpostId", postId, DbType.Int32);
-            parameters.Add("@ccontent", content, DbType.String);
+            parameters.Add("@cuserId", comment.UserId, DbType.Int32);
+            parameters.Add("@cpostId", comment.PostId, DbType.Int32);
+            parameters.Add("@ccontent", comment.Content, DbType.String);
 
             _dbContext.Connection
                 .ExecuteAsync("Comments_Package.InsertComment",
@@ -76,11 +76,11 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool UpdateComment(int id, string content)
+        public bool UpdateComment(CommentFormDTO comment)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@cid", id, DbType.Int32);
-            parameters.Add("@ccontent", content, DbType.String);
+            parameters.Add("@cid", comment.CommentId, DbType.Int32);
+            parameters.Add("@ccontent", comment.Content, DbType.String);
 
             _dbContext.Connection
                 .ExecuteAsync("Comments_Package.UpdateComment",

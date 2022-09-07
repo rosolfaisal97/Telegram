@@ -16,6 +16,7 @@ namespace Telegram.Core.Repository
         public  bool RePasswordUser(RePasswordDTO rePasswordDTO);
         public bool ChackPassword(RePasswordDTO rePasswordDTO);
 
+ 
     }
 
 
