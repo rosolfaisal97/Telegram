@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Telegram.Core.Common;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 
 namespace Telegram.Infra.Repository
@@ -17,6 +18,12 @@ namespace Telegram.Infra.Repository
         public PostReportRepository(IDbContext _DbContext)//dependency injection
         {
             DbContext = _DbContext;
+        }
+
+        public List<ReportPostJoinDto> AllReportPost()
+        {
+            IEnumerable<ReportPostJoinDto> result = DbContext.Connection.Query<ReportPostJoinDto>("Report_Post_Package.AllReportPost", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
         public bool CreatePostReport(ReportPost report_Post)

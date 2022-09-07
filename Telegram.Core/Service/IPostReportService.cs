@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 
 namespace Telegram.Core.Service
 {
@@ -11,5 +12,6 @@ namespace Telegram.Core.Service
         List<ReportPost> GetAllPostReport();
         bool UpdatePostReport(ReportPost report_Post);
         bool DeletePostReport(int id);
+        List<ReportPostJoinDto> GetAllReportPost();
     }
 }

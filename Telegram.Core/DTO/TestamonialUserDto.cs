@@ -7,6 +7,7 @@ namespace Telegram.Core.DTO
     public class TestamonialUserDto
     {
         public int id { get; set; }
+        public int TestaID { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
         public string image_path { get; set; }

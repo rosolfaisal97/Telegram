@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 using Telegram.Core.Service;
 
@@ -16,6 +17,8 @@ namespace Telegram.Infra.Service
             this.PostReportRepository = PostReportRepository;
         }
 
+        
+
         public bool CreatePostReport(ReportPost report_Post)
         {
             return PostReportRepository.CreatePostReport(report_Post);  
@@ -29,6 +32,11 @@ namespace Telegram.Infra.Service
         public List<ReportPost> GetAllPostReport()
         {
            return PostReportRepository.GetAllPostReport();
+        }
+
+        public List<ReportPostJoinDto> GetAllReportPost()
+        {
+            return PostReportRepository.AllReportPost();
         }
 
         public bool UpdatePostReport(ReportPost report_Post)

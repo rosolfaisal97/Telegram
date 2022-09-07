@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Service;
 
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PostReportController : ControllerBase
     {
 
@@ -51,5 +52,14 @@ namespace Telegram.API.Controllers
         {
             return PostReportService.DeletePostReport(id);
         }
+
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<ReportPostJoinDto>), StatusCodes.Status200OK)]
+        public List<ReportPostJoinDto> GetAllReportPost()
+        {
+            return PostReportService.GetAllReportPost();
+        }
+
     }
 }

@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class PostController : Controller
     {
 
@@ -21,7 +21,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Post>), StatusCodes.Status200OK)]
         public List<Post> GetAllPost()
         {
