@@ -27,6 +27,8 @@ namespace Telegram.Infra.Service
             return ChatMassageRepo.GetAllChatMessage();
         }
 
+       
+
         public ChatMessage InsertChatMessage(ChatMessage chat)
         {
             return ChatMassageRepo.InsertChatMessage(chat);
@@ -45,6 +47,12 @@ namespace Telegram.Infra.Service
         public bool UpdateChatMessage(ChatMessage chat)
         {
             return ChatMassageRepo.UpdateChatMessage(chat);
+        }
+
+
+        public List<UserChatFormDTO> GetUserFriendChat(int userFromId, int userToId)
+        {
+            return ChatMassageRepo.GetUserFriendChat(userFromId, userToId);
         }
     }
 }

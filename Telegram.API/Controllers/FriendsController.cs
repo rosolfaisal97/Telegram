@@ -60,25 +60,33 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        public List<User> GetUserFriends([FromQuery]UserFormDTO user)
+        [Route("{userFromId}")]
+        public List<User> GetUserFriends(int userFromId)
         {
-            return _friendsService.GetUserFriends(user);
+            return _friendsService.GetUserFriends(new UserFormDTO { UserFromId = userFromId });
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(FriendshipStatusDTO), StatusCodes.Status200OK)]
-        public FriendshipStatusDTO GetFriendship([FromQuery] UserFormDTO user)
+        [Route("{userFromId}/{userToId}")]
+
+        public FriendshipStatusDTO GetFriendship(int userFromId, int userToId)
         {
-            return _friendsService.GetFriendship(user);
+            return _friendsService.GetFriendship(new UserFormDTO
+            {
+                UserFromId = userFromId,
+                UserToId = userToId
+            });
         }
 
         [HttpGet]
-        public List<User> GetFriendshipRequests([FromQuery] UserFormDTO user)
+        [Route("{userFromId}")]
+        public List<User> GetFriendshipRequests(int userFromId)
         {
-            return _friendsService.GetFriendshipRequests(user);
-
-            
-
+            return _friendsService.GetFriendshipRequests(new UserFormDTO
+            {
+                UserFromId = userFromId
+            });
         }
     }
 }
