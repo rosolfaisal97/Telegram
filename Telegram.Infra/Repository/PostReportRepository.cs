@@ -63,8 +63,6 @@ namespace Telegram.Infra.Repository
             p.Add("@typee", report_Post.type, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@descript", report_Post.description, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@accepting", report_Post.is_accept, dbType: DbType.Int32, direction: ParameterDirection.Input);
-
-
             var result = DbContext.Connection.ExecuteAsync("Report_Post_Package.UpdateReportPost", p, commandType: CommandType.StoredProcedure);
             return true;
         }
