@@ -11,5 +11,7 @@ namespace Telegram.Core.Service
         List<Post> GetAllPost();
         bool UpdatePost(Post post);
         bool DeletePost(Post post);
+        List<Post> GetAllPostByChanel(int ch_id);
+
     }
 }

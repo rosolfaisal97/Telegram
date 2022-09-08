@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
@@ -63,7 +64,6 @@ namespace Telegram.Infra.Service
         public InsertUsersRepo RegisterUser(InsertUsersRepo InsertUser)
         {
             return UserRepo.RegisterUser(InsertUser);
- 
         }
 
         public List<SearchUserInfo> SarchUserInfo(string sarch)
@@ -93,5 +93,19 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.EmailSenduserblock(id);
         }
+
+         public bool sendstoreEmail(int id)
+        {
+            return UserRepo.sendstoreEmail(id);
+ 
+        public List<UserActiveDto> GetAllUsersActive()
+        {
+            return UserRepo.GetAllUsersActive();
         }
+
+        public List<UserNotActiveDto> GetAllUsersNotActive()
+        {
+            return UserRepo.GetAllUsersNotActive();
+         }
+    }
 }

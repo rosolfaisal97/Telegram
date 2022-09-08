@@ -8,6 +8,12 @@ namespace Telegram.Core.Service
 {
     public interface IusersService
     {
+
+
+        public List<UserActiveDto> GetAllUsersActive();
+        public List<UserNotActiveDto> GetAllUsersNotActive();
+
+
         public List<User> GetAllUsers();
         public User InsertUsers(User user);
         public bool UpdateUsers(User user);
@@ -28,6 +34,7 @@ namespace Telegram.Core.Service
         public List<User> CheckStatusBlock(int id);
          public GetUserByIdDto GetUserById(int U_id);
         public bool EmailSenduserblock(int id);
+        public bool sendstoreEmail(int id);
 
     }
 }

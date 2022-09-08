@@ -19,79 +19,79 @@ namespace Telegram.Infra.Service
             _friendsRepository = friendsRepository;
         }
 
-        public bool AcceptFriendRequest(int userFrom, int userTo)
+        public bool AcceptFriendRequest(UserFormDTO user)
         {
-            if (_friendsRepository.HasFriendship(userFrom, userTo))
-                if (_friendsRepository.GetFriendship(userFrom, userTo)
+            if (_friendsRepository.HasFriendship(user))
+                if (_friendsRepository.GetFriendship(user)
                    .Status == (int)FriendshipStatus.Pending)
-                    return _friendsRepository.AcceptFriendRequest(userFrom, userTo);
+                    return _friendsRepository.AcceptFriendRequest(user);
 
             return false;
         }
 
-        public bool DeleteFriendRequest(int userFrom, int userTo)
+        public bool DeleteFriendRequest(UserFormDTO user)
         {
-            if (_friendsRepository.HasFriendship(userFrom, userTo))
-                if (_friendsRepository.GetFriendship(userFrom, userTo)
+            if (_friendsRepository.HasFriendship(user))
+                if (_friendsRepository.GetFriendship(user)
                    .Status == (int)FriendshipStatus.Pending)
-                    return _friendsRepository.DeleteFriendRequest(userFrom, userTo);
+                    return _friendsRepository.DeleteFriendRequest(user);
 
             return false;
         }
 
-        public bool DeleteFriendship(int userFrom, int userTo)
+        public bool DeleteFriendship(UserFormDTO user)
         {
-            if (_friendsRepository.HasFriendship(userFrom, userTo))
-                if (_friendsRepository.GetFriendship(userFrom, userTo)
+            if (_friendsRepository.HasFriendship(user))
+                if (_friendsRepository.GetFriendship(user)
                    .Status == (int)FriendshipStatus.Accepted)
-                    return _friendsRepository.DeleteFriendship(userFrom, userTo);
+                    return _friendsRepository.DeleteFriendship(user);
 
             return false;
 
         }
 
-        public FriendshipStatusDTO GetFriendship(int userFrom, int userTo)
+        public FriendshipStatusDTO GetFriendship(UserFormDTO user)
         {
-            var result = _friendsRepository.GetFriendship(userFrom, userTo);
+            var result = _friendsRepository.GetFriendship(user);
             if (result == null) return new FriendshipStatusDTO { Status=-1};
 
             return result;
         }
 
-        public List<User> GetFriendshipRequests(int userFrom)
+        public List<User> GetFriendshipRequests(UserFormDTO user)
         {
-            return _friendsRepository.GetFriendshipRequests(userFrom);
+            return _friendsRepository.GetFriendshipRequests(user);
         }
 
-        public List<User> GetUserFriends(int userFrom)
+        public List<User> GetUserFriends(UserFormDTO user)
         {
-            return _friendsRepository.GetUserFriends(userFrom);
+            return _friendsRepository.GetUserFriends(user);
         }
 
-        public bool HasFriendship(int userFrom, int userTo)
+        public bool HasFriendship(UserFormDTO user)
         {
-            return _friendsRepository.HasFriendship(userFrom, userTo);
+            return _friendsRepository.HasFriendship(user);
         }
 
-        public bool HeSent(int userFrom, int userTo)
+        public bool HeSent(UserFormDTO user)
         {
-            return _friendsRepository.HeSent(userFrom, userTo);
+            return _friendsRepository.HeSent(user);
         }
 
-        public bool InsertFriendRequest(int userFrom, int userTo)
+        public bool InsertFriendRequest(UserFormDTO user)
         {
-            if (_friendsRepository.HasFriendship(userFrom, userTo))
-                if (_friendsRepository.GetFriendship(userFrom, userTo)
+            if (_friendsRepository.HasFriendship(user))
+                if (_friendsRepository.GetFriendship(user)
                     .Status == (int)FriendshipStatus.Rejected)
-                    return ReSentFriendRequest(userFrom, userTo);
+                    return ReSentFriendRequest(user);
                 else return false;
 
-            return _friendsRepository.InsertFriendRequest(userFrom, userTo);
+            return _friendsRepository.InsertFriendRequest(user);
         }
 
-        public bool ReSentFriendRequest(int userFrom, int userTo)
+        public bool ReSentFriendRequest(UserFormDTO user)
         {
-            return _friendsRepository.ReSentFriendRequest(userFrom, userTo);
+            return _friendsRepository.ReSentFriendRequest(user);
         }
     }
 }

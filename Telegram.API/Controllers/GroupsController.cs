@@ -13,7 +13,9 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+ 
+  //  [Authorize]
+ 
     public class GroupsController : Controller
     {
         private readonly IGroupsService groupsService;
@@ -118,28 +120,28 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
-        [Route("AdminsGroupName/{adminsGroupNameDto}")]
-        public List<GroupAdmin> AdminsGroupName(AdminsGroupNameDto adminsGroupNameDto)
+      //  [Authorize(Roles = "User,Admin")]
+        [Route("AdminsGroupName/{Gid}")]
+        public List<AdminsGroupNameDto> AdminsGroupName(int Gid)
         {
-            return groupsService.AdminsGroupName(adminsGroupNameDto);
+            return groupsService.AdminsGroupName(Gid);
         }
 
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
-        [Route("OwnergrouplName/{ownergrouplNameDto}")]
-        public List<Groups> OwnergrouplName(OwnergrouplNameDto ownergrouplNameDto)
+      //  [Authorize(Roles = "User,Admin")]
+        [Route("OwnergrouplName/{Gid}")]
+        public List<OwnergrouplNameDto> OwnergrouplName(int Gid)
         {
-            return groupsService.OwnergrouplName(ownergrouplNameDto);
+            return groupsService.OwnergrouplName(Gid);
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
-        [Route("groupMember/{groupMemberDto}")]
-        public List<GroupMember> groupMember(GroupMemberDto groupMemberDto)
+       // [Authorize(Roles = "User,Admin")]
+        [Route("groupMember/{Gid}")]
+        public List<GroupMemberDto> groupMember(int Gid)
         {
-            return groupsService.groupMember(groupMemberDto);
+            return groupsService.groupMember(Gid);
         }
 
     }

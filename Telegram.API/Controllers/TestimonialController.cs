@@ -21,7 +21,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = "Admin")]
+        
         [ProducesResponseType(typeof(List<Testimonial>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("delete")]

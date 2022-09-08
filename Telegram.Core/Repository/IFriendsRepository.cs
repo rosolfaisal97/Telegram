@@ -8,19 +8,19 @@ namespace Telegram.Core.Repository
 {
     public interface IFriendsRepository
     {
-        bool InsertFriendRequest(int userFrom, int userTo);
-        bool DeleteFriendRequest(int userFrom, int userTo);
-        bool AcceptFriendRequest(int userFrom, int userTo);
-        bool DeleteFriendship(int userFrom, int userTo);
-        bool HasFriendship(int userFrom, int userTo);
-        bool HeSent(int userFrom, int userTo);
+        bool InsertFriendRequest(UserFormDTO user);
+        bool DeleteFriendRequest(UserFormDTO user);
+        bool AcceptFriendRequest(UserFormDTO user);
+        bool DeleteFriendship(UserFormDTO user);
+        bool HasFriendship(UserFormDTO user);
+        bool HeSent(UserFormDTO user);
 
-        List<User> GetUserFriends(int userFrom);
-        FriendshipStatusDTO GetFriendship(int userFrom,int userTo);
+        List<User> GetUserFriends(UserFormDTO user);
+        FriendshipStatusDTO GetFriendship(UserFormDTO user);
 
-        List<User> GetFriendshipRequests(int userFrom);
-        bool ReSentFriendRequest(int userFrom, int userTo);
+        List<User> GetFriendshipRequests(UserFormDTO user);
+        bool ReSentFriendRequest(UserFormDTO user);
 
-
+        
     }
 }

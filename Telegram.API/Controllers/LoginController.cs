@@ -1,12 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
+using Telegram.API.Hubs;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
+using Telegram.Core.Repository;
 using Telegram.Core.Service;
 using Telegram.Infra.Repoisitory;
+using Telegram.Infra.Repository;
 
 namespace Telegram.API.Controllers
 {
@@ -19,25 +25,25 @@ namespace Telegram.API.Controllers
     {
 
         private readonly ILoginService LoginService;
+
         public LoginController(ILoginService LoginService)
         {
             this.LoginService = LoginService;
-             
         }
 
 
         //test
         [HttpGet]
-        [Authorize(Roles="User")]
+        [Authorize(Roles = "User")]
         public AuthLoginDTO GetUser()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             var user = LoginService.GetCurrentUser(identity);
             return user;
         }
-        
+
         [HttpGet]
-        [Authorize(Roles= "Admin")]
+        [Authorize(Roles = "Admin")]
         public AuthLoginDTO GetAdmin()
         {
             var identity = HttpContext.User.Identity as ClaimsIdentity;
@@ -54,7 +60,7 @@ namespace Telegram.API.Controllers
             user.Username = "YOU ARE ADMIN OR USER>>" + user.Username;
             return user;
         }
-        
+
         [HttpGet]
         public AuthLoginDTO AllPublic()
         {
@@ -63,9 +69,6 @@ namespace Telegram.API.Controllers
             user.Username = "Public For ALl>>";
             return user;
         }
-
-
-
         //end test
 
 
@@ -81,6 +84,7 @@ namespace Telegram.API.Controllers
             {
                 return Unauthorized(); //401
             }
+
             return Ok(result); //200
         }
 

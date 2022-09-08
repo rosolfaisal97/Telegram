@@ -16,9 +16,9 @@ namespace Telegram.Infra.Service
             groupsRepository = _groupsRepository;
         }
 
-        public List<GroupAdmin> AdminsGroupName(AdminsGroupNameDto adminsGroupNameDto)
+        public List<AdminsGroupNameDto> AdminsGroupName(int Gid)
         {
-            return groupsRepository.AdminsGroupName(adminsGroupNameDto);
+            return groupsRepository.AdminsGroupName(Gid);
 
         }
         public List<MediaGroup> CountMediaEachgroup(CountMediaEachgroupDto countMediaEachgroupDto)
@@ -66,14 +66,14 @@ namespace Telegram.Infra.Service
             return groupsRepository.GetNameAdminGroup(getNameAdminGroupDto);
         }
 
-        public List<GroupMember> groupMember(GroupMemberDto groupMemberDto)
+        public List<GroupMemberDto> groupMember(int Gid)
         {
-            return groupsRepository.groupMember(groupMemberDto);
+            return groupsRepository.groupMember(Gid);
         }
 
-        public List<Groups> OwnergrouplName(OwnergrouplNameDto ownergrouplNameDto)
+        public List<OwnergrouplNameDto> OwnergrouplName(int Gid)
         {
-            return groupsRepository.OwnergrouplName(ownergrouplNameDto);
+            return groupsRepository.OwnergrouplName(Gid);
         }
 
         public bool UpdateGroups(Groups groups)

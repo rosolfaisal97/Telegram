@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Telegram.Core.Data;
 using Telegram.Core.Service;
+using Telegram.Infra.Repository;
 
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+     //[Authorize]
+ 
     public class PostController : Controller
     {
 
@@ -19,6 +21,13 @@ namespace Telegram.API.Controllers
             this.PostService = PostService;
         }
 
+        [HttpGet]
+        [Route("chanel/{ch_id}")]
+        [ProducesResponseType(typeof(List<Post>), StatusCodes.Status200OK)]
+        public List<Post> GetAllPostByChanel(int ch_id)
+        {
+            return PostService.GetAllPostByChanel(ch_id);
+        }
 
         [HttpGet]
         //[Authorize(Roles = "Admin")]

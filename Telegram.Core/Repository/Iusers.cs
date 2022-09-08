@@ -27,5 +27,10 @@ namespace Telegram.Core.Repository
         public List<User> CheckStatusBlock(int id);
 
         public bool EmailSenduserblock(int id);
+         public bool sendstoreEmail(int id);
+  
+        public List<UserActiveDto> GetAllUsersActive();
+        public List<UserNotActiveDto> GetAllUsersNotActive();
+ 
     }
 }

@@ -9,10 +9,10 @@ namespace Telegram.Core.Repository
     public interface ICommentsRepository
     {
 
-        CommentDetailsDTO GetComment(int id);
-        bool InsertComment(int userId, int postId, string content);
-        bool UpdateComment(int id, string content);
-        bool DeleteComment(int id);
+        CommentDetailsDTO GetComment(int  commentId);
+        bool InsertComment(CommentFormDTO comment);
+        bool UpdateComment(CommentFormDTO comment);
+        bool DeleteComment(CommentFormDTO comment);
         List<CommentDetailsDTO> GetComments(int postId);
     }
 }

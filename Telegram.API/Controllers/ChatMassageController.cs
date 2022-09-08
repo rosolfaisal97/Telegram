@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
+using Telegram.Infra.Repoisitory;
 
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class ChatMassageController : ControllerBase
     {
         private readonly IChatMassageService ChatMassageService;
@@ -40,7 +41,7 @@ namespace Telegram.API.Controllers
             return ChatMassageService.InsertChatMessage(chat);
         }
 
-        [HttpPost ("ReturnMassageInfo")]
+        [HttpPost("ReturnMassageInfo")]
         [Authorize(Roles = "User,Admin")]
         public List<ReturnMassageInfodto> ReturnMassageInfo()
         {
@@ -60,6 +61,14 @@ namespace Telegram.API.Controllers
         public bool UpdateChatMessage([FromBody] ChatMessage chat)
         {
             return ChatMassageService.UpdateChatMessage(chat);
+        }
+
+        //qasem
+        [HttpGet]
+        [Route("{userFromId}/{userToId}")]
+        public List<UserChatFormDTO> GetUserFriendChat(int userFromId, int userToId)
+        {
+            return ChatMassageService.GetUserFriendChat(userFromId, userToId);
         }
     }
 }
