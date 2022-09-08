@@ -295,7 +295,7 @@ namespace Telegram.Infra.Repoisitory
             return true;
         }
 
-        public bool sendstoreEmail(int id)
+         public bool sendstoreEmail(int id)
         {
             var parameter = new DynamicParameters();
             parameter.Add("uid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
@@ -331,6 +331,20 @@ namespace Telegram.Infra.Repoisitory
             }
             //return result;
             return true;
+ }
+        public List<UserActiveDto> GetAllUsersActive()
+        {
+            IEnumerable<UserActiveDto> result = DbContext.Connection.Query<UserActiveDto>
+              ("UserActive", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<UserNotActiveDto> GetAllUsersNotActive()
+        {
+            IEnumerable<UserNotActiveDto> result = DbContext.Connection.Query<UserNotActiveDto>
+             ("UserNotActive", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+ 
         }
     }
 }

@@ -8,6 +8,12 @@ namespace Telegram.Core.Service
 {
     public interface IusersService
     {
+
+
+        public List<UserActiveDto> GetAllUsersActive();
+        public List<UserNotActiveDto> GetAllUsersNotActive();
+
+
         public List<User> GetAllUsers();
         public User InsertUsers(User user);
         public bool UpdateUsers(User user);

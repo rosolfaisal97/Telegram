@@ -118,27 +118,27 @@ namespace Telegram.Infra.Repository
             return result.ToList();
         }
 
-        public List<GroupAdmin> AdminsGroupName(AdminsGroupNameDto adminsGroupNameDto)
+        public List<AdminsGroupNameDto> AdminsGroupName(int Gid)
         {
             var p = new DynamicParameters();
-            p.Add("@groid", adminsGroupNameDto.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<GroupAdmin> result = DbContext.Connection.Query<GroupAdmin>("Fun_GroupUser_Package.AdminsGroupName", p, commandType: CommandType.StoredProcedure);
+            p.Add("@groid", Gid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<AdminsGroupNameDto> result = DbContext.Connection.Query<AdminsGroupNameDto>("Fun_GroupUser_Package.AdminsGroupName", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
-        public List<Groups> OwnergrouplName(OwnergrouplNameDto ownergrouplNameDto)
+        public List<OwnergrouplNameDto> OwnergrouplName(int Gid)
         {
             var p = new DynamicParameters();
-            p.Add("@groid", ownergrouplNameDto.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<Groups> result = DbContext.Connection.Query<Groups>("Fun_GroupUser_Package.OwnergrouplName", p, commandType: CommandType.StoredProcedure);
+            p.Add("@groid", Gid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<OwnergrouplNameDto> result = DbContext.Connection.Query<OwnergrouplNameDto>("Fun_GroupUser_Package.OwnergrouplName", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
-        public List<GroupMember> groupMember(GroupMemberDto groupMemberDto)
+        public List<GroupMemberDto> groupMember(int Gid)
         {
             var p = new DynamicParameters();
-            p.Add("@groid", groupMemberDto.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<GroupMember> result = DbContext.Connection.Query<GroupMember>("Fun_GroupUser_Package.groupMember", p, commandType: CommandType.StoredProcedure);
+            p.Add("@groid", Gid, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            IEnumerable<GroupMemberDto> result = DbContext.Connection.Query<GroupMemberDto>("Fun_GroupUser_Package.groupMember", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 

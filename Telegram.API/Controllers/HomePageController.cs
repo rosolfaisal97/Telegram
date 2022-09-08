@@ -105,6 +105,7 @@ namespace Telegram.API.Controllers
         [HttpPost]
        // [Authorize(Roles = "Admin")]
         [Route("UploadImageHome")]
+
         public Home UploadHome()
         {
             try

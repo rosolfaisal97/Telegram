@@ -7,7 +7,8 @@ namespace Telegram.Core.DTO
     public class AdminsGroupNameDto
     {
         
-        public int id { get; set; }
+        public int UserId { get; set; }
+        public int GroupId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string imagePath { get; set; }

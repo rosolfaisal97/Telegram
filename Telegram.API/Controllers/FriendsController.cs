@@ -10,13 +10,10 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class FriendsController : Controller
     {
         private readonly IFriendsService _friendsService;
-        //[ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
-
-
         public FriendsController(IFriendsService friendsService)
         {
             _friendsService = friendsService;
@@ -24,75 +21,64 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
-        [Route("{userFrom}/{userTo}")]
-        public bool InsertFriendRequest(int userFrom, int userTo)
+        public bool InsertFriendRequest([FromBody] UserFormDTO user)
         {
-            return _friendsService.InsertFriendRequest(userFrom, userTo);
+            return _friendsService.InsertFriendRequest(user);
+
+
         }
 
 
         [HttpPost]
-        [Route("{userFrom}/{userTo}")]
-        public bool DeleteFriendRequest(int userFrom, int userTo)
+        public bool DeleteFriendRequest([FromBody] UserFormDTO user)
         {
-            return _friendsService.DeleteFriendRequest(userFrom, userTo);
+            return _friendsService.DeleteFriendRequest(user);
         }
 
         [HttpPost]
-        [Route("{userFrom}/{userTo}")]
-        public bool AcceptFriendRequest(int userFrom, int userTo)
+        public bool AcceptFriendRequest([FromBody] UserFormDTO user)
         {
-            return _friendsService.AcceptFriendRequest(userFrom, userTo);
+            return _friendsService.AcceptFriendRequest(user);
         }
 
         [HttpPost]
-        [Route("{userFrom}/{userTo}")]
-        public bool DeleteFriendship(int userFrom, int userTo)
+        public bool DeleteFriendship([FromBody] UserFormDTO user)
         {
-            return _friendsService.DeleteFriendship(userFrom, userTo);
+            return _friendsService.DeleteFriendship(user);
         }
 
         [HttpPost]
-        [Route("{userFrom}/{userTo}")]
-        public bool HasFriendship(int userFrom, int userTo)
+        public bool HasFriendship([FromBody] UserFormDTO user)
         {
-            return _friendsService.HasFriendship(userFrom, userTo);
-
+            return _friendsService.HasFriendship(user);
         }
 
         [HttpPost]
-        [Route("{userFrom}/{userTo}")]
-        public bool HeSent(int userFrom, int userTo)
+        public bool HeSent([FromBody] UserFormDTO user)
         {
-            return _friendsService.HeSent(userFrom, userTo);
+            return _friendsService.HeSent(user);
         }
 
         [HttpGet]
-         public List<User> GetUserFriends([FromBody]int userFrom)
+        public List<User> GetUserFriends([FromQuery]UserFormDTO user)
         {
-            return _friendsService.GetUserFriends(userFrom);
+            return _friendsService.GetUserFriends(user);
         }
 
         [HttpGet]
-        [Route("{userFrom}/{userTo}")]
         [ProducesResponseType(typeof(FriendshipStatusDTO), StatusCodes.Status200OK)]
-        public FriendshipStatusDTO GetFriendship(int userFrom, int userTo)
+        public FriendshipStatusDTO GetFriendship([FromQuery] UserFormDTO user)
         {
-            return _friendsService.GetFriendship(userFrom, userTo);
+            return _friendsService.GetFriendship(user);
         }
 
         [HttpGet]
-        [Route("{userFrom}")]
-        public List<User> GetFriendshipRequests(int userFrom)
+        public List<User> GetFriendshipRequests([FromQuery] UserFormDTO user)
         {
-            return _friendsService.GetFriendshipRequests(userFrom);
+            return _friendsService.GetFriendshipRequests(user);
+
+            
+
         }
-
-
-
-
-
-
-
     }
 }

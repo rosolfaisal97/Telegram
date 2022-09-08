@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 using Telegram.Core.Service;
 
-namespace Telegram.Infra.Service
+ namespace Telegram.Infra.Service
 {
 
     public class LoginService : ILoginService
@@ -19,6 +20,7 @@ namespace Telegram.Infra.Service
 
         private readonly ILogin LoginRepo;
         private readonly IConfiguration _configuration;
+      
 
         public LoginService(ILogin LoginRepo, IConfiguration configuration)
         {
@@ -96,7 +98,7 @@ namespace Telegram.Infra.Service
             return LoginRepo.ChackPassword(rePasswordDTO);
         }
 
-            public bool UpdateLogin(Login login)
+        public bool UpdateLogin(Login login)
         {
             return LoginRepo.UpdateLogin(login);
         }
