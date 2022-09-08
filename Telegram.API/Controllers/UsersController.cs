@@ -24,6 +24,48 @@ namespace Telegram.API.Controllers
         }
 
 
+        [HttpGet]
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("GetAllUsersNotActive")]
+
+        public List<UserNotActiveDto> GetAllUsersNotActive()
+        {
+            return usersService.GetAllUsersNotActive();
+        }
+
+
+        [HttpGet]
+        //[Authorize(Roles = "Admin")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [Route("GetAllUsersActive")]
+
+        public List<UserActiveDto> GetAllUsersActive()
+        {
+            return usersService.GetAllUsersActive();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public bool DeleteUsers([FromBody] User user)
         {

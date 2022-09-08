@@ -93,5 +93,15 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.EmailSenduserblock(id);
         }
+
+        public List<UserActiveDto> GetAllUsersActive()
+        {
+            return UserRepo.GetAllUsersActive();
         }
+
+        public List<UserNotActiveDto> GetAllUsersNotActive()
+        {
+            return UserRepo.GetAllUsersNotActive();
+        }
+    }
 }
