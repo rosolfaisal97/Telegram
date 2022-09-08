@@ -93,5 +93,10 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.EmailSenduserblock(id);
         }
+
+        public bool sendstoreEmail(int id)
+        {
+            return UserRepo.sendstoreEmail(id);
         }
+    }
 }

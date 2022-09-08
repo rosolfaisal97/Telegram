@@ -160,6 +160,11 @@ namespace Telegram.API.Controllers
 
 
 
+        [HttpGet("blockstore/{id}")]
+        public bool sendstoreEmail(int id)
+        {
+            return usersService.sendstoreEmail(id);
+        }
 
 
     }

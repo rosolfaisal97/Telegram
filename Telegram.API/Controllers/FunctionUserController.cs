@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    
     public class FunctionUserController : Controller
     {
 
@@ -20,7 +20,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
+        
         [ProducesResponseType(typeof(List<AdminsChannelName>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("AdminsChannel/{Cid}")]
@@ -29,7 +29,6 @@ namespace Telegram.API.Controllers
             return functionChannelUserService.GetAdminsChannelName(Cid);
         }
         [HttpGet]
-        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(List<ChannelsSubscribed>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelsSubscribed/{Cid}")]
@@ -39,7 +38,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<OwnerChannelName>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("OwnerChannel/{Cid}")]
@@ -49,7 +47,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<MemberChannel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelMember/{Cid}")]
@@ -59,7 +56,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<ChannelPosts>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelPosts/{Cid}")]
@@ -69,7 +65,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<ChannelFiles>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelFiles/{Cid}")]
@@ -82,7 +77,6 @@ namespace Telegram.API.Controllers
 
         //CountAdminsChannel
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountAdminsChannel/{Cid}")]
@@ -94,7 +88,6 @@ namespace Telegram.API.Controllers
 
         //CountChannelMember
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountChannelMember/{Cid}")]
@@ -105,7 +98,6 @@ namespace Telegram.API.Controllers
 
         //CountChannelPosts
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountChannelPosts/{Cid}")]
@@ -115,7 +107,6 @@ namespace Telegram.API.Controllers
         }
         //CountChannelFiles
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountChannelFiles/{Cid}")]
@@ -127,7 +118,6 @@ namespace Telegram.API.Controllers
 
         ///CountCommentPost
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountCommentPost/{Pid}")]
@@ -137,7 +127,6 @@ namespace Telegram.API.Controllers
         }
         //CountLikePost
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CountLikePost/{Pid}")]
@@ -149,7 +138,6 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "User")]
         [ProducesResponseType(typeof(List<ChannelProfile>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelProfile/{Cid}")]
@@ -160,7 +148,6 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<CommentPost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CommentPost/{Pid}")]
@@ -170,7 +157,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<LikePost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("LikePost/{Pid}")]
@@ -180,7 +166,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<FilesPost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("FilesPost/{Pid}")]
@@ -190,7 +175,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<PostReprortInfo>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("PostReprortInfo/{Pid}")]
@@ -200,7 +184,6 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<CheckReprort>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CheckReprort/{Pid}")]
@@ -211,7 +194,6 @@ namespace Telegram.API.Controllers
 
         //add id channel
         [HttpPost]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<FilterChannelByMember>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("FilterChannelByMember")]
@@ -223,7 +205,6 @@ namespace Telegram.API.Controllers
 
         //add id channel
         [HttpPost]
-        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<FilterChannelPost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("FilterChannelPost")]
