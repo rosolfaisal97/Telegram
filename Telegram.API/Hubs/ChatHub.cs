@@ -23,14 +23,23 @@ namespace Telegram.API.Hubs
         }
         public override Task OnConnectedAsync()
         {
+            //TODO get all mine message
 
-             AuthMe(int.Parse(Context.User
-                .Claims.FirstOrDefault(u => u.Type == "userid").Value));
+            var userId = int.Parse(Context.User
+                .Claims.FirstOrDefault(u => u.Type == "userid").Value);
+
+            AuthMe(userId);
+
+            var user = _connectionService.GetItem(new Connection { UserId = userId });
 
             Debug.WriteLine("*************************");
             Debug.WriteLine($"ConnectionId: {Context.ConnectionId}");
             Debug.WriteLine($"Token: " + Context.User.Claims.FirstOrDefault(u => u.Type == "userName"));
             Debug.WriteLine("*************************");
+
+            Clients.Others.SendAsync("UserOn", user);
+
+
             return base.OnConnectedAsync();
         }
         public override Task OnDisconnectedAsync(Exception exception)
@@ -91,14 +100,14 @@ namespace Telegram.API.Hubs
                 .SendAsync("sendMsgFriendResponse", Context.ConnectionId, msg);
         }
 
-        public /*async Task*/void AuthMe(int userId)
+        private /*async Task*/void AuthMe(int userId)
         {
             string currSignalrID = Context.ConnectionId;
             var connection = new Connection { UserId = userId, ConnectionId = currSignalrID };
             _connectionService.Insert(connection);
-            var temp = _connectionService.GetItem(new Connection { UserId = userId });
-          //  await Clients.Caller.SendAsync("AuthMeResponseSuccess", temp);
-           // await Clients.Others.SendAsync("UserOn", temp);
+            //var temp = _connectionService.GetItem(new Connection { UserId = userId });
+            //  await Clients.Caller.SendAsync("AuthMeResponseSuccess", temp);
+            // await Clients.Others.SendAsync("UserOn", temp);
         }
         public async Task LogOut(int userId)
         {

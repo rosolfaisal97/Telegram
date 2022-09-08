@@ -8,8 +8,11 @@ namespace Telegram.Core.Data
 {
     public class User
     {
-        [Key]
 
+        public string ConnectionId { get; set; }
+
+
+        [Key]
         public int id { get; set; }
         public string first_name { get; set; }
         public string middle_name { get; set; }
