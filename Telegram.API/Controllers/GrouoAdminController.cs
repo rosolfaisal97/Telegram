@@ -12,7 +12,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class GrouoAdminController : Controller
     {
         private readonly IGrouoAdminService grouoAdminService;
@@ -22,7 +22,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User,Admin")]
+        //[Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<GroupAdmin>), StatusCodes.Status200OK)]
         public List<GroupAdmin> GetAllAdminGroup()
         {
