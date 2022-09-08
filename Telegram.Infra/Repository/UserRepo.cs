@@ -295,5 +295,18 @@ namespace Telegram.Infra.Repoisitory
             return true;
         }
 
+        public List<UserActiveDto> GetAllUsersActive()
+        {
+            IEnumerable<UserActiveDto> result = DbContext.Connection.Query<UserActiveDto>
+              ("UserActive", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<UserNotActiveDto> GetAllUsersNotActive()
+        {
+            IEnumerable<UserNotActiveDto> result = DbContext.Connection.Query<UserNotActiveDto>
+             ("UserNotActive", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
     }
 }
