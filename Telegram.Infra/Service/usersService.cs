@@ -94,6 +94,10 @@ namespace Telegram.Infra.Service
             return UserRepo.EmailSenduserblock(id);
         }
 
+         public bool sendstoreEmail(int id)
+        {
+            return UserRepo.sendstoreEmail(id);
+ 
         public List<UserActiveDto> GetAllUsersActive()
         {
             return UserRepo.GetAllUsersActive();
@@ -102,6 +106,6 @@ namespace Telegram.Infra.Service
         public List<UserNotActiveDto> GetAllUsersNotActive()
         {
             return UserRepo.GetAllUsersNotActive();
-        }
+         }
     }
 }
