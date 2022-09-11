@@ -33,6 +33,18 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
+        public List<CommentJoinUser> GetAllCommentPost()
+        {
+            IEnumerable<CommentJoinUser> result = _dbContext.Connection.Query<CommentJoinUser>("Comments_Package.GetAllPostComments", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<Comments> GetAllComments()
+        {
+            IEnumerable<Comments> result = _dbContext.Connection.Query<Comments>("Comments_Package.GetAllComment", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
         public CommentDetailsDTO GetComment(int commentId)
         {
             var parameters = new DynamicParameters();

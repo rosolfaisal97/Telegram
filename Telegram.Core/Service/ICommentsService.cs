@@ -14,5 +14,7 @@ namespace Telegram.Core.Service
         bool UpdateComment(CommentFormDTO comment);
         bool DeleteComment(CommentFormDTO comment);
         List<CommentDetailsDTO> GetComments(int postId);
+        List<Comments> GetAllComments();
+        List<CommentJoinUser> GetAllCommentPost();
     }
 }
