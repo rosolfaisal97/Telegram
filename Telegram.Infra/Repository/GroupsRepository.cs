@@ -142,7 +142,19 @@ namespace Telegram.Infra.Repository
             return result.ToList();
         }
 
-     
+        public List<Groups> SearchGroupUserChannel(SearchGroupDto groupDto)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("nameGroup", groupDto.nameGroup, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            IEnumerable<Groups> result = DbContext.Connection.Query<Groups>
+                           ("Group_Package.SearchGroupUserChannel", parameter, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+
 
 
 

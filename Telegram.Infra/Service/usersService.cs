@@ -98,5 +98,10 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.sendstoreEmail(id);
         }
+
+        public List<SearchUserDto> SearchUser(SearchUserDto filter)
+        {
+            return UserRepo.SearchUser(filter);
+        }
     }
 }

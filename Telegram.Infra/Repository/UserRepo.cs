@@ -301,7 +301,7 @@ namespace Telegram.Infra.Repoisitory
             parameter.Add("uid", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             //select * from course_api where id=idofcourse;
 
-            IEnumerable<EmailSenduserblockDTO> result = DbContext.Connection.Query<EmailSenduserblockDTO>("Users_Package.EmailSenduserblock", parameter, commandType: CommandType.StoredProcedure);
+            IEnumerable<SendEmailBlockStoryDto> result = DbContext.Connection.Query<SendEmailBlockStoryDto>("Users_Package.sendemailstore", parameter, commandType: CommandType.StoredProcedure);
             MimeMessage message = new MimeMessage();
             BodyBuilder builder = new BodyBuilder();
             MailboxAddress from = new MailboxAddress("Telegram", "newqroma@gmail.com");
@@ -331,6 +331,18 @@ namespace Telegram.Infra.Repoisitory
             }
             //return result;
             return true;
+        }
+
+        public List<SearchUserDto> SearchUser(SearchUserDto filter)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("nameUser", filter.nameUser, dbType: DbType.String, direction: ParameterDirection.Input);
+
+            IEnumerable<SearchUserDto> result = DbContext.Connection.Query<SearchUserDto>
+                           ("Users_Package.SearchUser", parameter, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

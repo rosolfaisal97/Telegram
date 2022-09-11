@@ -28,5 +28,6 @@ namespace Telegram.Core.Repository
 
         public bool EmailSenduserblock(int id);
         public bool sendstoreEmail(int id);
+        public List<SearchUserDto> SearchUser(SearchUserDto filter);
     }
 }

@@ -29,6 +29,7 @@ namespace Telegram.Core.Service
          public GetUserByIdDto GetUserById(int U_id);
         public bool EmailSenduserblock(int id);
         public bool sendstoreEmail(int id);
+        public List<SearchUserDto> SearchUser(SearchUserDto filter);
 
     }
 }

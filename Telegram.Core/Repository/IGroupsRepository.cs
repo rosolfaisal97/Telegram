@@ -28,7 +28,7 @@ namespace Telegram.Core.Repository
         List<Groups> OwnergrouplName(OwnergrouplNameDto ownergrouplNameDto);
         List<GroupMember> groupMember(GroupMemberDto groupMemberDto);
 
-
+        List<Groups> SearchGroupUserChannel(SearchGroupDto groupDto);
 
     }
 }
