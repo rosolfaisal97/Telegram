@@ -21,6 +21,16 @@ namespace Telegram.Infra.Service
             return _commentsRepository.DeleteComment(comment);
         }
 
+        public List<CommentJoinUser> GetAllCommentPost()
+        {
+            return _commentsRepository.GetAllCommentPost();
+        }
+
+        public List<Comments> GetAllComments()
+        {
+            return _commentsRepository.GetAllComments();
+        }
+
         public CommentDetailsDTO GetComment(int commentId)
         {
             return _commentsRepository.GetComment(commentId);

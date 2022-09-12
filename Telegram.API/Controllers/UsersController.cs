@@ -49,23 +49,6 @@ namespace Telegram.API.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [HttpPost]
         public bool DeleteUsers([FromBody] User user)
         {

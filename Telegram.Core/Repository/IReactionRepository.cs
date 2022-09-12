@@ -9,12 +9,13 @@ namespace Telegram.Core.Repository
    
     public interface IReactionRepository
     {
-        bool InsertReaction(int userId, int postId, int isReact);
+        //bool InsertReaction(int userId, int postId, int isReact);
         bool UpadteReaction(int userId, int postId, int isReact);
         bool DeleteReaction(int userId, int postId);
         List<ReactionDetailsDTO> GetPostReactions(int postId);
-
+        bool InsertReaction(Reaction reaction);
         bool IsAlreadyReacted (int userId, int postId);
+        List<Reaction> getAllReaction();
 
 
     }
