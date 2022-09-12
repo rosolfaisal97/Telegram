@@ -199,5 +199,13 @@ namespace Telegram.API.Controllers
         }
 
 
+        [HttpPost]
+        [Route("filturUser")]
+        public List<SearchUserDto> SearchUser( [FromBody] SearchUserDto filter)
+        {
+            return usersService.SearchUser(filter);
+        }
+
+
     }
 }

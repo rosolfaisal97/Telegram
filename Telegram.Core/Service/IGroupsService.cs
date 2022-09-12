@@ -28,5 +28,9 @@ namespace Telegram.Core.Service
         List<OwnergrouplNameDto> OwnergrouplName(int Gid);
         List<GroupMemberDto> groupMember(int Gid);
 
+
+        List<Groups> SearchGroupUserChannel(SearchGroupDto groupDto);
+
+
     }
 }

@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
+using Telegram.Infra.Repository;
 
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+
  
   //  [Authorize]
  
@@ -25,6 +27,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
+
         //[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Groups>), StatusCodes.Status200OK)]
         public List<Groups> GetAllAdminGroup()
@@ -142,6 +145,15 @@ namespace Telegram.API.Controllers
         public List<GroupMemberDto> groupMember(int Gid)
         {
             return groupsService.groupMember(Gid);
+        }
+
+
+
+        [HttpPost]
+        [Route("filturGroup")]
+        public List<Groups> SearchGroupUserChannel( [FromBody] SearchGroupDto groupDto)
+        {
+            return groupsService.SearchGroupUserChannel(groupDto);
         }
 
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 
 namespace Telegram.Core.Service
 {
@@ -11,5 +12,7 @@ namespace Telegram.Core.Service
         List<Channel> GetAllChannel();
         bool UpdateChannel(Channel channel);
         bool DeleteChannel(Channel channel);
+
+        public List<SearchChannelDto> SearchChannel(SearchChannelDto filter);
     }
 }

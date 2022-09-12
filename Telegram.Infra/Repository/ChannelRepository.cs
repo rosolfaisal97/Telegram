@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Telegram.Core.Common;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 
 namespace Telegram.Infra.Repository
@@ -43,6 +44,18 @@ namespace Telegram.Infra.Repository
         public List<Channel> GetAllChannel()
         {
             IEnumerable<Channel> result = DbContext.Connection.Query<Channel>("Channel_Package.GetAllChannel", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
+        public List<SearchChannelDto> SearchChannel(SearchChannelDto filter)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("nameChannel", filter.nameChannel, dbType: DbType.String, direction: ParameterDirection.Input);
+            
+            IEnumerable<SearchChannelDto> result = DbContext.Connection.Query<SearchChannelDto>
+                           ("Channel_Package.SearchChannel", parameter, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
 
