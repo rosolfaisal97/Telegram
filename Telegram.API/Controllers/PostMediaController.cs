@@ -10,7 +10,7 @@ namespace Telegram.API.Controllers
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public class PostMediaController : Controller
     {
         private readonly IPostMediaService PostMediaService;
@@ -21,7 +21,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+      //  [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<MediaPost>), StatusCodes.Status200OK)]
         public List<MediaPost> GetAllPostMedia()
         {

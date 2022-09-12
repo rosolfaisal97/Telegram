@@ -23,7 +23,7 @@ namespace Telegram.Core.Data
         public string content { get; set; }
         public int post_id { get; set; }
         public DateTime created_at { get; set; }
-
+        public int ISHIDE { get; set; }
         public ICollection<MediaPost> media_posts { get; set; }
         public ICollection<Comments> comments { get; set; }
         public ICollection<Reaction> reaction { get; set; }

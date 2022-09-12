@@ -22,6 +22,11 @@ namespace Telegram.Infra.Service
             return channelRepository.CreateChannel(channel);
         }
 
+        public bool CreatePost(Creatpost creatpost)
+        {
+            return channelRepository.CreatePost(creatpost);
+        }
+
         public bool DeleteChannel(Channel channel)
         {
            return channelRepository.DeleteChannel(channel);

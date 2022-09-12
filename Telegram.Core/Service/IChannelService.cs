@@ -13,6 +13,9 @@ namespace Telegram.Core.Service
         bool UpdateChannel(Channel channel);
         bool DeleteChannel(Channel channel);
 
+        bool CreatePost(Creatpost creatpost);
+
+
         public List<SearchChannelDto> SearchChannel(SearchChannelDto filter);
     }
 }
