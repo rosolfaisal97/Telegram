@@ -94,10 +94,10 @@ namespace Telegram.Infra.Service
             return UserRepo.EmailSenduserblock(id);
         }
 
-         public bool sendstoreEmail(int id)
+        public bool sendstoreEmail(int id)
         {
             return UserRepo.sendstoreEmail(id);
- 
+        }
         public List<UserActiveDto> GetAllUsersActive()
         {
             return UserRepo.GetAllUsersActive();

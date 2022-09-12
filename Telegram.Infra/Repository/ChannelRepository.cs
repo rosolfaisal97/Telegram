@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Telegram.Core.Common;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 
 namespace Telegram.Infra.Repository
@@ -29,6 +30,19 @@ namespace Telegram.Infra.Repository
 
 
             var result = DbContext.Connection.ExecuteAsync("Channel_Package.InsertChannel", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+
+        public bool CreatePost(Creatpost creatpost)
+        {
+            var p = new DynamicParameters();
+            p.Add("@AdId", creatpost.admin_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@ChId", creatpost.channel_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@C_content", creatpost.content, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("@Fpath", creatpost.file_path, dbType: DbType.String, direction: ParameterDirection.Input);
+
+
+            var result = DbContext.Connection.ExecuteAsync("Creatpost", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 

@@ -27,7 +27,7 @@ namespace Telegram.API.Controllers
         [HttpGet]
         //[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Groups>), StatusCodes.Status200OK)]
-        public List<Groups> GetAllAdminGroup()
+        public List<Groups> GetAllGroup()
         {
             return groupsService.GetAllGroups();
         }
