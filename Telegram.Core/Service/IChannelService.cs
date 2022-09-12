@@ -15,5 +15,7 @@ namespace Telegram.Core.Service
 
         bool CreatePost(Creatpost creatpost);
 
+
+        public List<SearchChannelDto> SearchChannel(SearchChannelDto filter);
     }
 }

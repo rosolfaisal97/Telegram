@@ -76,6 +76,11 @@ namespace Telegram.Infra.Service
             return groupsRepository.OwnergrouplName(Gid);
         }
 
+        public List<Groups> SearchGroupUserChannel(SearchGroupDto groupDto)
+        {
+            return groupsRepository.SearchGroupUserChannel(groupDto);
+        }
+
         public bool UpdateGroups(Groups groups)
         {
             return groupsRepository.UpdateGroups(groups);

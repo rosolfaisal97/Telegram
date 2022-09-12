@@ -60,6 +60,18 @@ namespace Telegram.Infra.Repository
             return result.ToList();
         }
 
+        public List<SearchChannelDto> SearchChannel(SearchChannelDto filter)
+        {
+            var parameter = new DynamicParameters();
+
+            parameter.Add
+                ("nameChannel", filter.nameChannel, dbType: DbType.String, direction: ParameterDirection.Input);
+            
+            IEnumerable<SearchChannelDto> result = DbContext.Connection.Query<SearchChannelDto>
+                           ("Channel_Package.SearchChannel", parameter, commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
         public bool UpdateChannel(Channel channel)
         {
             var p = new DynamicParameters();

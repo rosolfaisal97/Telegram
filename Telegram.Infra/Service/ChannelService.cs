@@ -37,6 +37,11 @@ namespace Telegram.Infra.Service
             return channelRepository.GetAllChannel();
         }
 
+        public List<SearchChannelDto> SearchChannel(SearchChannelDto filter)
+        {
+            return channelRepository.SearchChannel( filter);
+        }
+
         public bool UpdateChannel(Channel channel)
         {
            return channelRepository.UpdateChannel(channel);

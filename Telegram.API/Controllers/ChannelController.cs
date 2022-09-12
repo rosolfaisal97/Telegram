@@ -7,12 +7,14 @@ using System.IO;
 using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Service;
+using Telegram.Infra.Repository;
 
 namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
   //  [Authorize]
+
     public class ChannelController : Controller
     {
         private readonly IChannelService ChannelService;
@@ -103,6 +105,14 @@ namespace Telegram.API.Controllers
         public bool DeleteChannel([FromBody] Channel channel)
         {
             return ChannelService.DeleteChannel(channel);
+        }
+
+
+        [HttpPost]
+        [Route("filturChannel")]
+        public List<SearchChannelDto> SearchChannel([FromBody] SearchChannelDto filter)
+        {
+            return ChannelService.SearchChannel(filter);
         }
 
     }

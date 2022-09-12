@@ -49,23 +49,6 @@ namespace Telegram.API.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [HttpPost]
         public bool DeleteUsers([FromBody] User user)
         {
@@ -213,6 +196,14 @@ namespace Telegram.API.Controllers
         public bool sendstoreEmail(int id)
         {
             return usersService.sendstoreEmail(id);
+        }
+
+
+        [HttpPost]
+        [Route("filturUser")]
+        public List<SearchUserDto> SearchUser( [FromBody] SearchUserDto filter)
+        {
+            return usersService.SearchUser(filter);
         }
 
 

@@ -17,7 +17,7 @@ namespace Telegram.Infra.Service
         {
             this.UserRepo = UserRepo;
         }
- 
+
 
         public List<AdminBlockDto> AdminBlock(int id)
         {
@@ -28,9 +28,9 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.CheckStatusBlock(id);
         }
- 
+
         public bool DeleteUsers(User user)
- 
+
         {
             return UserRepo.DeleteUsers(user);
         }
@@ -40,13 +40,13 @@ namespace Telegram.Infra.Service
             return UserRepo.GetAllUsers();
         }
 
-         public List<AdminBlockDto> GetAllUsersBlocked()
+        public List<AdminBlockDto> GetAllUsersBlocked()
         {
             return UserRepo.GetAllUsersBlocked();
         }
- 
+
         public User InsertUsers(User user)
-         {
+        {
             return UserRepo.InsertUsers(user);
         }
 
@@ -60,7 +60,7 @@ namespace Telegram.Infra.Service
             return UserRepo.NumberOfUserByGender(user);
         }
 
- 
+
         public InsertUsersRepo RegisterUser(InsertUsersRepo InsertUser)
         {
             return UserRepo.RegisterUser(InsertUser);
@@ -73,7 +73,7 @@ namespace Telegram.Infra.Service
 
         public List<SearchButweenTwoDatedto> SearchButweenTwoDate(DateTime dateto, DateTime datefrom)
         {
-            return UserRepo.SearchButweenTwoDate(dateto,datefrom);
+            return UserRepo.SearchButweenTwoDate(dateto, datefrom);
         }
 
         public bool UpdateProfileUser(UpdateProfileUserDTO UpdateUser)
@@ -101,11 +101,28 @@ namespace Telegram.Infra.Service
         public List<UserActiveDto> GetAllUsersActive()
         {
             return UserRepo.GetAllUsersActive();
+
         }
 
-        public List<UserNotActiveDto> GetAllUsersNotActive()
+
+        public List<SearchUserDto> SearchUser(SearchUserDto filter)
         {
-            return UserRepo.GetAllUsersNotActive();
-         }
+            return UserRepo.SearchUser(filter);
+        }
+        public List<UserActiveDto> GetAllUsersActive()
+         {
+                return UserRepo.GetAllUsersActive();
+            }
+
+         public List<UserNotActiveDto> GetAllUsersNotActive()
+            {
+                return UserRepo.GetAllUsersNotActive();
+            }
+
+
+
+        }
+
+       
     }
-}
+

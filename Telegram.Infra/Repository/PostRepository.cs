@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Telegram.Core.Common;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 
 namespace Telegram.Infra.Repository
@@ -16,6 +17,12 @@ namespace Telegram.Infra.Repository
         public PostRepository(IDbContext _DbContext)//dependency injection
         {
             DbContext = _DbContext;
+        }
+
+        public List<PostJoinDto> AllPost()
+        {
+            IEnumerable<PostJoinDto> result = DbContext.Connection.Query<PostJoinDto>("GetAllPostFullInfo", commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
         public bool CreatePost(Post post)
@@ -31,10 +38,10 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
-        public bool DeletePost(Post post)
+        public bool DeletePost(int id)
         {
             var p = new DynamicParameters();
-            p.Add("@P_id",post.id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@P_id",id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = DbContext.Connection.ExecuteAsync("Post_Package.DeletePost", p, commandType: CommandType.StoredProcedure);
             return true;
         }
