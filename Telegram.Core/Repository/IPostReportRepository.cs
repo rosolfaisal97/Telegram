@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 
 namespace Telegram.Core.Repository
 {
@@ -11,6 +12,7 @@ namespace Telegram.Core.Repository
         List<ReportPost> GetAllPostReport();
         bool UpdatePostReport(ReportPost report_Post );
         bool DeletePostReport(int id);
+        List<ReportPostJoinDto> AllReportPost();
 
     }
 }

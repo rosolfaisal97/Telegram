@@ -24,9 +24,9 @@ namespace Telegram.Core.Repository
         List<MediaGroup> CountMediaEachgroup(CountMediaEachgroupDto countMediaEachgroupDto);
 
 
-        List<GroupAdmin> AdminsGroupName(AdminsGroupNameDto adminsGroupNameDto);
-        List<Groups> OwnergrouplName(OwnergrouplNameDto ownergrouplNameDto);
-        List<GroupMember> groupMember(GroupMemberDto groupMemberDto);
+        List<AdminsGroupNameDto> AdminsGroupName(int Gid);
+        List<OwnergrouplNameDto> OwnergrouplName(int Gid);
+        List<GroupMemberDto> groupMember(int Gid);
 
         List<Groups> SearchGroupUserChannel(SearchGroupDto groupDto);
 

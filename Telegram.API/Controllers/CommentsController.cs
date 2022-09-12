@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public class CommentsController : Controller
     {
         private readonly ICommentsService _commentsService;
@@ -26,33 +26,42 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        [Route("{userId}/{postId}/{content}")]
-        public bool InsertComment(int userId, int postId, string content)
+        public bool InsertComment([FromBody] CommentFormDTO comment)
         {
-            return _commentsService.InsertComment(userId, postId, content);
+            return _commentsService.InsertComment(comment);
         }
 
         [HttpPost]
-        [Route("{id}/{content}")]
-        public bool UpdateComment(int id, string content)
+        public bool UpdateComment([FromBody] CommentFormDTO comment)
         {
-            return _commentsService.UpdateComment(id, content);
+            return _commentsService.UpdateComment(comment);
         }
 
         [HttpPost]
-        [Route("{id}")]
-        public bool DeleteComment(int id)
+        public bool DeleteComment([FromBody] CommentFormDTO comment)
         {
-            return _commentsService.DeleteComment(id);
+            return _commentsService.DeleteComment(comment);
         }
 
         [HttpGet]
         [Route("{postId}")]
-        public List<CommentDetailsDTO> GetPostComments(int postId)
+        public List<CommentDetailsDTO> GetPostComments( int postId)
         {
             return _commentsService.GetComments(postId);
         }
 
+
+        [HttpGet]
+        public List<Comments> GetAllComments()
+        {
+            return _commentsService.GetAllComments();
+        }
+
+        [HttpGet]
+        public List<CommentJoinUser> GetAllCommentPost()
+        {
+            return _commentsService.GetAllCommentPost();
+        }
 
     }
 }

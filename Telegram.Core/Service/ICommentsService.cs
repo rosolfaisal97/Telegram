@@ -9,10 +9,12 @@ namespace Telegram.Core.Service
     public interface ICommentsService
     {
 
-        CommentDetailsDTO GetComment(int id);
-        bool InsertComment(int userId, int postId, string content);
-        bool UpdateComment(int id, string content);
-        bool DeleteComment(int id);
+        CommentDetailsDTO GetComment(int commentId);
+        bool InsertComment(CommentFormDTO comment);
+        bool UpdateComment(CommentFormDTO comment);
+        bool DeleteComment(CommentFormDTO comment);
         List<CommentDetailsDTO> GetComments(int postId);
+        List<Comments> GetAllComments();
+        List<CommentJoinUser> GetAllCommentPost();
     }
 }

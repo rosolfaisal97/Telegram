@@ -15,5 +15,10 @@ namespace Telegram.Core.Repository
         public List<SearchMassageInfodto> SearchMassageInfo(ChatMessage chat);
         public List<ReturnMassageInfodto> ReturnMassageInfo();
 
+
+          List<UserChatFormDTO> GetUserFriendChat(int userFromId,int userToId);
+
+
+
     }
 }

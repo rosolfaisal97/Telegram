@@ -9,8 +9,9 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    
-    public class FunctionUserController : Controller
+ 
+    //[Authorize]
+     public class FunctionUserController : Controller
     {
 
         private readonly IFunctionChannelUserService functionChannelUserService;
@@ -20,8 +21,9 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        
-        [ProducesResponseType(typeof(List<AdminsChannelName>), StatusCodes.Status200OK)]
+ 
+       // [Authorize(Roles = "User,Admin")]
+         [ProducesResponseType(typeof(List<AdminsChannelName>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("AdminsChannel/{Cid}")]
         public List<AdminsChannelName> AdminsChannelName(int Cid)
@@ -38,7 +40,9 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<OwnerChannelName>), StatusCodes.Status200OK)]
+ 
+       // [Authorize(Roles = "User,Admin")]
+         [ProducesResponseType(typeof(List<OwnerChannelName>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("OwnerChannel/{Cid}")]
         public List<OwnerChannelName> OwnerChannelName(int Cid)
@@ -47,7 +51,9 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<MemberChannel>), StatusCodes.Status200OK)]
+ 
+       // [Authorize(Roles = "User,Admin")]
+         [ProducesResponseType(typeof(List<MemberChannel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelMember/{Cid}")]
         public List<MemberChannel> ChannelMember(int Cid)
@@ -56,7 +62,9 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<ChannelPosts>), StatusCodes.Status200OK)]
+ 
+      //  [Authorize(Roles = "User,Admin")]
+         [ProducesResponseType(typeof(List<ChannelPosts>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("ChannelPosts/{Cid}")]
         public List<ChannelPosts> ChannelPosts(int Cid)
