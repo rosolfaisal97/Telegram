@@ -1,6 +1,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -200,7 +201,7 @@ namespace Telegram.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().WithMetadata(new AllowAnonymousAttribute());
                 endpoints.MapHub<ChatHub>("/chat");
             });
         }

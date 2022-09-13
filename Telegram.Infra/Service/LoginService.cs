@@ -63,8 +63,8 @@ using Telegram.Core.Service;
                     new Claim("loginId", result.LoginId.ToString()),
                     new Claim(ClaimTypes.Role, result.RoleName),
                     new Claim(ClaimTypes.Email, result.Email),
-                }),
-                Expires = DateTime.Now.AddHours(1),
+                 }),
+                Expires = DateTime.Now.AddDays(7),
                 SigningCredentials = new SigningCredentials(tokenKey,
                                                             SecurityAlgorithms.HmacSha256Signature)
             };

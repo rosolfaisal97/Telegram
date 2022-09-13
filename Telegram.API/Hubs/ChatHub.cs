@@ -125,6 +125,17 @@ namespace Telegram.API.Hubs
             }
 
         }
+
+        //groups
+        public async Task JoinGroup(string groupName)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, groupName);
+        }
+        public async Task SendMessageToGroup(string groupName, string message)
+        {
+            await Clients.Group(groupName).SendAsync("ReceiveMessageGroup", message);
+        }
+
         private bool DeleteConnection(Connection connection)
         {
             connection.ConnectionId = Context.ConnectionId;
