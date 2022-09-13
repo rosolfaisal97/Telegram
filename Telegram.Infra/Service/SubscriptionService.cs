@@ -17,6 +17,11 @@ namespace Telegram.Infra.Service
             this.subscriptionRepository = subscriptionRepository;
         }
 
+        public List<Subscription> AllSubscribe()
+        {
+            return subscriptionRepository.AllSubscribe();
+        }
+
         public bool DeleteSubscription(Subscription subscription)
         {
             return subscriptionRepository.DeleteSubscription(subscription); 

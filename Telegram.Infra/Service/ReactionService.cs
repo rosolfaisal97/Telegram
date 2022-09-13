@@ -17,6 +17,11 @@ namespace Telegram.Infra.Service
             _reactionRepository = reactionRepository;
         }
 
+        public List<AllReactionDto> AllReaction()
+        {
+            return _reactionRepository.AllReaction();
+        }
+
         public bool DeleteReaction(int userId, int postId)
         {
             return _reactionRepository.DeleteReaction(userId, postId);

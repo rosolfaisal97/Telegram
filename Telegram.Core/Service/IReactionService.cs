@@ -15,5 +15,6 @@ namespace Telegram.Core.Service
         bool IsAlreadyReacted(int userId, int postId);
         bool InsertReaction(Reaction reaction);
         List<Reaction> getAllReaction();
+        List<AllReactionDto> AllReaction();
     }
 }

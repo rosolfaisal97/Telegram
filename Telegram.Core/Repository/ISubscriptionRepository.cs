@@ -16,8 +16,8 @@ namespace Telegram.Core.Repository
         List<ProfitsAndLosses> GetProfitsAndLosses();
 
         bool InsertSubscription(Subscription subscription);
-        
-       
+
+        List<Subscription> AllSubscribe();
         bool DeleteSubscription(Subscription subscription);
 
         
