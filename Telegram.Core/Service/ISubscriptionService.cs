@@ -10,7 +10,7 @@ namespace Telegram.Core.Service
     {
 
         List<GetAllSubscription> GetAllSubscription();
-
+        List<Subscription> AllSubscribe();
         List<GetUserSubscription> GetUserSubscription(int Uid);
 
         bool InsertSubscription(Subscription subscription);

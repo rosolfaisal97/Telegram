@@ -20,10 +20,10 @@ namespace Telegram.Infra.Repository
             _dbContext = dbContext;
         }
 
-        public bool DeleteComment(CommentFormDTO comment)
+        public bool DeleteComment(int id)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@cid", comment.CommentId, DbType.Int32);
+            parameters.Add("@cid",id, DbType.Int32);
 
             _dbContext.Connection
                 .ExecuteAsync("Comments_Package.DeleteComment",

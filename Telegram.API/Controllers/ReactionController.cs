@@ -73,6 +73,11 @@ namespace Telegram.API.Controllers
         {
             return _reactionService.IsAlreadyReacted(userId, postId);
         }
+        [HttpGet]
+        public List<AllReactionDto> AllReaction()
+        {
+            return _reactionService.AllReaction();
+        }
 
     }
 }
