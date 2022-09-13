@@ -64,5 +64,12 @@ namespace Telegram.API.Controllers
             return subscriptionService.DeleteSubscription(subscription);
         }
 
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<Subscription>), StatusCodes.Status200OK)]
+        public List<Subscription> AllSubscription()
+        {
+            return subscriptionService.AllSubscribe();
+        }
     }
 }

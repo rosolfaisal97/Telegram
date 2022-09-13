@@ -20,6 +20,11 @@ namespace Telegram.Infra.Repository
             _dbContext = _DbContext;
         }
 
+        public List<AllReactionDto> AllReaction()
+        {
+            IEnumerable<AllReactionDto> result = _dbContext.Connection.Query<AllReactionDto>("Reaction_Package.AllLike", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
 
         public bool DeleteReaction(int userId, int postId)
         {

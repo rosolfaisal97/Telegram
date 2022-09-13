@@ -37,10 +37,11 @@ namespace Telegram.API.Controllers
             return _commentsService.UpdateComment(comment);
         }
 
-        [HttpPost]
-        public bool DeleteComment([FromBody] CommentFormDTO comment)
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public bool DeleteComment(int id)
         {
-            return _commentsService.DeleteComment(comment);
+            return _commentsService.DeleteComment(id);
         }
 
         [HttpGet]

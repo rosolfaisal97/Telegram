@@ -21,6 +21,12 @@ namespace Telegram.Infra.Repository
             DbContext = _DbContext;
         }
 
+        public List<Subscription> AllSubscribe()
+        {
+            IEnumerable<Subscription> result = DbContext.Connection.Query<Subscription>("Subscription_Package.AllSubscription", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
         public bool DeleteSubscription(Subscription subscription)
         {
             var p = new DynamicParameters();
