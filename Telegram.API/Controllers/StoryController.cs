@@ -12,7 +12,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-   //[Authorize]
+   [Authorize]
      public class StoryController : ControllerBase
     {
        
@@ -34,7 +34,7 @@ namespace Telegram.API.Controllers
 
         [HttpGet]
  
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
  
          [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         public List<Story> GetAllStory()
@@ -74,7 +74,7 @@ namespace Telegram.API.Controllers
                 }
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var attachmentFileName = $"{fileName}{Path.GetExtension(file.Name)}";
-                var fullPath = Path.Combine("C:\\Users\\HACK-JO\\Desktop\\Anguler\\Telegram\\src\\assets\\img", attachmentFileName);
+                var fullPath = Path.Combine(@"D:\My Files\Telegram Project\front-end-3\Telegram\src\assets\img", attachmentFileName);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -93,7 +93,7 @@ namespace Telegram.API.Controllers
 
         [HttpPut]
  
-        //[Authorize(Roles = "User")]
+        [Authorize]
  
         [ProducesResponseType(typeof(List<Story>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

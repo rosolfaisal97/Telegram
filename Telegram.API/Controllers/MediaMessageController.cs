@@ -19,7 +19,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool InsertMedia([FromBody] MediaMessage mediaMessage)
         {
             return _mediaMsgService.InsertMedia(mediaMessage);

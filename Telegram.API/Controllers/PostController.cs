@@ -11,7 +11,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-     //[Authorize]
+     [Authorize]
  
     public class PostController : Controller
     {
@@ -31,7 +31,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Post>), StatusCodes.Status200OK)]
         public List<Post> GetAllPost()
         {
@@ -40,7 +40,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<PostJoinDto>), StatusCodes.Status200OK)]
         public List<PostJoinDto> AllPost()
         {
@@ -68,7 +68,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
-        //[Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Post>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("delete/{id}")]

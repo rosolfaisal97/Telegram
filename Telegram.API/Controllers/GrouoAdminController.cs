@@ -12,7 +12,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class GrouoAdminController : Controller
     {
         private readonly IGrouoAdminService grouoAdminService;
@@ -22,7 +22,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<GroupAdmin>), StatusCodes.Status200OK)]
         public List<GroupAdmin> GetAllAdminGroup()
         {
@@ -31,7 +31,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(GroupAdmin), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool createadmingroup([FromBody] GroupAdmin groupAdmin)
@@ -51,7 +51,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool UpdateAdminGroup([FromBody] GroupAdmin groupAdmin)
         {
             return grouoAdminService.UpdateAdminGroup(groupAdmin);

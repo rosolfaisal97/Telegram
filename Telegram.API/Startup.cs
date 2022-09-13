@@ -71,8 +71,7 @@ namespace Telegram.API
                     {
                         var accessToken = context.Request.Query["access_token"];
                         var path = context.HttpContext.Request.Path;
-                        if (!string.IsNullOrEmpty(accessToken)
-                        && path.StartsWithSegments("/chat"))
+                        if (!string.IsNullOrEmpty(accessToken))
                         {
                             context.Token = accessToken;
                         }
@@ -201,9 +200,10 @@ namespace Telegram.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers().WithMetadata(new AllowAnonymousAttribute());
+                endpoints.MapControllers();
+                //.WithMetadata(new AllowAnonymousAttribute());
                 endpoints.MapHub<ChatHub>("/chat");
             });
-        }
+        }   
     }
 }

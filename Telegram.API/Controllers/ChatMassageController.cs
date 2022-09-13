@@ -11,7 +11,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    // [Authorize]
+     [Authorize]
     public class ChatMassageController : ControllerBase
     {
         private readonly IChatMassageService ChatMassageService;
@@ -35,7 +35,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public ChatMessage InsertChatMessage([FromBody] ChatMessage chat)
         {
             return ChatMassageService.InsertChatMessage(chat);
@@ -57,7 +57,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool UpdateChatMessage([FromBody] ChatMessage chat)
         {
             return ChatMassageService.UpdateChatMessage(chat);

@@ -31,7 +31,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(GroupMessage), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreategroupMessage([FromBody] GroupMessage groupMessage)

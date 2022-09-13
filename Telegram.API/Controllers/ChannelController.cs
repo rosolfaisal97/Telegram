@@ -13,7 +13,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-  //  [Authorize]
+    [Authorize]
 
     public class ChannelController : Controller
     {
@@ -41,7 +41,7 @@ namespace Telegram.API.Controllers
                 }
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var attachmentFileName = $"{fileName}{Path.GetExtension(file.Name)}";
-                var fullPath = Path.Combine("F:\\NewTelegram\\Telegram\\src\\assets\\img", attachmentFileName);
+                var fullPath = Path.Combine(@"D:\My Files\Telegram Project\front-end-3\Telegram\src\assets\img", attachmentFileName);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -61,7 +61,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
-       // [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(Creatpost), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreatePost([FromBody] Creatpost creatpost )
@@ -80,7 +80,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(Channel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreateChannel([FromBody] Channel Channel)
@@ -89,7 +89,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<Channel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateChannel([FromBody] Channel Channel)
@@ -98,7 +98,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<Channel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("delete")]

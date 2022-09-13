@@ -10,7 +10,7 @@ namespace Telegram.API.Controllers
 
     [Route("api/[controller]/[action]")]
     [ApiController]
-   // [Authorize]
+    [Authorize]
     public class PostMediaController : Controller
     {
         private readonly IPostMediaService PostMediaService;
@@ -21,7 +21,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-      //  [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<MediaPost>), StatusCodes.Status200OK)]
         public List<MediaPost> GetAllPostMedia()
         {
@@ -29,7 +29,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(MediaPost), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreatePostMedia([FromBody] MediaPost PostMedia)
@@ -38,7 +38,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<MediaPost>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdatePostMedia([FromBody] MediaPost PostMedia)

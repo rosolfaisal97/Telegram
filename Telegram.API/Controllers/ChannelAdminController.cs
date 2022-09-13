@@ -28,7 +28,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(ChannelAdmin), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreateChannelAdmin([FromBody] ChannelAdmin channelAdmin )
@@ -37,7 +37,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<ChannelAdmin>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool UpdateChannelAdmin([FromBody] ChannelAdmin channelAdmin )
@@ -46,7 +46,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool DeleteChannelAdmin([FromBody] ChannelAdmin channel_Admin)

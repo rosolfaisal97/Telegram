@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [Route("UploadImageServices")]
         public Services UploadImageServices()
         {
@@ -34,7 +35,7 @@ namespace Telegram.API.Controllers
                 }
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var attachmentFileName = $"{fileName}{Path.GetExtension(file.Name)}";
-                var fullPath = Path.Combine("F:\\NewTelegram\\Telegram\\src\assets\\img", attachmentFileName);
+                var fullPath = Path.Combine(@"D:\My Files\Telegram Project\front-end-3\Telegram\src\assets\img", attachmentFileName);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -51,7 +52,7 @@ namespace Telegram.API.Controllers
 
         }
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Services>), StatusCodes.Status200OK)]
         public List<Services> GetAllSERVICES()
         {
@@ -59,7 +60,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-       // [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(Services), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("CreateService")]
@@ -69,7 +70,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPut]
-       // [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(Services), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("UpdateService")]
@@ -79,7 +80,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpDelete]
-       // [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Services>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("DeleteService/{id}")]

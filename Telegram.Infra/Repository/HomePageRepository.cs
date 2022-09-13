@@ -67,7 +67,8 @@ namespace Telegram.Infra.Repository
             p.Add("@A_contant", aboutUs.contant, dbType: DbType.String, direction: ParameterDirection.Input);
 
 
-            var result = DbContext.Connection.ExecuteAsync("AboutUs_Package.UpdateAboutUsInfo", p, commandType: CommandType.StoredProcedure);
+            var result = DbContext.Connection
+                .ExecuteAsync("AboutUs_Package.UpdateAboutUsInfo", p, commandType: CommandType.StoredProcedure);
             return true;
         }
 

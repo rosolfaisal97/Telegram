@@ -76,6 +76,11 @@ namespace Telegram.API.Hubs
                 ConnectionId = Context.ConnectionId
             });
 
+            await Clients
+                .Client(connId)
+                .SendAsync("sendMsgFriendResponse", Context.ConnectionId, msg);
+
+
             var chatMessage = new ChatMessage
             {
                 user_from = userFrom.UserId,
@@ -95,9 +100,6 @@ namespace Telegram.API.Hubs
 
             }
             _chatMassageService.InsertChatMessage(chatMessage);
-            await Clients
-                .Client(connId)
-                .SendAsync("sendMsgFriendResponse", Context.ConnectionId, msg);
         }
 
         private /*async Task*/void AuthMe(int userId)

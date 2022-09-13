@@ -33,7 +33,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(MediaGroup), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool createMediaGroup([FromBody] MediaGroup mediaGroup)
@@ -53,7 +53,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool UpdateMediaGroup([FromBody] MediaGroup mediaGroup)
         {
             return mediaGroupService.UpdateMediaGroup(mediaGroup);
