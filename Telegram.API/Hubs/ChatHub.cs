@@ -10,9 +10,10 @@ using Telegram.Infra.Service;
 
 namespace Telegram.API.Hubs
 {
-    [Authorize]
+    [Authorize]  
     public class ChatHub : Hub
     {
+
         private readonly IConnectionService _connectionService;
         private readonly IChatMassageService _chatMassageService;
         public ChatHub(IConnectionService connectionService, IChatMassageService chatMassageService)
