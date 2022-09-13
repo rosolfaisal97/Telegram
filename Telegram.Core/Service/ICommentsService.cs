@@ -12,7 +12,7 @@ namespace Telegram.Core.Service
         CommentDetailsDTO GetComment(int commentId);
         bool InsertComment(CommentFormDTO comment);
         bool UpdateComment(CommentFormDTO comment);
-        bool DeleteComment(CommentFormDTO comment);
+        bool DeleteComment(int id);
         List<CommentDetailsDTO> GetComments(int postId);
         List<Comments> GetAllComments();
         List<CommentJoinUser> GetAllCommentPost();
