@@ -20,7 +20,7 @@ namespace Telegram.API.Controllers
     [ApiController]
 
 
-    //[Authorize] 
+    [Authorize] 
     public class LoginController : ControllerBase
     {
 

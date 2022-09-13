@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Telegram.Core.DTO;
@@ -8,6 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CountsController : ControllerBase
     {
 
@@ -17,7 +19,6 @@ namespace Telegram.API.Controllers
             this.countService = countService;
         }
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("NumberOfChannels")]
@@ -29,8 +30,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("NumberOfGroups")]
         public List<NumberOfGroups> NumberOfGroups()
@@ -41,8 +41,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("NumberOfUsers")]
         public List<NumberOfUsers> NumberOfUsers()

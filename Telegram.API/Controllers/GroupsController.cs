@@ -15,9 +15,9 @@ namespace Telegram.API.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
 
- 
-  //  [Authorize]
- 
+
+    [Authorize]
+
     public class GroupsController : Controller
     {
         private readonly IGroupsService groupsService;
@@ -28,7 +28,7 @@ namespace Telegram.API.Controllers
 
         [HttpGet]
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Groups>), StatusCodes.Status200OK)]
         public List<Groups> GetAllGroup()
         {
@@ -55,7 +55,7 @@ namespace Telegram.API.Controllers
         }
 
 
-       
+
 
         [HttpPut]
         [Authorize(Roles = "Admin")]
@@ -123,7 +123,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-      //  [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [Route("AdminsGroupName/{Gid}")]
         public List<AdminsGroupNameDto> AdminsGroupName(int Gid)
         {
@@ -132,7 +132,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-      //  [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [Route("OwnergrouplName/{Gid}")]
         public List<OwnergrouplNameDto> OwnergrouplName(int Gid)
         {
@@ -140,7 +140,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-       // [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "User,Admin")]
         [Route("groupMember/{Gid}")]
         public List<GroupMemberDto> groupMember(int Gid)
         {
@@ -151,7 +151,7 @@ namespace Telegram.API.Controllers
 
         [HttpPost]
         [Route("filturGroup")]
-        public List<Groups> SearchGroupUserChannel( [FromBody] SearchGroupDto groupDto)
+        public List<Groups> SearchGroupUserChannel([FromBody] SearchGroupDto groupDto)
         {
             return groupsService.SearchGroupUserChannel(groupDto);
         }

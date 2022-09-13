@@ -33,7 +33,7 @@ namespace Telegram.API.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(GroupLink), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool CreateLinkGroup([FromBody] GroupLink groupLink)
         {
             return groupLinkService.CreateLinkGroup(groupLink);
@@ -42,7 +42,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpDelete("delete")]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool DeleteLinkGroup([FromBody] GroupLink groupLink)
         {
             return groupLinkService.DeleteLinkGroup(groupLink);
@@ -51,7 +51,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool UpdateLinkGroup([FromBody] GroupLink groupLink)
         {
             return groupLinkService.UpdateLinkGroup(groupLink);

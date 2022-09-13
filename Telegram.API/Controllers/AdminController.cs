@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IFunctionChannelAdminService functionChannelAdminService ;
@@ -19,7 +19,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Top10PostByLike>), StatusCodes.Status200OK)]
        // [Route("Top10Like")]
         public List<Top10PostByLike> Top10Like()
@@ -28,7 +28,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Top10PostByComment>), StatusCodes.Status200OK)]
         //[Route("Top10Comment")]
         public List<Top10PostByComment> Top10Comment()
@@ -39,7 +39,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<ChannelsInfo>), StatusCodes.Status200OK)]
        // [Route("ChannelsInfo")]
 
@@ -49,7 +49,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<CountUserAdmin>), StatusCodes.Status200OK)]
        // [Route("CountAdmin")]
         public List<CountUserAdmin> CountAdmin()
@@ -57,31 +57,9 @@ namespace Telegram.API.Controllers
             return functionChannelAdminService.GetCountUserAdmin();
         }
 
-
-       //// [HttpGet]
-       ////// [Authorize(Roles = "Admin")]
-       //// [ProducesResponseType(typeof(List<ChannelNameUserAdmin>), StatusCodes.Status200OK)]
-       //// [ProducesResponseType(StatusCodes.Status400BadRequest)]
-       //// [Route("/{cid}")]
-       //// public List<ChannelNameUserAdmin> UserAdmin(int cid)
-       //// {
-       ////     return functionChannelAdminService.GetChannelNameUserAdmin(cid);
-       //// }
-
-
-
-       //// [HttpGet]
-       //// //[Authorize(Roles = "User")]
-       //// [ProducesResponseType(typeof(List<GetChannelPosts>), StatusCodes.Status200OK)]
-       //// [ProducesResponseType(StatusCodes.Status400BadRequest)]
-       //// [Route("/{chid}")]
-       //// public List<GetChannelPosts> GetChannelPosts(int chid)
-       //// {
-       ////     return functionChannelAdminService.GetChannelPosts(chid);
-       //// }
-
+ 
         [HttpGet]
-       // [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<CountMemberEachChannel>), StatusCodes.Status200OK)]
         //[Route("CountMemberEachChannel")]
         public List<CountMemberEachChannel> CountMemberEachChannel()
@@ -90,7 +68,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+       [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<CountReportEachPost>), StatusCodes.Status200OK)]
         //[Route("CountReportEachPost")]
         public List<CountReportEachPost> CountReportEachPost()
@@ -110,7 +88,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<CountPostEachChannel>), StatusCodes.Status200OK)]
         [Route("CountPostEachChannel")]
         public List<CountPostEachChannel> CountPostEachChannel()
@@ -119,7 +97,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<CountReportEachPost>), StatusCodes.Status200OK)]
         [Route("CountFilterReportPostByType")]
         public List<CountFilterReportPostByType> CountFilterReportPostByType()
@@ -128,7 +106,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(List<FilterReportPostByType>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("FilterReportType")]

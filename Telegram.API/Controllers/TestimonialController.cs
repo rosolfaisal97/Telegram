@@ -10,7 +10,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class TestimonialController : Controller
     {
         
@@ -32,21 +32,21 @@ namespace Telegram.API.Controllers
        
 
          [HttpGet]
-        //  [Authorize(Roles = "Admin")]
+          [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<TestamonialUserDto>), StatusCodes.Status200OK)]
         public List<TestamonialUserDto> GetAllTestimonialUser()
         {
             return TestimonialService.GetAllTestimonialUser();
         }
         [HttpGet]
-      //  [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<Testimonial>), StatusCodes.Status200OK)]
         public List<Testimonial> GetAllTestimonial()
         {
             return TestimonialService.GetAllTestimonial();
         }
         [HttpGet]
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GetAcceptTestimonialDto>), StatusCodes.Status200OK)]
         public List<GetAcceptTestimonialDto> GetAcceptTestimonial()
         {
@@ -54,7 +54,7 @@ namespace Telegram.API.Controllers
         }
         
         [HttpPost("Single")]
-//[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GetSingleTestimonial>), StatusCodes.Status200OK)]
         public List<GetSingleTestimonial> GetSingleTestimonial([FromBody] Testimonial Test)
         {
@@ -62,7 +62,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-       // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(Testimonial), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Testimonial InsertTestimonial([FromBody] Testimonial Test)

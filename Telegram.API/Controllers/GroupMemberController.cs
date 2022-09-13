@@ -31,7 +31,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        [Authorize]
         [ProducesResponseType(typeof(GroupMember), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool CreateGroupMember([FromBody] GroupMember groupMember)
@@ -51,7 +51,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpPut]
-        [Authorize(Roles = "User")]
+        [Authorize]
         public bool UpdateGroupMember([FromBody] GroupMember groupMember)
         {
             return groupMemberService.UpdateGroupMember(groupMember);

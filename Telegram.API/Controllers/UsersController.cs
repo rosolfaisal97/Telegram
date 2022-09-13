@@ -14,7 +14,7 @@ namespace Telegram.API.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
  
-     //[Authorize]
+     [Authorize]
      public class UsersController : Controller
      {
         private readonly IusersService usersService;
@@ -25,7 +25,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("GetAllUsersNotActive")]
@@ -37,7 +37,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("GetAllUsersActive")]
@@ -70,10 +70,10 @@ namespace Telegram.API.Controllers
         }
 
 
-     //   [HttpPost]
+        [HttpPost]
 
         [HttpGet]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [Route("NumberOfUser")]
@@ -84,7 +84,7 @@ namespace Telegram.API.Controllers
         }
 
 
-       // [HttpPost]
+        [HttpPost]
             [HttpPost("NumberUserByGender")]
 
         public List<NumberOfUserByGenderdto> NumberOfUserByGender([FromBody] User user)
@@ -139,7 +139,7 @@ namespace Telegram.API.Controllers
                 }
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var attachmentFileName = $"{fileName}{Path.GetExtension(file.Name)}";
-                var fullPath = Path.Combine("F:\\NewTelegram\\Telegram\\src\\assets\\img", attachmentFileName);
+                var fullPath = Path.Combine(@"D:\My Files\Telegram Project\front-end-3\Telegram\src\assets\img", attachmentFileName);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -156,6 +156,7 @@ namespace Telegram.API.Controllers
 
         }
 
+        [AllowAnonymous]
         [HttpGet("GetUserById/{U_id}")]
         public GetUserByIdDto GetUserById(int U_id)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Telegram.Core.Data;
@@ -18,7 +19,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpGet]
-        // [Authorize(Roles = "Admin")]
+         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<ProfitsAndLosses>), StatusCodes.Status200OK)]
         public List<ProfitsAndLosses> ProfitsAndLosses()
         {
@@ -27,7 +28,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        // [Authorize(Roles = "Admin")]
+         [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(List<GetAllSubscription>), StatusCodes.Status200OK)]
         public List<GetAllSubscription> GetAllSubscription()
         {
@@ -36,7 +37,7 @@ namespace Telegram.API.Controllers
 
 
         [HttpGet]
-        // [Authorize(Roles = "Admin")]
+         [Authorize(Roles = "Admin")]
         [Route("{uId}")]
         [ProducesResponseType(typeof(List<GetUserSubscription>), StatusCodes.Status200OK)]
         public List<GetUserSubscription> GetUserSubscription( int uId)
@@ -45,7 +46,7 @@ namespace Telegram.API.Controllers
         }
 
         [HttpPost]
-        // [Authorize(Roles = "User,Admin")]
+         [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(Subscription), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public bool InsertSubscription([FromBody] Subscription subscription )
@@ -55,10 +56,10 @@ namespace Telegram.API.Controllers
 
        
         [HttpDelete]
-        // [Authorize(Roles = "User,Admin")]
+         [Authorize(Roles = "User,Admin")]
         [ProducesResponseType(typeof(List<Services>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[Route("delete")]
+        [Route("delete")]
         public bool DeleteSubscription([FromBody] Subscription subscription)
         {
             return subscriptionService.DeleteSubscription(subscription);

@@ -9,7 +9,7 @@ namespace Telegram.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-   // [Authorize]
+    [Authorize]
     public class CommentsController : Controller
     {
         private readonly ICommentsService _commentsService;
