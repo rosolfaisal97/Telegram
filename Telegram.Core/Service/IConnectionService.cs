@@ -13,6 +13,7 @@ namespace Telegram.Core.Service
         bool delete(Connection connection);
         ConnectionDTO  GetItem(Connection connection);
         List<ConnectionDTO> GetAll();
+
         int GetAllCount();
     }
 }

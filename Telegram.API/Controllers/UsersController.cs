@@ -49,23 +49,6 @@ namespace Telegram.API.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [HttpPost]
         public bool DeleteUsers([FromBody] User user)
         {
@@ -129,7 +112,7 @@ namespace Telegram.API.Controllers
             return usersService.SearchButweenTwoDate(dateto, datefrom);
         }
 
-        [HttpPost]
+        [HttpPut]
         public bool UpdateProfileUser([FromBody] UpdateProfileUserDTO UpdateUser)
         {
 
@@ -156,7 +139,7 @@ namespace Telegram.API.Controllers
                 }
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var attachmentFileName = $"{fileName}{Path.GetExtension(file.Name)}";
-                var fullPath = Path.Combine("F:\\Telegram\\Telegram\\src\\assets\\img", attachmentFileName);
+                var fullPath = Path.Combine("F:\\NewTelegram\\Telegram\\src\\assets\\img", attachmentFileName);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
@@ -213,6 +196,14 @@ namespace Telegram.API.Controllers
         public bool sendstoreEmail(int id)
         {
             return usersService.sendstoreEmail(id);
+        }
+
+
+        [HttpPost]
+        [Route("filturUser")]
+        public List<SearchUserDto> SearchUser( [FromBody] SearchUserDto filter)
+        {
+            return usersService.SearchUser(filter);
         }
 
 

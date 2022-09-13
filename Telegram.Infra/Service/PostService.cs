@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Telegram.Core.Data;
+using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 using Telegram.Core.Service;
 
@@ -16,14 +17,19 @@ namespace Telegram.Infra.Service
             this.PostRepository = PostRepository;
         }
 
+        public List<PostJoinDto> AllPost()
+        {
+            return PostRepository.AllPost();
+        }
+
         public bool CreatePost(Post post)
         {
             return PostRepository.CreatePost(post);
         }
 
-        public bool DeletePost(Post post)
+        public bool DeletePost(int id)
         {
-           return PostRepository.DeletePost(post);
+           return PostRepository.DeletePost(id);
         }
 
         public List<Post> GetAllPost()

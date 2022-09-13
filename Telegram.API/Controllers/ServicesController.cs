@@ -34,7 +34,7 @@ namespace Telegram.API.Controllers
                 }
                 var fileName = Path.GetFileNameWithoutExtension(file.FileName);
                 var attachmentFileName = $"{fileName}{Path.GetExtension(file.Name)}";
-                var fullPath = Path.Combine("F:\\Telegram\\Telegram\\src\\assets", attachmentFileName);
+                var fullPath = Path.Combine("F:\\NewTelegram\\Telegram\\src\assets\\img", attachmentFileName);
 
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {

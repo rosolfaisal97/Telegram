@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Telegram.Core.Data;
 using Telegram.Core.DTO;
 using Telegram.Core.Repository;
 using Telegram.Core.Service;
@@ -21,6 +22,11 @@ namespace Telegram.Infra.Service
             return _reactionRepository.DeleteReaction(userId, postId);
         }
 
+        public List<Reaction> getAllReaction()
+        {
+            return _reactionRepository.getAllReaction();
+        }
+
         public List<ReactionDetailsDTO> GetPostReactions(int postId)
         {
             var list = _reactionRepository.GetPostReactions(postId);
@@ -28,15 +34,20 @@ namespace Telegram.Infra.Service
 
         }
 
-        public bool InsertReaction(int userId, int postId, int isReact)
+        public bool InsertReaction(Reaction reaction)
         {
-            if(IsAlreadyReacted(userId,postId))
-               return UpadteReaction(userId,postId,1);
-
-            return _reactionRepository.InsertReaction(userId, postId, isReact);
-
-
+            return _reactionRepository.InsertReaction(reaction);
         }
+
+        //public bool InsertReaction(int userId, int postId, int isReact)
+        //{
+        //    if(IsAlreadyReacted(userId,postId))
+        //       return UpadteReaction(userId,postId,1);
+
+        //    return _reactionRepository.InsertReaction(userId, postId, isReact);
+
+
+        //}
 
         public bool IsAlreadyReacted(int userId, int postId)
         {

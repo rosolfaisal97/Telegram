@@ -34,6 +34,12 @@ namespace Telegram.Infra.Repository
             return true;
         }
 
+        public List<Reaction> getAllReaction()
+        {
+            IEnumerable<Reaction> result = _dbContext.Connection.Query<Reaction>("Reaction_Package.getAllReaction", commandType: CommandType.StoredProcedure);
+            return result.ToList();
+        }
+
         public List<ReactionDetailsDTO> GetPostReactions(int postId)
         {
             var parameters = new DynamicParameters();
@@ -47,16 +53,27 @@ namespace Telegram.Infra.Repository
             return result.Result.ToList();
         }
 
-        public bool InsertReaction(int userId, int postId, int isReact)
+        //public bool InsertReaction(int userId, int postId, int isReact)
+        //{
+          
+        //    var parameters = new DynamicParameters();
+        //    parameters.Add("@ruserId", userId, dbType: DbType.Int32);
+        //    parameters.Add("@rpostId", postId, dbType: DbType.Int32);
+        //    parameters.Add("@isReact", isReact, dbType: DbType.Int32);
+
+        //    var result = _dbContext.Connection.ExecuteAsync("Reaction_Package.InsertReaction", parameters, commandType: CommandType.StoredProcedure);
+
+        //    return true;
+        //}
+
+        public bool InsertReaction(Reaction reaction)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@ruserId", userId, dbType: DbType.Int32);
-            parameters.Add("@rpostId", postId, dbType: DbType.Int32);
-            parameters.Add("@isReact", isReact, dbType: DbType.Int32);
+            parameters.Add("@ruserId", reaction.user_id, dbType: DbType.Int32);
+            parameters.Add("@rpostId", reaction.post_id, dbType: DbType.Int32);
+            parameters.Add("@isReact", reaction.is_react, dbType: DbType.Int32);
 
-            _dbContext.Connection.ExecuteAsync("Reaction_Package.InsertReaction",
-                                               parameters,
-                                               commandType: CommandType.StoredProcedure);
+            var result = _dbContext.Connection.ExecuteAsync("Reaction_Package.InsertReaction", parameters, commandType: CommandType.StoredProcedure);
 
             return true;
         }
@@ -73,6 +90,8 @@ namespace Telegram.Infra.Repository
 
             return result.Result.FirstOrDefault() > 0;
         }
+
+      
 
         public bool UpadteReaction(int userId, int postId, int isReact)
         {

@@ -14,5 +14,7 @@ namespace Telegram.Core.Repository
         bool UpdateComment(CommentFormDTO comment);
         bool DeleteComment(CommentFormDTO comment);
         List<CommentDetailsDTO> GetComments(int postId);
+        List<CommentJoinUser> GetAllCommentPost();
+        List<Comments> GetAllComments();
     }
 }

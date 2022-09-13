@@ -98,16 +98,31 @@ namespace Telegram.Infra.Service
         {
             return UserRepo.sendstoreEmail(id);
         }
-
+ 
         public List<UserActiveDto> GetAllUsersActive()
         {
             return UserRepo.GetAllUsersActive();
+
         }
 
-        public List<UserNotActiveDto> GetAllUsersNotActive()
+
+        public List<SearchUserDto> SearchUser(SearchUserDto filter)
         {
-            return UserRepo.GetAllUsersNotActive();
+            return UserRepo.SearchUser(filter);
+        }
+        public List<UserActiveDto> GetAllUsersActive()
+         {
+                return UserRepo.GetAllUsersActive();
+            }
+
+         public List<UserNotActiveDto> GetAllUsersNotActive()
+            {
+                return UserRepo.GetAllUsersNotActive();
+            }
+
+
+
         }
 
-    }
-}
+           }
+

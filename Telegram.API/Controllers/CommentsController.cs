@@ -45,11 +45,23 @@ namespace Telegram.API.Controllers
 
         [HttpGet]
         [Route("{postId}")]
-        public List<CommentDetailsDTO> GetPostComments(int postId)
+        public List<CommentDetailsDTO> GetPostComments( int postId)
         {
             return _commentsService.GetComments(postId);
         }
 
+
+        [HttpGet]
+        public List<Comments> GetAllComments()
+        {
+            return _commentsService.GetAllComments();
+        }
+
+        [HttpGet]
+        public List<CommentJoinUser> GetAllCommentPost()
+        {
+            return _commentsService.GetAllCommentPost();
+        }
 
     }
 }
