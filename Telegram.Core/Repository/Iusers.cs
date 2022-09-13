@@ -31,8 +31,7 @@ namespace Telegram.Core.Repository
         public bool sendstoreEmail(int id);
         public List<SearchUserDto> SearchUser(SearchUserDto filter);
 
-         public bool sendstoreEmail(int id);
-  
+   
         public List<UserActiveDto> GetAllUsersActive();
         public List<UserNotActiveDto> GetAllUsersNotActive();
  
