@@ -20,6 +20,8 @@ namespace Telegram.Core.Data
         public string bio { get; set; }
         public string image_path { get; set; }
 
+        public string group_id { get; set; }
+
         public ICollection<GroupLink> group_link { get; set; }
         public ICollection<GroupMember> group_member { get; set; }
         public ICollection<GroupAdmin> group_admin { get; set; }

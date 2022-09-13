@@ -26,6 +26,7 @@ namespace Telegram.Infra.Repository
             p.Add("@cowner_id", groups.owner_id, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@cbio", groups.bio, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@cimagepath", groups.image_path, dbType: DbType.String, direction: ParameterDirection.Input);
+            p.Add("@p_GROUP_ID", Guid.NewGuid().ToString("N") , dbType: DbType.String);
             var result = DbContext.Connection.ExecuteAsync("Group_Package.CreateGroup", p, commandType: CommandType.StoredProcedure);
             return true;
         }
